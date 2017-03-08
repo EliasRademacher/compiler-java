@@ -39,7 +39,11 @@ public class Scanner {
     /* getNextChar fetches the next non-blank character from
     lineBuf, reading in a new line if lineBuf is exhausted */
     public int getNextChar(FileReader fileReader) throws FileNotFoundException {
-        if (!(linepos < bufsize)) {
+
+        if (linepos >= bufsize - 1) {
+            /* All the characters in lineBuf have been read (or lineBuf has not been loaded yet),
+            so load the next line in the file into lineBuf*/
+
             Globals.lineno++;
 
             try {
@@ -48,7 +52,7 @@ public class Scanner {
                 if (fileReader.read(lineBuf, 0, BUFLEN - 1) > 0) {
                     if (Globals.EchoSource) {
                         /* TODO: print the output to a file "listing". */
-                        System.out.println(Globals.lineno + ": " + lineBuf);
+                        System.out.println(Globals.lineno + ": " + new String(lineBuf));
                     }
                     bufsize = lineBuf.length;
                     linepos = 0;
