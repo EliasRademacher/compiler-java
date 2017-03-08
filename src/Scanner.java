@@ -64,11 +64,14 @@ public class Scanner {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
 
         return lineBuf[linepos++];
     }
 
+    /* ungetNextChar backtracks one character in lineBuf */
+    private void ungetNextChar() {
+        if (!EOF_flag) linepos--;
+    }
 
 }
