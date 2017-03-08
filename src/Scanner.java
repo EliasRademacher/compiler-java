@@ -1,14 +1,14 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
+
+
 
 /**
  * Created by Elias on 3/4/2017.
  */
 public class Scanner {
-
-    public Scanner() {
-    }
 
     /* States in scanner DFA */
     public enum StateType {
@@ -35,6 +35,21 @@ public class Scanner {
 
     /* corrects ungetNextChar behavior on EOF */
     private boolean EOF_flag = false;
+
+    /* lookup table of reserved words */
+    private HashMap<String, TokenType> reservedWords;
+
+    public Scanner() {
+        reservedWords = new HashMap<>();
+        reservedWords.put("if", TokenType.IF);
+        reservedWords.put("then", TokenType.THEN);
+        reservedWords.put("else", TokenType.ELSE);
+        reservedWords.put("end", TokenType.END);
+        reservedWords.put("repeat", TokenType.REPEAT);
+        reservedWords.put("until", TokenType.UNTIL);
+        reservedWords.put("read", TokenType.READ);
+        reservedWords.put("write", TokenType.WRITE);
+    }
 
     /* getNextChar fetches the next non-blank character from
     lineBuf, reading in a new line if lineBuf is exhausted */
@@ -73,5 +88,8 @@ public class Scanner {
     private void ungetNextChar() {
         if (!EOF_flag) linepos--;
     }
+
+
+
 
 }
