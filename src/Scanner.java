@@ -7,6 +7,9 @@ import java.io.IOException;
  */
 public class Scanner {
 
+    public Scanner() {
+    }
+
     /* States in scanner DFA */
     public enum StateType {
         START, INASSIGN, INCOMMENT, INNUM, INID, DONE
@@ -35,36 +38,29 @@ public class Scanner {
 
     /* getNextChar fetches the next non-blank character from
     lineBuf, reading in a new line if lineBuf is exhausted */
-    private int getNextChar() {
+    public int getNextChar(FileReader fileReader) throws FileNotFoundException {
         if (!(linepos < bufsize)) {
             Globals.lineno++;
 
-            FileReader fileReader;
             try {
-                fileReader = new FileReader("../test/resources/program1.cm");
-                try {
-                    Returns:
                     /* FileReader.read() returns the number of characters read,
                     or -1 if the end of the stream has been reached */
-                    if (fileReader.read(lineBuf, 0, BUFLEN - 1) > 0) {
-                        if (Globals.EchoSource) {
-                            /* TODO: print the output to a file "listing". */
-                            System.out.println(Globals.lineno + ": " + lineBuf);
-                        }
-                        bufsize = lineBuf.length;
-                        linepos = 0;
-                        return lineBuf[linepos++];
-                    } else {
-                        EOF_flag = true;
-                        return Globals.EOF;
+                if (fileReader.read(lineBuf, 0, BUFLEN - 1) > 0) {
+                    if (Globals.EchoSource) {
+                        /* TODO: print the output to a file "listing". */
+                        System.out.println(Globals.lineno + ": " + lineBuf);
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    bufsize = lineBuf.length;
+                    linepos = 0;
+                    return lineBuf[linepos++];
+                } else {
+                    EOF_flag = true;
+                    return Globals.EOF;
                 }
-
-            } catch (FileNotFoundException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
 
         return lineBuf[linepos++];
