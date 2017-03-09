@@ -11,16 +11,11 @@ public final class Globals {
     /* source code text file */
     private FileWriter source;
 
-    /* listing output text file */
-    private FileWriter listing;
-
-
     private static Globals instance = null;
 
     private Globals() {
         try {
             this.source = new FileWriter("./source.txt");
-            this.listing = new FileWriter("./listing.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -33,13 +28,6 @@ public final class Globals {
         return instance;
     }
 
-    public void writeListing(char[] cbuf) {
-        try {
-            this.listing.write(cbuf);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 
 
