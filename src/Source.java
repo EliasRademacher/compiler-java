@@ -4,21 +4,21 @@ import java.io.IOException;
 /**
  * Created by Elias on 3/8/2017.
  */
-public final class Listing {
+public final class Source {
 
-    /* listing output text file */
+    /* source code text file */
     private FileWriter fileWriter;
 
-    private static Listing instance = null;
+    private static Source instance = null;
 
-    private Listing() throws IOException {
-        fileWriter = new FileWriter("./listing.txt");
+    private Source() throws IOException {
+        fileWriter = new FileWriter("./source.txt");
     }
 
-    public static Listing getInstance()  {
+    public static Source getInstance() {
         if (instance == null) {
             try {
-                instance = new Listing();
+                instance = new Source();
             } catch (IOException e) {
                 e.printStackTrace();
             }

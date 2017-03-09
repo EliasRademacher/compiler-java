@@ -17,10 +17,8 @@ public class Utils {
             case UNTIL:
             case READ:
             case WRITE:
-//                //Globals.writeListing(tokenString);
-//
-//                fprintf(listing,
-//                        "reserved word: %s\n", tokenString);
+                Listing.getInstance().write(tokenString);
+
 //                break;
 //            case ASSIGN:
 //                fprintf(listing, ":=\n");
