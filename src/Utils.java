@@ -52,8 +52,8 @@ public class Utils {
             case ENDFILE:
                 Listing.getInstance().write("EOF\n");
                 break;
-            case NUM:
-                Listing.getInstance().write("NUM, val= %s\n" + tokenString);
+            case INT:
+                Listing.getInstance().write("INT, val= %s\n" + tokenString);
                 break;
             case ID:
                 Listing.getInstance().write("ID, name= %s\n" + tokenString);

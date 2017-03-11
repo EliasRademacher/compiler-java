@@ -67,8 +67,7 @@ public class Scanner {
                     or -1 if the end of the stream has been reached */
                 if (fileReader.read(lineBuf, 0, BUFLEN - 1) > 0) {
                     if (Globals.echoSource) {
-                        /* TODO: print the output to a file "listing". */
-                        System.out.println(Globals.lineno + ": " + new String(lineBuf));
+                        Listing.getInstance().write(Globals.lineno + ": " + new String(lineBuf));
                     }
                     bufsize = lineBuf.length;
                     linepos = 0;
@@ -94,7 +93,7 @@ public class Scanner {
     /* The primary function of the scanner: returns the
      * next token in source file
      */
-    Token getToken(FileReader fileReader) throws FileNotFoundException {
+    public Token getToken(FileReader fileReader) throws FileNotFoundException {
 
         /* index for storing into tokenString */
         int tokenStringIndex = 0;
@@ -187,7 +186,7 @@ public class Scanner {
                         ungetNextChar();
                         save = false;
                         state = State.DONE;
-                        currentToken = Token.NUM;
+                        currentToken = Token.INT;
                     }
                     break;
                 case INID:
@@ -200,8 +199,7 @@ public class Scanner {
                     break;
                 case DONE:
                 default: /* should never happen */
-                    /* TODO: also pring out listing in error message. */
-                    System.out.println("Scanner Bug: state=" + state.name());
+                    Listing.getInstance().write("Scanner Bug: state=" + state.name());
                     state = State.DONE;
                     currentToken = Token.ERROR;
                     break;
@@ -217,8 +215,7 @@ public class Scanner {
             }
         }
         if (Globals.traceScan) {
-            /* TODO: also pring out listing in error message. */
-            System.out.println("\t: " + Globals.lineno);
+            Listing.getInstance().write("\t: " + Globals.lineno);
             Utils.printToken(currentToken, new String(tokenString));
         }
         return currentToken;
