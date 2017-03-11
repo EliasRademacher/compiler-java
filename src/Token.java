@@ -6,7 +6,7 @@ public enum Token {
     /* reserved words */
     IF, THEN, ELSE, END, REPEAT, UNTIL, READ, WRITE,
     /* multicharacter tokens */
-    ID, INT,
+    ID, INT, INT_TYPE,
     /* special symbols */
     ASSIGN, EQ, LT, PLUS, MINUS, TIMES, OVER, LPAREN, RPAREN, SEMI
 }

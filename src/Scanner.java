@@ -23,7 +23,7 @@ public class Scanner {
     public final int BUFLEN = 256;
 
     /* lexeme of identifier or reserved word */
-    char tokenString[] = new char[MAXTOKENLEN];
+    char tokenChars[] = new char[MAXTOKENLEN];
 
     /* holds the current line */
     private char lineBuf[] = new char[BUFLEN];
@@ -50,6 +50,7 @@ public class Scanner {
         reservedWords.put("until", Token.UNTIL);
         reservedWords.put("read", Token.READ);
         reservedWords.put("write", Token.WRITE);
+        reservedWords.put("int", Token.INT_TYPE);
     }
 
     /* getNextChar fetches the next non-blank character from
@@ -95,8 +96,8 @@ public class Scanner {
      */
     public Token getToken(FileReader fileReader) throws FileNotFoundException {
 
-        /* index for storing into tokenString */
-        int tokenStringIndex = 0;
+        /* index for storing into tokenChars */
+        int tokenCharsIndex = 0;
 
         /* holds current token to be returned */
         Token currentToken = null;
@@ -104,7 +105,7 @@ public class Scanner {
         /* current state - always begins at START */
         State state = State.START;
 
-        /* flag to indicate save to tokenString */
+        /* flag to indicate save to tokenChars */
         boolean save;
 
         while (state != State.DONE) {
@@ -204,20 +205,29 @@ public class Scanner {
                     currentToken = Token.ERROR;
                     break;
             }
-            if ((save) && (tokenStringIndex <= MAXTOKENLEN)) {
-                tokenString[tokenStringIndex++] = c;
+
+            if ((save) && (tokenCharsIndex <= MAXTOKENLEN)) {
+                tokenChars[tokenCharsIndex++] = c;
             }
+
             if (state == State.DONE) {
-                tokenString[tokenStringIndex] = '\0';
+                tokenChars[tokenCharsIndex] = '\0';
+
                 if (currentToken == Token.ID) {
-                    currentToken = reservedWords.get(new String(tokenString));
+                    String tokenKey = new String(tokenChars, 0, tokenCharsIndex);
+                    tokenKey.substring(0, tokenCharsIndex);
+                    if (reservedWords.containsKey(tokenKey)) {
+                        currentToken = reservedWords.get(tokenKey);
+                    }
                 }
             }
         }
+
         if (Globals.traceScan) {
             Listing.getInstance().write("\t: " + Globals.lineno);
-            Utils.printToken(currentToken, new String(tokenString));
+            Utils.printToken(currentToken, new String(tokenChars));
         }
+
         return currentToken;
     }
 

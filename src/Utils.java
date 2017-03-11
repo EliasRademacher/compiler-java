@@ -19,6 +19,9 @@ public class Utils {
             case WRITE:
                 Listing.getInstance().write(tokenString);
                 break;
+            case INT_TYPE:
+                Listing.getInstance().write("int");
+                break;
             case ASSIGN:
                 Listing.getInstance().write(":=\n");
                 break;
