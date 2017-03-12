@@ -86,6 +86,21 @@ public class ScannerTest extends TestCase {
         expectedTokens.add(Token.RPAREN);
         expectedTokens.add(Token.LBRACE_CURLY);
 
+        /* z[ i ] = 100 + 2 * i; */
+        expectedTokens.add(Token.ID);
+        expectedTokens.add(Token.LBRACE);
+        expectedTokens.add(Token.ID);
+        expectedTokens.add(Token.RBRACE);
+        expectedTokens.add(Token.ASSIGN);
+        expectedTokens.add(Token.INT);
+        expectedTokens.add(Token.PLUS);
+        expectedTokens.add(Token.INT);
+        expectedTokens.add(Token.TIMES);
+        expectedTokens.add(Token.ID);
+        expectedTokens.add(Token.SEMI);
+
+
+
         for (Token token: expectedTokens) {
             Token actualToken = scanner.getToken(program1FileReader);
             assertEquals(token, actualToken);
