@@ -13,7 +13,7 @@ public class Scanner {
 
     /* States in scanner DFA */
     public enum State {
-        START, INASSIGN, INCOMMENT, INNUM, INID, DONE
+        START, INEQU, INCOMMENT, INNUM, INID, DONE
     }
 
     /* The maximum size of a token */
@@ -119,8 +119,8 @@ public class Scanner {
                         state = State.INNUM;
                     } else if (Character.isLetter(c)) {
                         state = State.INID;
-                    } else if (c == ':') {
-                        state = State.INASSIGN;
+                    } else if (c == '=') { /* TODO: have "==" be the equals operator. */
+                        state = State.INEQU;
                     } else if ((c == ' ') || (c == '\t') || (c == '\n') || (c == '\r')) {
                         save = false;
                     } else if (c == '#') {
@@ -185,11 +185,17 @@ public class Scanner {
                         currentToken = Token.ENDFILE;
                     } else if (c == '}') state = State.START;
                     break;
-                case INASSIGN:
+                case INEQU:
                     state = State.DONE;
                     if (c == '=') {
+                        currentToken = Token.EQ;
+                    }
+
+                    else if (Character.isWhitespace(c)) {
                         currentToken = Token.ASSIGN;
-                    } else { /* backup in the input */
+                    }
+
+                    else { /* backup in the input */
                         ungetNextChar();
                         save = false;
                         currentToken = Token.ERROR;
