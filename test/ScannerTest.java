@@ -3,6 +3,7 @@ import junit.framework.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -99,6 +100,11 @@ public class ScannerTest extends TestCase {
         expectedTokens.add(Token.ID);
         expectedTokens.add(Token.SEMI);
 
+        /* i = i + 1; } } */
+        expectedTokens.addAll(Arrays.asList(
+                Token.ID, Token.ASSIGN, Token.ID, Token.PLUS,
+                Token.INT, Token.SEMI, Token.RBRACE_CURLY, Token.RBRACE_CURLY
+        ));
 
 
         for (Token token: expectedTokens) {
