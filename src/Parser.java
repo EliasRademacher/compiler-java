@@ -45,13 +45,13 @@ public class Parser {
 //                token = getToken();
 //                break;
 //        } /* end case */
-        return null;//t;
+        return new DefaultMutableTreeNode(new ParseTreeElement(), true);//t;
     }
 
 
     private DefaultMutableTreeNode stmtSequence() {
-        DefaultMutableTreeNode t = statement();
-        DefaultMutableTreeNode p = (DefaultMutableTreeNode) t.clone();
+        DefaultMutableTreeNode tree = statement();
+        DefaultMutableTreeNode p = (DefaultMutableTreeNode) tree.clone();
 
         while ((token != Token.ENDFILE)
                 && (token != Token.END)
@@ -59,11 +59,13 @@ public class Parser {
                 && (token != Token.UNTIL)) {
 
             DefaultMutableTreeNode q;
-            match(Token.SEMI);
+            match(Token.SEMI); /* set this.token to Token.SEMI. */
             q = statement();
+
             if (q != null) {
-                if (t == null) {
-                    t = p = q;
+                if (tree == null) {
+                    tree = q;
+                    p = q;
                 }
                 else /* now p cannot be NULL either */ {
                     //p->sibling = q;
@@ -71,7 +73,8 @@ public class Parser {
                 }
             }
         }
-        return t;
+
+        return tree;
     }
 
 }
