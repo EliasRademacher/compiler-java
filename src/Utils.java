@@ -13,7 +13,7 @@ public class Utils {
             case THEN:
             case ELSE:
             case END:
-            case REPEAT:
+            case WHILE:
             case UNTIL:
             case READ:
             case WRITE:

@@ -46,7 +46,7 @@ public class Scanner {
         reservedWords.put("then", Token.THEN);
         reservedWords.put("else", Token.ELSE);
         reservedWords.put("end", Token.END);
-        reservedWords.put("repeat", Token.REPEAT);
+        reservedWords.put("while", Token.WHILE);
         reservedWords.put("until", Token.UNTIL);
         reservedWords.put("read", Token.READ);
         reservedWords.put("write", Token.WRITE);

@@ -4,7 +4,7 @@ public enum Token {
     /* book-keeping tokens */
     ENDFILE, ERROR,
     /* reserved words */
-    IF, THEN, ELSE, END, REPEAT, UNTIL, READ, WRITE,
+    IF, THEN, ELSE, END, WHILE, UNTIL, READ, WRITE,
     INT_TYPE, VOID,
     /* multicharacter tokens */
     ID, INT,

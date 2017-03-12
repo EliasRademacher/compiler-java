@@ -77,6 +77,15 @@ public class ScannerTest extends TestCase {
         expectedTokens.add(Token.INT);
         expectedTokens.add(Token.SEMI);
 
+        /* while( i < 10 ) { */
+        expectedTokens.add(Token.WHILE);
+        expectedTokens.add(Token.LPAREN);
+        expectedTokens.add(Token.ID);
+        expectedTokens.add(Token.LT);
+        expectedTokens.add(Token.INT);
+        expectedTokens.add(Token.RPAREN);
+        expectedTokens.add(Token.LBRACE_CURLY);
+
         for (Token token: expectedTokens) {
             Token actualToken = scanner.getToken(program1FileReader);
             assertEquals(token, actualToken);
