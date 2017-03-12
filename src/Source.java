@@ -12,7 +12,7 @@ public final class Source {
     private static Source instance = null;
 
     private Source() throws IOException {
-        fileWriter = new FileWriter("./source.txt");
+        fileWriter = new FileWriter("./source.txt", true);
     }
 
     public static Source getInstance() {
@@ -29,6 +29,12 @@ public final class Source {
     public void write(String string) {
         try {
             fileWriter.write(string.toCharArray());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            fileWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }

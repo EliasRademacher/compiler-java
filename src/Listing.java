@@ -12,7 +12,7 @@ public final class Listing {
     private static Listing instance = null;
 
     private Listing() throws IOException {
-        fileWriter = new FileWriter("./listing.txt");
+        fileWriter = new FileWriter("./listing.txt", true);
     }
 
     public static Listing getInstance()  {
@@ -27,11 +27,19 @@ public final class Listing {
     }
 
     public void write(String string) {
+
         try {
             fileWriter.write(string.toCharArray());
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        try {
+            fileWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
