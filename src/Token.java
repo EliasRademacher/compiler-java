@@ -5,8 +5,10 @@ public enum Token {
     ENDFILE, ERROR,
     /* reserved words */
     IF, THEN, ELSE, END, REPEAT, UNTIL, READ, WRITE,
+    INT_TYPE, VOID,
     /* multicharacter tokens */
-    ID, INT, INT_TYPE,
+    ID, INT,
     /* special symbols */
-    ASSIGN, EQ, LT, PLUS, MINUS, TIMES, OVER, LPAREN, RPAREN, LBRACE, RBRACE, SEMI
+    ASSIGN, EQ, LT, PLUS, MINUS, TIMES, OVER, LPAREN,
+    RPAREN, LBRACE, RBRACE, LBRACE_CURLY, RBRACE_CURLY, SEMI
 }

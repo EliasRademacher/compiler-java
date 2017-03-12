@@ -39,9 +39,11 @@ public class ScannerTest extends TestCase {
 
 
     public void testGetToken() throws Exception {
-        Token actualToken;
 
         List<Token> expectedTokens = new ArrayList<>();
+
+        /* int x; int y;
+           int z[10]; */
         expectedTokens.add(Token.INT_TYPE);
         expectedTokens.add(Token.ID);
         expectedTokens.add(Token.SEMI);
@@ -49,13 +51,25 @@ public class ScannerTest extends TestCase {
         expectedTokens.add(Token.ID);
         expectedTokens.add(Token.SEMI);
 
+        /* int z[10]; */
         expectedTokens.add(Token.INT_TYPE);
         expectedTokens.add(Token.ID);
         expectedTokens.add(Token.LBRACE);
+        expectedTokens.add(Token.INT);
+        expectedTokens.add(Token.RBRACE);
+        expectedTokens.add(Token.SEMI);
+
+        /* void f( void ) { */
+        expectedTokens.add(Token.VOID);
+        expectedTokens.add(Token.ID);
+        expectedTokens.add(Token.LPAREN);
+        expectedTokens.add(Token.VOID);
+        expectedTokens.add(Token.RPAREN);
+        expectedTokens.add(Token.LBRACE_CURLY);
 
 
         for (Token token: expectedTokens) {
-            actualToken = scanner.getToken(program1FileReader);
+            Token actualToken = scanner.getToken(program1FileReader);
             assertEquals(token, actualToken);
         }
 

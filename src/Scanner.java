@@ -51,6 +51,7 @@ public class Scanner {
         reservedWords.put("read", Token.READ);
         reservedWords.put("write", Token.WRITE);
         reservedWords.put("int", Token.INT_TYPE);
+        reservedWords.put("void", Token.VOID);
     }
 
     /* getNextChar fetches the next non-blank character from
@@ -122,7 +123,7 @@ public class Scanner {
                         state = State.INASSIGN;
                     } else if ((c == ' ') || (c == '\t') || (c == '\n') || (c == '\r')) {
                         save = false;
-                    } else if (c == '{') {
+                    } else if (c == '#') {
                         save = false;
                         state = State.INCOMMENT;
                     } else {
@@ -154,13 +155,19 @@ public class Scanner {
                                 currentToken = Token.LPAREN;
                                 break;
                             case ')':
-                                currentToken = Token.RBRACE;
+                                currentToken = Token.RPAREN;
                                 break;
                             case '[':
                                 currentToken = Token.LBRACE;
                                 break;
                             case ']':
-                                currentToken = Token.RPAREN;
+                                currentToken = Token.RBRACE;
+                                break;
+                            case '{':
+                                currentToken = Token.LBRACE_CURLY;
+                                break;
+                            case '}':
+                                currentToken = Token.RBRACE_CURLY;
                                 break;
                             case ';':
                                 currentToken = Token.SEMI;
