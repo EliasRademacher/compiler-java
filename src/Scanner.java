@@ -1,5 +1,4 @@
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -59,7 +58,7 @@ public class Scanner {
 
     /* getNextChar fetches the next non-blank character from
     lineBuf, reading in a new line if lineBuf is exhausted */
-    public int getNextChar() throws FileNotFoundException {
+    public int getNextChar() {
 
         if (linepos >= bufsize - 1) {
             /* All the characters in lineBuf have been read (or lineBuf has not been loaded yet),
@@ -98,7 +97,7 @@ public class Scanner {
     /* The primary function of the scanner: returns the
      * next token in source file
      */
-    public Token getToken() throws FileNotFoundException {
+    public Token getToken()  {
 
         /* index for storing into tokenChars */
         int tokenCharsIndex = 0;

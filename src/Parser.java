@@ -1,5 +1,4 @@
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 public class Parser {
 
@@ -20,12 +19,10 @@ public class Parser {
     }
 
     /* TODO: pass in token as parameter to match()? */
-    private void match(Token expectedToken, FileReader fileReader) throws FileNotFoundException {
+    private void match(Token expectedToken) {
         if (token == expectedToken) {
             token = scanner.getToken();
-        }
-
-        else {
+        } else {
             syntaxError("unexpected token -> ");
 
         /* TODO: how can I associate a tokenString with a Token?
@@ -33,6 +30,48 @@ public class Parser {
             Utils.printToken(token, "replace with tokenString");
             Listing.getInstance().write("      ");
         }
+    }
+
+    private DefaultMutableTreeNode statement() {
+//        TreeNode * t = NULL;
+//        switch (token) {
+//            case IF : t = if_stmt(); break;
+//            case REPEAT : t = repeat_stmt(); break;
+//            case ID : t = assign_stmt(); break;
+//            case READ : t = read_stmt(); break;
+//            case WRITE : t = write_stmt(); break;
+//            default : syntaxError("unexpected token -> ");
+//                printToken(token,tokenString);
+//                token = getToken();
+//                break;
+//        } /* end case */
+        return null;//t;
+    }
+
+
+    private DefaultMutableTreeNode stmtSequence() {
+        DefaultMutableTreeNode t = statement();
+        DefaultMutableTreeNode p = (DefaultMutableTreeNode) t.clone();
+
+        while ((token != Token.ENDFILE)
+                && (token != Token.END)
+                && (token != Token.ELSE)
+                && (token != Token.UNTIL)) {
+
+            DefaultMutableTreeNode q;
+            match(Token.SEMI);
+            q = statement();
+            if (q != null) {
+                if (t == null) {
+                    t = p = q;
+                }
+                else /* now p cannot be NULL either */ {
+                    //p->sibling = q;
+                    p = q;
+                }
+            }
+        }
+        return t;
     }
 
 }
