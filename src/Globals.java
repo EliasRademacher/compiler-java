@@ -3,7 +3,12 @@ public final class Globals {
 
     /* source line number for listing */
     public static int lineno;
+
+    /* Records if End of File has been reached. */
     public static final int EOF = -1;
+
+    /* Error = true prevents further passes if an error occurs */
+    public static boolean Error;
 
 
 
