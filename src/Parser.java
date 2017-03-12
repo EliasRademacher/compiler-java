@@ -6,7 +6,11 @@ public class Parser {
     /* holds current token */
     private Token token;
 
-    private Scanner scanner = new Scanner();
+    private Scanner scanner;
+
+    public Parser(Scanner scanner) {
+        this.scanner = scanner;
+    }
 
     private void syntaxError(String message) {
         Listing.getInstance().write(
@@ -18,7 +22,7 @@ public class Parser {
     /* TODO: pass in token as parameter to match()? */
     private void match(Token expectedToken, FileReader fileReader) throws FileNotFoundException {
         if (token == expectedToken) {
-            token = scanner.getToken(fileReader);
+            token = scanner.getToken();
         }
 
         else {

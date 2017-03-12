@@ -1,3 +1,4 @@
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -6,10 +7,9 @@ import java.util.HashMap;
 import java.lang.Character;
 
 
-/**
- * Created by Elias on 3/4/2017.
- */
 public class Scanner {
+
+    private FileReader fileReader;
 
     /* States in scanner DFA */
     public enum State {
@@ -40,7 +40,10 @@ public class Scanner {
     /* lookup table of reserved words */
     private HashMap<String, Token> reservedWords;
 
-    public Scanner() {
+    public Scanner(FileReader fileReader) {
+
+        this.fileReader = fileReader;
+
         reservedWords = new HashMap<>();
         reservedWords.put("if", Token.IF);
         reservedWords.put("then", Token.THEN);
@@ -56,7 +59,7 @@ public class Scanner {
 
     /* getNextChar fetches the next non-blank character from
     lineBuf, reading in a new line if lineBuf is exhausted */
-    public int getNextChar(FileReader fileReader) throws FileNotFoundException {
+    public int getNextChar() throws FileNotFoundException {
 
         if (linepos >= bufsize - 1) {
             /* All the characters in lineBuf have been read (or lineBuf has not been loaded yet),
@@ -67,7 +70,7 @@ public class Scanner {
             try {
                     /* FileReader.read() returns the number of characters read,
                     or -1 if the end of the stream has been reached */
-                if (fileReader.read(lineBuf, 0, BUFLEN - 1) > 0) {
+                if (this.fileReader.read(lineBuf, 0, BUFLEN - 1) > 0) {
                     if (Globals.echoSource) {
                         Listing.getInstance().write(Globals.lineno + ": " + new String(lineBuf));
                     }
@@ -95,7 +98,7 @@ public class Scanner {
     /* The primary function of the scanner: returns the
      * next token in source file
      */
-    public Token getToken(FileReader fileReader) throws FileNotFoundException {
+    public Token getToken() throws FileNotFoundException {
 
         /* index for storing into tokenChars */
         int tokenCharsIndex = 0;
@@ -110,7 +113,7 @@ public class Scanner {
         boolean save;
 
         while (state != State.DONE) {
-            char c = (char) getNextChar(fileReader);
+            char c = (char) getNextChar();
             save = true;
 
             switch (state) {
@@ -133,7 +136,7 @@ public class Scanner {
                                 save = false;
                                 currentToken = Token.ENDFILE;
                                 break;
-                            case '=':
+                            case '=': /* TODO: case is unreachable. */
                                 currentToken = Token.EQ;
                                 break;
                             case '<':
