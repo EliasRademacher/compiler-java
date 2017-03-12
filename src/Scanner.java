@@ -120,7 +120,7 @@ public class Scanner {
                         state = State.INID;
                     } else if (c == ':') {
                         state = State.INASSIGN;
-                    } else if ((c == ' ') || (c == '\t') || (c == '\n')) {
+                    } else if ((c == ' ') || (c == '\t') || (c == '\n') || (c == '\r')) {
                         save = false;
                     } else if (c == '{') {
                         save = false;
@@ -154,6 +154,12 @@ public class Scanner {
                                 currentToken = Token.LPAREN;
                                 break;
                             case ')':
+                                currentToken = Token.RBRACE;
+                                break;
+                            case '[':
+                                currentToken = Token.LBRACE;
+                                break;
+                            case ']':
                                 currentToken = Token.RPAREN;
                                 break;
                             case ';':

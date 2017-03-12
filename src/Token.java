@@ -8,5 +8,5 @@ public enum Token {
     /* multicharacter tokens */
     ID, INT, INT_TYPE,
     /* special symbols */
-    ASSIGN, EQ, LT, PLUS, MINUS, TIMES, OVER, LPAREN, RPAREN, SEMI
+    ASSIGN, EQ, LT, PLUS, MINUS, TIMES, OVER, LPAREN, RPAREN, LBRACE, RBRACE, SEMI
 }

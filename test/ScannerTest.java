@@ -44,6 +44,15 @@ public class ScannerTest extends TestCase {
         List<Token> expectedTokens = new ArrayList<>();
         expectedTokens.add(Token.INT_TYPE);
         expectedTokens.add(Token.ID);
+        expectedTokens.add(Token.SEMI);
+        expectedTokens.add(Token.INT_TYPE);
+        expectedTokens.add(Token.ID);
+        expectedTokens.add(Token.SEMI);
+
+        expectedTokens.add(Token.INT_TYPE);
+        expectedTokens.add(Token.ID);
+        expectedTokens.add(Token.LBRACE);
+
 
         for (Token token: expectedTokens) {
             actualToken = scanner.getToken(program1FileReader);
