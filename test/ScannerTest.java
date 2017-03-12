@@ -102,19 +102,62 @@ public class ScannerTest extends TestCase {
 
         /* i = i + 1; } } */
         expectedTokens.addAll(Arrays.asList(
-                Token.ID, Token.ASSIGN, Token.ID, Token.PLUS,
-                Token.INT, Token.SEMI, Token.RBRACE_CURLY, Token.RBRACE_CURLY
+                Token.ID, Token.ASSIGN, Token.ID, Token.PLUS, Token.INT,
+                Token.SEMI, Token.RBRACE_CURLY, Token.RBRACE_CURLY
         ));
 
+        /* void g( void ) { */
+        expectedTokens.addAll(Arrays.asList(
+                Token.VOID, Token.ID, Token.LPAREN, Token.VOID, Token.RPAREN,
+                Token.LBRACE_CURLY
+        ));
+
+        /* int i;
+           i = 0; */
+        expectedTokens.addAll(Arrays.asList(
+                Token.INT_TYPE, Token.ID, Token.SEMI,
+                Token.ID, Token.ASSIGN, Token.INT, Token.SEMI
+        ));
+
+        /* while( i < 10 ) { */
+        expectedTokens.addAll(Arrays.asList(
+                Token.WHILE, Token.LPAREN, Token.ID, Token.LT,
+                Token.INT, Token.RPAREN, Token.LBRACE_CURLY
+        ));
+
+        /* write z[ i ]; */
+        expectedTokens.addAll(Arrays.asList(
+                Token.WRITE, Token.ID, Token.LBRACE, Token.ID,
+                Token.RBRACE, Token.SEMI
+        ));
+
+        /* i = i + 1; } } */
+        expectedTokens.addAll(Arrays.asList(
+                Token.ID, Token.ASSIGN, Token.ID, Token.PLUS, Token.INT,
+                Token.SEMI, Token.RBRACE_CURLY, Token.RBRACE_CURLY
+        ));
+
+        /* void main( void ) { */
+        expectedTokens.addAll(Arrays.asList(
+                Token.VOID, Token.ID, Token.LPAREN, Token.VOID,
+                Token.RPAREN, Token.LBRACE_CURLY
+        ));
+
+        /* f();
+           g(); }
+        */
+        expectedTokens.addAll(Arrays.asList(
+                Token.ID, Token.LPAREN, Token.RPAREN, Token.SEMI,
+                Token.ID, Token.LPAREN, Token.RPAREN, Token.SEMI, Token.RBRACE_CURLY
+        ));
 
         for (Token token: expectedTokens) {
             Token actualToken = scanner.getToken(program1FileReader);
+//            Utils.printToken(actualToken, "tokenString");
             assertEquals(token, actualToken);
         }
 
 
 
     }
-
-
 }
