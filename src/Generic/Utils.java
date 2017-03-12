@@ -1,3 +1,7 @@
+package Generic;
+
+import LexicalAnalysis.Token;
+
 /**
  * Created by Elias on 3/4/2017.
  */
@@ -7,7 +11,7 @@ public class Utils {
     /* Procedure printToken prints a token
      * and its lexeme to the listing file.
      */
-    static void printToken(Token token, final String tokenString) {
+    static public void printToken(Token token, final String tokenString) {
         switch (token) {
             case IF:
             case THEN:

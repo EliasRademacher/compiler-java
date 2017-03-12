@@ -1,3 +1,7 @@
+package SyntacticAnalysis;
+
+import LexicalAnalysis.Token;
+
 /**
  * Designed to correspond to the TreeNode struct in the Louden compiler.
  */
@@ -15,6 +19,6 @@ public class ParseTreeElement {
     }
 
     /* For type checking of expressions.*/
-    /* TODO: Move to Expression class? */
+    /* TODO: Move to SyntacticAnalysis.Expression class? */
     protected ExpressionType expressionType;
 }

@@ -1,3 +1,4 @@
+package Generic;
 
 public final class Globals {
 

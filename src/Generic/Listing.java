@@ -1,24 +1,26 @@
+package Generic;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
 /**
  * Created by Elias on 3/8/2017.
  */
-public final class Source {
+public final class Listing {
 
-    /* source code text file */
+    /* listing output text file */
     private FileWriter fileWriter;
 
-    private static Source instance = null;
+    private static Listing instance = null;
 
-    private Source() throws IOException {
-        fileWriter = new FileWriter("./source.txt", true);
+    private Listing() throws IOException {
+        fileWriter = new FileWriter("./listing.txt", true);
     }
 
-    public static Source getInstance() {
+    public static Listing getInstance()  {
         if (instance == null) {
             try {
-                instance = new Source();
+                instance = new Listing();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -27,6 +29,7 @@ public final class Source {
     }
 
     public void write(String string) {
+
         try {
             fileWriter.write(string.toCharArray());
         } catch (IOException e) {
@@ -38,6 +41,7 @@ public final class Source {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
 }

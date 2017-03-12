@@ -1,3 +1,4 @@
+package SyntacticAnalysis;
 
 /**
  * Can be of type "OpK", "ConstK", or "IdK".

@@ -1,4 +1,9 @@
+package SyntacticAnalysis;
+
 import javax.swing.tree.DefaultMutableTreeNode;
+import LexicalAnalysis.*;
+import Generic.*;
+import LexicalAnalysis.Token;
 
 public class Parser {
 
@@ -33,8 +38,8 @@ public class Parser {
         } else {
             syntaxError("unexpected token -> ");
 
-        /* TODO: how can I associate a tokenString with a Token?
-         * Should I create a Token class? */
+        /* TODO: how can I associate a tokenString with a LexicalAnalysis.Token?
+         * Should I create a LexicalAnalysis.Token class? */
             Utils.printToken(token, "replace with tokenString");
             Listing.getInstance().write("      ");
         }
@@ -69,8 +74,8 @@ public class Parser {
         return tree;
     }
 
-    /* 1. Creates a new Statement node from this.token
-    *  2. Sets the sibling of this new node to be a node of type Token.SEMI
+    /* 1. Creates a new SyntacticAnalysis.Statement node from this.token
+    *  2. Sets the sibling of this new node to be a node of type LexicalAnalysis.Token.SEMI
     *
     */
     public DefaultMutableTreeNode stmtSequence() {
@@ -83,7 +88,7 @@ public class Parser {
                 && (token != Token.UNTIL)) {
 
             DefaultMutableTreeNode q;
-            match(Token.SEMI); /* set this.token to Token.SEMI. */
+            match(Token.SEMI); /* set this.token to LexicalAnalysis.Token.SEMI. */
             q = createStatementNodeFromToken();
 
             if (q != null) {

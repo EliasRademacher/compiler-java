@@ -1,3 +1,5 @@
+import LexicalAnalysis.Scanner;
+import LexicalAnalysis.Token;
 import junit.framework.*;
 
 import java.io.FileNotFoundException;
@@ -140,7 +142,7 @@ public class ScannerTest extends TestCase {
 
         for (Token token: expectedTokens) {
             Token actualToken = program1Scanner.getToken();
-//            Utils.printToken(actualToken, "tokenString");
+//            Generic.Utils.printToken(actualToken, "tokenString");
             assertEquals(token, actualToken);
         }
 

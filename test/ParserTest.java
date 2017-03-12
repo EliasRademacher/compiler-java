@@ -1,3 +1,5 @@
+import SyntacticAnalysis.Parser;
+import LexicalAnalysis.Scanner;
 import org.junit.Test;
 
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -16,7 +18,7 @@ public class ParserTest {
         FileReader program1FileReader = new FileReader("testResources/program1.cm");
         Scanner scanner = new Scanner(program1FileReader);
         Parser parser = new Parser(scanner);
-//        parser.setToken(Token.IF);
+//        parser.setToken(LexicalAnalysis.Token.IF);
 
         DefaultMutableTreeNode tree = parser.stmtSequence();
 

@@ -1,3 +1,6 @@
+package LexicalAnalysis;
+
+import Generic.*;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -221,7 +224,7 @@ public class Scanner {
                     break;
                 case DONE:
                 default: /* should never happen */
-                    Listing.getInstance().write("Scanner Bug: state=" + state.name());
+                    Listing.getInstance().write("LexicalAnalysis.Scanner Bug: state=" + state.name());
                     state = State.DONE;
                     currentToken = Token.ERROR;
                     break;

@@ -1,4 +1,4 @@
-
+package LexicalAnalysis;
 
 public enum Token {
     /* book-keeping tokens */
