@@ -11,6 +11,14 @@ public class Parser {
         this.scanner = scanner;
     }
 
+    public Token getToken() {
+        return token;
+    }
+
+    public void setToken(Token token) {
+        this.token = token;
+    }
+
     private void syntaxError(String message) {
         Listing.getInstance().write(
                 "\n>>> Syntax error at line" + Globals.lineno + ": " + message
@@ -32,26 +40,42 @@ public class Parser {
         }
     }
 
-    private DefaultMutableTreeNode statement() {
-//        TreeNode * t = NULL;
-//        switch (token) {
-//            case IF : t = if_stmt(); break;
-//            case REPEAT : t = repeat_stmt(); break;
-//            case ID : t = assign_stmt(); break;
-//            case READ : t = read_stmt(); break;
-//            case WRITE : t = write_stmt(); break;
-//            default : syntaxError("unexpected token -> ");
-//                printToken(token,tokenString);
-//                token = getToken();
-//                break;
-//        } /* end case */
-        return new DefaultMutableTreeNode(new ParseTreeElement(), true);//t;
+    /* Corresponds to function "statement()" in "PARSE.C". */
+    private DefaultMutableTreeNode createStatementNodeFromToken() {
+        DefaultMutableTreeNode tree = null;
+        switch (token) {
+            case IF:
+                tree = new DefaultMutableTreeNode(new IfStatement(), true);
+                break;
+            case WHILE:
+                tree = new DefaultMutableTreeNode(new WhileStatement(), true);
+                break;
+            case ID:
+                tree = new DefaultMutableTreeNode(new AssignmentStatement(), true);
+                break;
+            case READ:
+                tree = new DefaultMutableTreeNode(new ReadStatement(), true);
+                break;
+            case WRITE:
+                tree = new DefaultMutableTreeNode(new WriteStatement(), true);
+                break;
+            default:
+                syntaxError("unexpected token -> ");
+                Utils.printToken(token, "replace with tokenString");
+                token = scanner.getToken();
+                break;
+        }
+
+        return tree;
     }
 
-
-    private DefaultMutableTreeNode stmtSequence() {
-        DefaultMutableTreeNode tree = statement();
-        DefaultMutableTreeNode p = (DefaultMutableTreeNode) tree.clone();
+    /* 1. Creates a new Statement node from this.token
+    *  2. Sets the sibling of this new node to be a node of type Token.SEMI
+    *
+    */
+    public DefaultMutableTreeNode stmtSequence() {
+        DefaultMutableTreeNode tree = createStatementNodeFromToken();
+        DefaultMutableTreeNode p = tree;
 
         while ((token != Token.ENDFILE)
                 && (token != Token.END)
@@ -60,7 +84,7 @@ public class Parser {
 
             DefaultMutableTreeNode q;
             match(Token.SEMI); /* set this.token to Token.SEMI. */
-            q = statement();
+            q = createStatementNodeFromToken();
 
             if (q != null) {
                 if (tree == null) {
@@ -69,6 +93,8 @@ public class Parser {
                 }
                 else /* now p cannot be NULL either */ {
                     //p->sibling = q;
+                    DefaultMutableTreeNode parent = (DefaultMutableTreeNode) p.getParent();
+                    parent.add(q);
                     p = q;
                 }
             }
