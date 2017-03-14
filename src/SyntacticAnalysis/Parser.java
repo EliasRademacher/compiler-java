@@ -11,8 +11,13 @@ public class Parser {
 
     private Scanner scanner;
 
+    public Parser() {
+        this.token = new Token();
+    }
+
     public Parser(Scanner scanner) {
         this.scanner = scanner;
+        this.token = new Token();
     }
 
     public Token getToken() {
@@ -25,7 +30,7 @@ public class Parser {
 
     private void syntaxError(String message) {
         Listing.getInstance().write(
-                "\n>>> Syntax error at line" + Globals.lineno + ": " + message
+                "\n>>> Syntax error at line " + Globals.lineno + ": " + message
         );
         Globals.Error = true;
     }
@@ -35,12 +40,8 @@ public class Parser {
         if (token.getType() == expectedTokenType) {
             token = scanner.getToken();
         } else {
-            syntaxError("unexpected token -> ");
-
-        /* TODO: how can I associate a tokenString with a LexicalAnalysis.Token.Type?
-         * Should I create a LexicalAnalysis.Token.Type class? */
-            Utils.printToken(token.getType(), "replace with tokenString");
-            Listing.getInstance().write("      ");
+            String tokenString = Utils.tokenToString(token);
+            syntaxError("unexpected token type-> " + tokenString);
         }
     }
 
@@ -48,7 +49,7 @@ public class Parser {
     private DefaultMutableTreeNode createStatementNodeFromToken() {
         DefaultMutableTreeNode tree = null;
 
-        if (null == token) {
+        if (token.getType() == null) {
             token.setType(Token.Type.ERROR);
         }
 
@@ -69,8 +70,8 @@ public class Parser {
                 tree = new DefaultMutableTreeNode(new WriteStatement(), true);
                 break;
             default:
-                syntaxError("unexpected token -> ");
-                Utils.printToken(token.getType(), "replace with tokenString");
+                String tokenString = Utils.tokenToString(token);
+                syntaxError("unexpected token -> " + tokenString);
                 token = scanner.getToken();
                 break;
         }
@@ -121,7 +122,7 @@ public class Parser {
                 }
             }
 
-            System.out.println(Utils.tokenToString(token.getType()));
+            System.out.println(token.getName());
         }
 
         return tree;

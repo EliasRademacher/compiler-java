@@ -7,10 +7,10 @@ import LexicalAnalysis.Token;
  */
 public class Utils {
 
-    static public String tokenToString(Token.Type token) {
+    static public String tokenToString(Token token) {
         String stringValue = null;
 
-        switch (token) {
+        switch (token.getType()) {
             case IF:
             case THEN:
             case ELSE:
@@ -19,10 +19,10 @@ public class Utils {
             case UNTIL:
             case READ:
             case WRITE:
-                stringValue = "WRITE";
+                stringValue = "reserved word: " + token.getName();
                 break;
             case INT_TYPE:
-                stringValue = "int";
+                stringValue = "int type";
                 break;
             case ASSIGN:
                 stringValue = ":=\n";
@@ -58,19 +58,19 @@ public class Utils {
                 stringValue = "EOF\n";
                 break;
             case INT:
-                stringValue = "INT, val = %s\n";
+                stringValue = "INT, val = " + token.getIntegerValue();
                 break;
             case ID:
-                stringValue = "ID, name= %s\n";
+                stringValue = "ID, name = " + token.getName();
                 break;
             case ERROR:
-                stringValue = "ERROR: %s\n";
+                stringValue = "ERROR";
                 break;
             default: /* should never happen */
-                stringValue = "Unknown token: %s\n";
+                stringValue = "Unknown token";
         }
 
-        return stringValue;
+        return stringValue + "\n";
     }
 
 

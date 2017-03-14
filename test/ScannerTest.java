@@ -166,7 +166,6 @@ public class ScannerTest extends TestCase {
             if (token.getName() != null
                     && !token.getName().isEmpty()
                     && token.getType() == Token.Type.ID) {
-                System.out.println(token.getName());
                 assertEquals(expectedIdentifiers.get(i), token.getName());
                 i++;
             }
