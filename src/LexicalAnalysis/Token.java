@@ -10,7 +10,7 @@ public class Token {
 
     private int integerValue;
 
-    public enum TokenType {
+    public enum Type {
         /* book-keeping tokens */
         ENDFILE, ERROR,
         /* reserved words */

@@ -30,124 +30,124 @@ public class ScannerTest extends TestCase {
         FileReader program1FileReader = new FileReader("testResources/program1.cm");
         Scanner program1Scanner = new Scanner(program1FileReader);
 
-        List<Token.TokenType> expectedTokens = new ArrayList<>();
+        List<Token.Type> expectedTokens = new ArrayList<>();
 
         /* int x; int y;
            int z[10]; */
-        expectedTokens.add(Token.TokenType.INT_TYPE);
-        expectedTokens.add(Token.TokenType.ID);
-        expectedTokens.add(Token.TokenType.SEMI);
-        expectedTokens.add(Token.TokenType.INT_TYPE);
-        expectedTokens.add(Token.TokenType.ID);
-        expectedTokens.add(Token.TokenType.SEMI);
+        expectedTokens.add(Token.Type.INT_TYPE);
+        expectedTokens.add(Token.Type.ID);
+        expectedTokens.add(Token.Type.SEMI);
+        expectedTokens.add(Token.Type.INT_TYPE);
+        expectedTokens.add(Token.Type.ID);
+        expectedTokens.add(Token.Type.SEMI);
 
         /* int z[10]; */
-        expectedTokens.add(Token.TokenType.INT_TYPE);
-        expectedTokens.add(Token.TokenType.ID);
-        expectedTokens.add(Token.TokenType.LBRACE);
-        expectedTokens.add(Token.TokenType.INT);
-        expectedTokens.add(Token.TokenType.RBRACE);
-        expectedTokens.add(Token.TokenType.SEMI);
+        expectedTokens.add(Token.Type.INT_TYPE);
+        expectedTokens.add(Token.Type.ID);
+        expectedTokens.add(Token.Type.LBRACE);
+        expectedTokens.add(Token.Type.INT);
+        expectedTokens.add(Token.Type.RBRACE);
+        expectedTokens.add(Token.Type.SEMI);
 
         /* void f( void ) { */
-        expectedTokens.add(Token.TokenType.VOID);
-        expectedTokens.add(Token.TokenType.ID);
-        expectedTokens.add(Token.TokenType.LPAREN);
-        expectedTokens.add(Token.TokenType.VOID);
-        expectedTokens.add(Token.TokenType.RPAREN);
-        expectedTokens.add(Token.TokenType.LBRACE_CURLY);
+        expectedTokens.add(Token.Type.VOID);
+        expectedTokens.add(Token.Type.ID);
+        expectedTokens.add(Token.Type.LPAREN);
+        expectedTokens.add(Token.Type.VOID);
+        expectedTokens.add(Token.Type.RPAREN);
+        expectedTokens.add(Token.Type.LBRACE_CURLY);
 
         /* int i;
            i = 0; */
-        expectedTokens.add(Token.TokenType.INT_TYPE);
-        expectedTokens.add(Token.TokenType.ID);
-        expectedTokens.add(Token.TokenType.SEMI);
-        expectedTokens.add(Token.TokenType.ID);
-        expectedTokens.add(Token.TokenType.ASSIGN);
-        expectedTokens.add(Token.TokenType.INT);
-        expectedTokens.add(Token.TokenType.SEMI);
+        expectedTokens.add(Token.Type.INT_TYPE);
+        expectedTokens.add(Token.Type.ID);
+        expectedTokens.add(Token.Type.SEMI);
+        expectedTokens.add(Token.Type.ID);
+        expectedTokens.add(Token.Type.ASSIGN);
+        expectedTokens.add(Token.Type.INT);
+        expectedTokens.add(Token.Type.SEMI);
 
         /* while( i < 10 ) { */
-        expectedTokens.add(Token.TokenType.WHILE);
-        expectedTokens.add(Token.TokenType.LPAREN);
-        expectedTokens.add(Token.TokenType.ID);
-        expectedTokens.add(Token.TokenType.LT);
-        expectedTokens.add(Token.TokenType.INT);
-        expectedTokens.add(Token.TokenType.RPAREN);
-        expectedTokens.add(Token.TokenType.LBRACE_CURLY);
+        expectedTokens.add(Token.Type.WHILE);
+        expectedTokens.add(Token.Type.LPAREN);
+        expectedTokens.add(Token.Type.ID);
+        expectedTokens.add(Token.Type.LT);
+        expectedTokens.add(Token.Type.INT);
+        expectedTokens.add(Token.Type.RPAREN);
+        expectedTokens.add(Token.Type.LBRACE_CURLY);
 
         /* z[ i ] = 100 + 2 * i; */
-        expectedTokens.add(Token.TokenType.ID);
-        expectedTokens.add(Token.TokenType.LBRACE);
-        expectedTokens.add(Token.TokenType.ID);
-        expectedTokens.add(Token.TokenType.RBRACE);
-        expectedTokens.add(Token.TokenType.ASSIGN);
-        expectedTokens.add(Token.TokenType.INT);
-        expectedTokens.add(Token.TokenType.PLUS);
-        expectedTokens.add(Token.TokenType.INT);
-        expectedTokens.add(Token.TokenType.TIMES);
-        expectedTokens.add(Token.TokenType.ID);
-        expectedTokens.add(Token.TokenType.SEMI);
+        expectedTokens.add(Token.Type.ID);
+        expectedTokens.add(Token.Type.LBRACE);
+        expectedTokens.add(Token.Type.ID);
+        expectedTokens.add(Token.Type.RBRACE);
+        expectedTokens.add(Token.Type.ASSIGN);
+        expectedTokens.add(Token.Type.INT);
+        expectedTokens.add(Token.Type.PLUS);
+        expectedTokens.add(Token.Type.INT);
+        expectedTokens.add(Token.Type.TIMES);
+        expectedTokens.add(Token.Type.ID);
+        expectedTokens.add(Token.Type.SEMI);
 
         /* i = i + 1; } } */
         expectedTokens.addAll(Arrays.asList(
-                Token.TokenType.ID, Token.TokenType.ASSIGN, Token.TokenType.ID, Token.TokenType.PLUS, Token.TokenType.INT,
-                Token.TokenType.SEMI, Token.TokenType.RBRACE_CURLY, Token.TokenType.RBRACE_CURLY
+                Token.Type.ID, Token.Type.ASSIGN, Token.Type.ID, Token.Type.PLUS, Token.Type.INT,
+                Token.Type.SEMI, Token.Type.RBRACE_CURLY, Token.Type.RBRACE_CURLY
         ));
 
         /* void g( void ) { */
         expectedTokens.addAll(Arrays.asList(
-                Token.TokenType.VOID, Token.TokenType.ID, Token.TokenType.LPAREN, Token.TokenType.VOID, Token.TokenType.RPAREN,
-                Token.TokenType.LBRACE_CURLY
+                Token.Type.VOID, Token.Type.ID, Token.Type.LPAREN, Token.Type.VOID, Token.Type.RPAREN,
+                Token.Type.LBRACE_CURLY
         ));
 
         /* int i;
            i = 0; */
         expectedTokens.addAll(Arrays.asList(
-                Token.TokenType.INT_TYPE, Token.TokenType.ID, Token.TokenType.SEMI,
-                Token.TokenType.ID, Token.TokenType.ASSIGN, Token.TokenType.INT, Token.TokenType.SEMI
+                Token.Type.INT_TYPE, Token.Type.ID, Token.Type.SEMI,
+                Token.Type.ID, Token.Type.ASSIGN, Token.Type.INT, Token.Type.SEMI
         ));
 
         /* while( i < 10 ) { */
         expectedTokens.addAll(Arrays.asList(
-                Token.TokenType.WHILE, Token.TokenType.LPAREN, Token.TokenType.ID, Token.TokenType.LT,
-                Token.TokenType.INT, Token.TokenType.RPAREN, Token.TokenType.LBRACE_CURLY
+                Token.Type.WHILE, Token.Type.LPAREN, Token.Type.ID, Token.Type.LT,
+                Token.Type.INT, Token.Type.RPAREN, Token.Type.LBRACE_CURLY
         ));
 
         /* write z[ i ]; */
         expectedTokens.addAll(Arrays.asList(
-                Token.TokenType.WRITE, Token.TokenType.ID, Token.TokenType.LBRACE, Token.TokenType.ID,
-                Token.TokenType.RBRACE, Token.TokenType.SEMI
+                Token.Type.WRITE, Token.Type.ID, Token.Type.LBRACE, Token.Type.ID,
+                Token.Type.RBRACE, Token.Type.SEMI
         ));
 
         /* i = i + 1; } } */
         expectedTokens.addAll(Arrays.asList(
-                Token.TokenType.ID, Token.TokenType.ASSIGN, Token.TokenType.ID, Token.TokenType.PLUS, Token.TokenType.INT,
-                Token.TokenType.SEMI, Token.TokenType.RBRACE_CURLY, Token.TokenType.RBRACE_CURLY
+                Token.Type.ID, Token.Type.ASSIGN, Token.Type.ID, Token.Type.PLUS, Token.Type.INT,
+                Token.Type.SEMI, Token.Type.RBRACE_CURLY, Token.Type.RBRACE_CURLY
         ));
 
         /* void main( void ) { */
         expectedTokens.addAll(Arrays.asList(
-                Token.TokenType.VOID, Token.TokenType.ID, Token.TokenType.LPAREN, Token.TokenType.VOID,
-                Token.TokenType.RPAREN, Token.TokenType.LBRACE_CURLY
+                Token.Type.VOID, Token.Type.ID, Token.Type.LPAREN, Token.Type.VOID,
+                Token.Type.RPAREN, Token.Type.LBRACE_CURLY
         ));
 
         /* f();
            g(); }
         */
         expectedTokens.addAll(Arrays.asList(
-                Token.TokenType.ID, Token.TokenType.LPAREN, Token.TokenType.RPAREN, Token.TokenType.SEMI,
-                Token.TokenType.ID, Token.TokenType.LPAREN, Token.TokenType.RPAREN, Token.TokenType.SEMI, Token.TokenType.RBRACE_CURLY
+                Token.Type.ID, Token.Type.LPAREN, Token.Type.RPAREN, Token.Type.SEMI,
+                Token.Type.ID, Token.Type.LPAREN, Token.Type.RPAREN, Token.Type.SEMI, Token.Type.RBRACE_CURLY
         ));
 
-        for (Token.TokenType token: expectedTokens) {
-            Token.TokenType actualToken = program1Scanner.getToken();
+        for (Token.Type token: expectedTokens) {
+            Token.Type actualToken = program1Scanner.getToken();
 //            Generic.Utils.printToken(actualToken, "tokenString");
             assertEquals(token, actualToken);
         }
 
-//        TokenType actualToken = program1Scanner.getToken();
-//        assertEquals(TokenType.END, actualToken);
+//        Type actualToken = program1Scanner.getToken();
+//        assertEquals(Type.END, actualToken);
 
 
     }

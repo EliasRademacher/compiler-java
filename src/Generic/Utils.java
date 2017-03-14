@@ -7,7 +7,7 @@ import LexicalAnalysis.Token;
  */
 public class Utils {
 
-    static public String tokenToString(Token.TokenType token) {
+    static public String tokenToString(Token.Type token) {
         String stringValue = null;
 
         switch (token) {
@@ -77,7 +77,7 @@ public class Utils {
     /* Procedure printToken prints a token
      * and its lexeme to the listing file.
      */
-    static public void printToken(Token.TokenType token, final String tokenString) {
+    static public void printToken(Token.Type token, final String tokenString) {
         switch (token) {
             case IF:
             case THEN:

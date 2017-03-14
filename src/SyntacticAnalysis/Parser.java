@@ -7,7 +7,7 @@ import Generic.*;
 public class Parser {
 
     /* holds current token */
-    private Token.TokenType token;
+    private Token.Type token;
 
     private Scanner scanner;
 
@@ -15,11 +15,11 @@ public class Parser {
         this.scanner = scanner;
     }
 
-    public Token.TokenType getToken() {
+    public Token.Type getToken() {
         return token;
     }
 
-    public void setToken(Token.TokenType token) {
+    public void setToken(Token.Type token) {
         this.token = token;
     }
 
@@ -31,14 +31,14 @@ public class Parser {
     }
 
     /* TODO: pass in token as parameter to match()? */
-    private void match(Token.TokenType expectedToken) {
+    private void match(Token.Type expectedToken) {
         if (token == expectedToken) {
             token = scanner.getToken();
         } else {
             syntaxError("unexpected token -> ");
 
-        /* TODO: how can I associate a tokenString with a LexicalAnalysis.Token.TokenType?
-         * Should I create a LexicalAnalysis.Token.TokenType class? */
+        /* TODO: how can I associate a tokenString with a LexicalAnalysis.Token.Type?
+         * Should I create a LexicalAnalysis.Token.Type class? */
             Utils.printToken(token, "replace with tokenString");
             Listing.getInstance().write("      ");
         }
@@ -49,7 +49,7 @@ public class Parser {
         DefaultMutableTreeNode tree = null;
 
         if (null == token) {
-            token = Token.TokenType.ERROR;
+            token = Token.Type.ERROR;
         }
 
         switch (token) {
@@ -91,13 +91,13 @@ public class Parser {
         DefaultMutableTreeNode tree = createStatementNodeFromToken();
         DefaultMutableTreeNode p = tree;
 
-        while ((token != Token.TokenType.ENDFILE)
-                && (token != Token.TokenType.END)
-                && (token != Token.TokenType.ELSE)
-                && (token != Token.TokenType.UNTIL)) {
+        while ((token != Token.Type.ENDFILE)
+                && (token != Token.Type.END)
+                && (token != Token.Type.ELSE)
+                && (token != Token.Type.UNTIL)) {
 
             DefaultMutableTreeNode q;
-            match(Token.TokenType.SEMI); /* set this.token to LexicalAnalysis.Token.TokenType.SEMI. */
+            match(Token.Type.SEMI); /* set this.token to LexicalAnalysis.Token.Type.SEMI. */
             q = createStatementNodeFromToken();
 
             if (q != null) {
