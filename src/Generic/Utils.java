@@ -1,13 +1,13 @@
 package Generic;
 
-import LexicalAnalysis.TokenType;
+import LexicalAnalysis.Token;
 
 /**
  * Created by Elias on 3/4/2017.
  */
 public class Utils {
 
-    static public String tokenToString(TokenType token) {
+    static public String tokenToString(Token.TokenType token) {
         String stringValue = null;
 
         switch (token) {
@@ -77,7 +77,7 @@ public class Utils {
     /* Procedure printToken prints a token
      * and its lexeme to the listing file.
      */
-    static public void printToken(TokenType token, final String tokenString) {
+    static public void printToken(Token.TokenType token, final String tokenString) {
         switch (token) {
             case IF:
             case THEN:
