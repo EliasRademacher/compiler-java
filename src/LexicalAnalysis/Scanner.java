@@ -100,7 +100,7 @@ public class Scanner {
     /* The primary function of the scanner: returns the
      * next token in source file
      */
-    public Token getToken()  {
+    public Token getToken() {
 
         /* index for storing into tokenChars */
         int tokenCharsIndex = 0;
@@ -116,7 +116,6 @@ public class Scanner {
 
         while (state != State.DONE) {
             int cAsInt = getNextChar();
-
 
 
             char c = (char) cAsInt;
@@ -204,13 +203,9 @@ public class Scanner {
                     state = State.DONE;
                     if (c == '=') {
                         currentToken.setType(Token.Type.EQ);
-                    }
-
-                    else if (Character.isWhitespace(c)) {
+                    } else if (Character.isWhitespace(c)) {
                         currentToken.setType(Token.Type.ASSIGN);
-                    }
-
-                    else { /* backup in the input */
+                    } else { /* backup in the input */
                         ungetNextChar();
                         save = false;
                         currentToken.setType(Token.Type.ERROR);
@@ -252,9 +247,12 @@ public class Scanner {
                     tokenKey.substring(0, tokenCharsIndex);
                     if (reservedWords.containsKey(tokenKey)) {
                         currentToken.setType(reservedWords.get(tokenKey));
+                        currentToken.setName("");
                     }
 
-
+                    else  {
+                        currentToken.setName(tokenKey);
+                    }
                 }
             }
         }

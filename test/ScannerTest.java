@@ -148,7 +148,29 @@ public class ScannerTest extends TestCase {
 
 //        Type actualToken = program1Scanner.getToken();
 //        assertEquals(Type.END, actualToken);
-
-
     }
+
+
+
+    public void testTokenName() throws FileNotFoundException {
+        FileReader program1FileReader = new FileReader("testResources/program1.cm");
+        Scanner program1Scanner = new Scanner(program1FileReader);
+
+        List<String> expectedIdentifiers = new ArrayList<>(Arrays.asList("x", "y", "z", "f", "i", "i", "i", "z", "i", "i", "i", "i", "g", "i", "i", "i", "z", "i", "i", "i", "main", "f", "g", "i", "z", "i", "i", "i", "i", "g", "i", "i", "i", "z", "i", "i"));
+
+        Token token = new Token();
+
+        int i = 0;
+        while (token.getType() != Token.Type.ENDFILE) {
+            token = program1Scanner.getToken();
+            if (token.getName() != null
+                    && !token.getName().isEmpty()
+                    && token.getType() == Token.Type.ID) {
+                System.out.println(token.getName());
+                assertEquals(expectedIdentifiers.get(i), token.getName());
+                i++;
+            }
+        }
+    }
+
 }
