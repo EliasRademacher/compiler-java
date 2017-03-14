@@ -140,10 +140,10 @@ public class ScannerTest extends TestCase {
                 Token.Type.ID, Token.Type.LPAREN, Token.Type.RPAREN, Token.Type.SEMI, Token.Type.RBRACE_CURLY
         ));
 
-        for (Token.Type token: expectedTokens) {
-            Token.Type actualToken = program1Scanner.getToken();
+        for (Token.Type tokenType: expectedTokens) {
+            Token.Type actualTokenType = program1Scanner.getToken().getType();
 //            Generic.Utils.printToken(actualToken, "tokenString");
-            assertEquals(token, actualToken);
+            assertEquals(tokenType, actualTokenType);
         }
 
 //        Type actualToken = program1Scanner.getToken();

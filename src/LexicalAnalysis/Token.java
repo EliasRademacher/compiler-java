@@ -23,6 +23,20 @@ public class Token {
         RPAREN, LBRACE, RBRACE, LBRACE_CURLY, RBRACE_CURLY, SEMI
     }
 
+    private Type type;
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        if (null == type) {
+            this.type = Type.ERROR;
+        } else {
+            this.type = type;
+        }
+    }
+
     public String getName() {
         return name;
     }

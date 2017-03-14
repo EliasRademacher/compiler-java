@@ -19,13 +19,13 @@ public class Scanner {
     }
 
     /* The maximum size of a token */
-    public final int MAXTOKENLEN = 40;
+    private final int MAXTOKENLEN = 40;
 
     /* The length of the input buffer for source code lines */
-    public final int BUFLEN = 256;
+    private final int BUFLEN = 256;
 
     /* lexeme of identifier or reserved word */
-    char tokenChars[] = new char[MAXTOKENLEN];
+    private char tokenChars[] = new char[MAXTOKENLEN];
 
     /* holds the current line */
     private char lineBuf[] = new char[BUFLEN];
@@ -100,13 +100,13 @@ public class Scanner {
     /* The primary function of the scanner: returns the
      * next token in source file
      */
-    public Token.Type getToken()  {
+    public Token getToken()  {
 
         /* index for storing into tokenChars */
         int tokenCharsIndex = 0;
 
         /* holds current token to be returned */
-        Token.Type currentToken = null;
+        Token currentToken = new Token();
 
         /* current state - always begins at START */
         State state = State.START;
@@ -146,49 +146,49 @@ public class Scanner {
                         switch (c) {
                             case (char) Globals.EOF:
                                 save = false;
-                                currentToken = Token.Type.ENDFILE;
+                                currentToken.setType(Token.Type.ENDFILE);
                                 break;
                             case '=': /* TODO: case is unreachable. */
-                                currentToken = Token.Type.EQ;
+                                currentToken.setType(Token.Type.EQ);
                                 break;
                             case '<':
-                                currentToken = Token.Type.LT;
+                                currentToken.setType(Token.Type.LT);
                                 break;
                             case '+':
-                                currentToken = Token.Type.PLUS;
+                                currentToken.setType(Token.Type.PLUS);
                                 break;
                             case '-':
-                                currentToken = Token.Type.MINUS;
+                                currentToken.setType(Token.Type.MINUS);
                                 break;
                             case '*':
-                                currentToken = Token.Type.TIMES;
+                                currentToken.setType(Token.Type.TIMES);
                                 break;
                             case '/':
-                                currentToken = Token.Type.OVER;
+                                currentToken.setType(Token.Type.OVER);
                                 break;
                             case '(':
-                                currentToken = Token.Type.LPAREN;
+                                currentToken.setType(Token.Type.LPAREN);
                                 break;
                             case ')':
-                                currentToken = Token.Type.RPAREN;
+                                currentToken.setType(Token.Type.RPAREN);
                                 break;
                             case '[':
-                                currentToken = Token.Type.LBRACE;
+                                currentToken.setType(Token.Type.LBRACE);
                                 break;
                             case ']':
-                                currentToken = Token.Type.RBRACE;
+                                currentToken.setType(Token.Type.RBRACE);
                                 break;
                             case '{':
-                                currentToken = Token.Type.LBRACE_CURLY;
+                                currentToken.setType(Token.Type.LBRACE_CURLY);
                                 break;
                             case '}':
-                                currentToken = Token.Type.RBRACE_CURLY;
+                                currentToken.setType(Token.Type.RBRACE_CURLY);
                                 break;
                             case ';':
-                                currentToken = Token.Type.SEMI;
+                                currentToken.setType(Token.Type.SEMI);
                                 break;
                             default:
-                                currentToken = Token.Type.ERROR;
+                                currentToken.setType(Token.Type.ERROR);
                                 break;
                         }
                     }
@@ -197,23 +197,23 @@ public class Scanner {
                     save = false;
                     if (c == (char) Globals.EOF) {
                         state = State.DONE;
-                        currentToken = Token.Type.ENDFILE;
+                        currentToken.setType(Token.Type.ENDFILE);
                     } else if (c == '}') state = State.START;
                     break;
                 case INEQU:
                     state = State.DONE;
                     if (c == '=') {
-                        currentToken = Token.Type.EQ;
+                        currentToken.setType(Token.Type.EQ);
                     }
 
                     else if (Character.isWhitespace(c)) {
-                        currentToken = Token.Type.ASSIGN;
+                        currentToken.setType(Token.Type.ASSIGN);
                     }
 
                     else { /* backup in the input */
                         ungetNextChar();
                         save = false;
-                        currentToken = Token.Type.ERROR;
+                        currentToken.setType(Token.Type.ERROR);
                     }
                     break;
                 case INNUM:
@@ -221,7 +221,7 @@ public class Scanner {
                         ungetNextChar();
                         save = false;
                         state = State.DONE;
-                        currentToken = Token.Type.INT;
+                        currentToken.setType(Token.Type.INT);
                     }
                     break;
                 case INID:
@@ -229,14 +229,14 @@ public class Scanner {
                         ungetNextChar();
                         save = false;
                         state = State.DONE;
-                        currentToken = Token.Type.ID;
+                        currentToken.setType(Token.Type.ID);
                     }
                     break;
                 case DONE:
                 default: /* should never happen */
                     Listing.getInstance().write("LexicalAnalysis.Scanner Bug: state=" + state.name());
                     state = State.DONE;
-                    currentToken = Token.Type.ERROR;
+                    currentToken.setType(Token.Type.ERROR);
                     break;
             }
 
@@ -247,19 +247,21 @@ public class Scanner {
             if (state == State.DONE) {
                 tokenChars[tokenCharsIndex] = '\0';
 
-                if (currentToken == Token.Type.ID) {
+                if (currentToken.getType() == Token.Type.ID) {
                     String tokenKey = new String(tokenChars, 0, tokenCharsIndex);
                     tokenKey.substring(0, tokenCharsIndex);
                     if (reservedWords.containsKey(tokenKey)) {
-                        currentToken = reservedWords.get(tokenKey);
+                        currentToken.setType(reservedWords.get(tokenKey));
                     }
+
+
                 }
             }
         }
 
         if (Globals.traceScan) {
             Listing.getInstance().write("\t: " + Globals.lineno);
-            Utils.printToken(currentToken, new String(tokenChars));
+            Utils.printToken(currentToken.getType(), new String(tokenChars));
         }
 
         return currentToken;

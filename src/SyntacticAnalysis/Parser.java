@@ -7,7 +7,7 @@ import Generic.*;
 public class Parser {
 
     /* holds current token */
-    private Token.Type token;
+    private Token token;
 
     private Scanner scanner;
 
@@ -15,11 +15,11 @@ public class Parser {
         this.scanner = scanner;
     }
 
-    public Token.Type getToken() {
+    public Token getToken() {
         return token;
     }
 
-    public void setToken(Token.Type token) {
+    public void setToken(Token token) {
         this.token = token;
     }
 
@@ -31,15 +31,15 @@ public class Parser {
     }
 
     /* TODO: pass in token as parameter to match()? */
-    private void match(Token.Type expectedToken) {
-        if (token == expectedToken) {
+    private void match(Token.Type expectedTokenType) {
+        if (token.getType() == expectedTokenType) {
             token = scanner.getToken();
         } else {
             syntaxError("unexpected token -> ");
 
         /* TODO: how can I associate a tokenString with a LexicalAnalysis.Token.Type?
          * Should I create a LexicalAnalysis.Token.Type class? */
-            Utils.printToken(token, "replace with tokenString");
+            Utils.printToken(token.getType(), "replace with tokenString");
             Listing.getInstance().write("      ");
         }
     }
@@ -49,10 +49,10 @@ public class Parser {
         DefaultMutableTreeNode tree = null;
 
         if (null == token) {
-            token = Token.Type.ERROR;
+            token.setType(Token.Type.ERROR);
         }
 
-        switch (token) {
+        switch (token.getType()) {
             case IF:
                 tree = new DefaultMutableTreeNode(new IfStatement(), true);
                 break;
@@ -70,7 +70,7 @@ public class Parser {
                 break;
             default:
                 syntaxError("unexpected token -> ");
-                Utils.printToken(token, "replace with tokenString");
+                Utils.printToken(token.getType(), "replace with tokenString");
                 token = scanner.getToken();
                 break;
         }
@@ -91,10 +91,10 @@ public class Parser {
         DefaultMutableTreeNode tree = createStatementNodeFromToken();
         DefaultMutableTreeNode p = tree;
 
-        while ((token != Token.Type.ENDFILE)
-                && (token != Token.Type.END)
-                && (token != Token.Type.ELSE)
-                && (token != Token.Type.UNTIL)) {
+        while ((token.getType() != Token.Type.ENDFILE)
+                && (token.getType() != Token.Type.END)
+                && (token.getType() != Token.Type.ELSE)
+                && (token.getType() != Token.Type.UNTIL)) {
 
             DefaultMutableTreeNode q;
             match(Token.Type.SEMI); /* set this.token to LexicalAnalysis.Token.Type.SEMI. */
@@ -121,7 +121,7 @@ public class Parser {
                 }
             }
 
-            System.out.println(Utils.tokenToString(token));
+            System.out.println(Utils.tokenToString(token.getType()));
         }
 
         return tree;
