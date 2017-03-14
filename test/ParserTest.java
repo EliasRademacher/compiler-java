@@ -18,7 +18,7 @@ public class ParserTest {
         FileReader program1FileReader = new FileReader("testResources/program1.cm");
         Scanner scanner = new Scanner(program1FileReader);
         Parser parser = new Parser(scanner);
-//        parser.setToken(LexicalAnalysis.Token.IF);
+//        parser.setToken(LexicalAnalysis.TokenType.IF);
 
         DefaultMutableTreeNode tree = parser.stmtSequence();
 

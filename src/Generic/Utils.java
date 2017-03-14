@@ -1,17 +1,83 @@
 package Generic;
 
-import LexicalAnalysis.Token;
+import LexicalAnalysis.TokenType;
 
 /**
  * Created by Elias on 3/4/2017.
  */
 public class Utils {
 
+    static public String tokenToString(TokenType token) {
+        String stringValue = null;
+
+        switch (token) {
+            case IF:
+            case THEN:
+            case ELSE:
+            case END:
+            case WHILE:
+            case UNTIL:
+            case READ:
+            case WRITE:
+                stringValue = "WRITE";
+                break;
+            case INT_TYPE:
+                stringValue = "int";
+                break;
+            case ASSIGN:
+                stringValue = ":=\n";
+                break;
+            case LT:
+                stringValue = "<\n";
+                break;
+            case EQ:
+                stringValue = "=\n";
+                break;
+            case LPAREN:
+                stringValue = "(\n";
+                break;
+            case RPAREN:
+                stringValue = ")\n";
+                break;
+            case SEMI:
+                stringValue = ";\n";
+                break;
+            case PLUS:
+                stringValue = "+\n";
+                break;
+            case MINUS:
+                stringValue = "-\n";
+                break;
+            case TIMES:
+                stringValue = "*\n";
+                break;
+            case OVER:
+                stringValue = "/\n";
+                break;
+            case ENDFILE:
+                stringValue = "EOF\n";
+                break;
+            case INT:
+                stringValue = "INT, val = %s\n";
+                break;
+            case ID:
+                stringValue = "ID, name= %s\n";
+                break;
+            case ERROR:
+                stringValue = "ERROR: %s\n";
+                break;
+            default: /* should never happen */
+                stringValue = "Unknown token: %s\n";
+        }
+
+        return stringValue;
+    }
+
 
     /* Procedure printToken prints a token
      * and its lexeme to the listing file.
      */
-    static public void printToken(Token token, final String tokenString) {
+    static public void printToken(TokenType token, final String tokenString) {
         switch (token) {
             case IF:
             case THEN:

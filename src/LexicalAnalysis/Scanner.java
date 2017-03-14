@@ -40,23 +40,23 @@ public class Scanner {
     private boolean EOF_flag = false;
 
     /* lookup table of reserved words */
-    private HashMap<String, Token> reservedWords;
+    private HashMap<String, TokenType> reservedWords;
 
     public Scanner(FileReader fileReader) {
 
         this.fileReader = fileReader;
 
         reservedWords = new HashMap<>();
-        reservedWords.put("if", Token.IF);
-        reservedWords.put("then", Token.THEN);
-        reservedWords.put("else", Token.ELSE);
-        reservedWords.put("end", Token.END);
-        reservedWords.put("while", Token.WHILE);
-        reservedWords.put("until", Token.UNTIL);
-        reservedWords.put("read", Token.READ);
-        reservedWords.put("write", Token.WRITE);
-        reservedWords.put("int", Token.INT_TYPE);
-        reservedWords.put("void", Token.VOID);
+        reservedWords.put("if", TokenType.IF);
+        reservedWords.put("then", TokenType.THEN);
+        reservedWords.put("else", TokenType.ELSE);
+        reservedWords.put("end", TokenType.END);
+        reservedWords.put("while", TokenType.WHILE);
+        reservedWords.put("until", TokenType.UNTIL);
+        reservedWords.put("read", TokenType.READ);
+        reservedWords.put("write", TokenType.WRITE);
+        reservedWords.put("int", TokenType.INT_TYPE);
+        reservedWords.put("void", TokenType.VOID);
     }
 
     /* getNextChar fetches the next non-blank character from
@@ -100,13 +100,13 @@ public class Scanner {
     /* The primary function of the scanner: returns the
      * next token in source file
      */
-    public Token getToken()  {
+    public TokenType getToken()  {
 
         /* index for storing into tokenChars */
         int tokenCharsIndex = 0;
 
         /* holds current token to be returned */
-        Token currentToken = null;
+        TokenType currentToken = null;
 
         /* current state - always begins at START */
         State state = State.START;
@@ -115,7 +115,11 @@ public class Scanner {
         boolean save;
 
         while (state != State.DONE) {
-            char c = (char) getNextChar();
+            int cAsInt = getNextChar();
+
+
+
+            char c = (char) cAsInt;
             save = true;
 
             switch (state) {
@@ -133,52 +137,58 @@ public class Scanner {
                         state = State.INCOMMENT;
                     } else {
                         state = State.DONE;
+
+//                        if (cAsInt < 0) {
+//                            save = false;
+//                            currentToken = TokenType.ENDFILE;
+//                        }
+
                         switch (c) {
                             case (char) Globals.EOF:
                                 save = false;
-                                currentToken = Token.ENDFILE;
+                                currentToken = TokenType.ENDFILE;
                                 break;
                             case '=': /* TODO: case is unreachable. */
-                                currentToken = Token.EQ;
+                                currentToken = TokenType.EQ;
                                 break;
                             case '<':
-                                currentToken = Token.LT;
+                                currentToken = TokenType.LT;
                                 break;
                             case '+':
-                                currentToken = Token.PLUS;
+                                currentToken = TokenType.PLUS;
                                 break;
                             case '-':
-                                currentToken = Token.MINUS;
+                                currentToken = TokenType.MINUS;
                                 break;
                             case '*':
-                                currentToken = Token.TIMES;
+                                currentToken = TokenType.TIMES;
                                 break;
                             case '/':
-                                currentToken = Token.OVER;
+                                currentToken = TokenType.OVER;
                                 break;
                             case '(':
-                                currentToken = Token.LPAREN;
+                                currentToken = TokenType.LPAREN;
                                 break;
                             case ')':
-                                currentToken = Token.RPAREN;
+                                currentToken = TokenType.RPAREN;
                                 break;
                             case '[':
-                                currentToken = Token.LBRACE;
+                                currentToken = TokenType.LBRACE;
                                 break;
                             case ']':
-                                currentToken = Token.RBRACE;
+                                currentToken = TokenType.RBRACE;
                                 break;
                             case '{':
-                                currentToken = Token.LBRACE_CURLY;
+                                currentToken = TokenType.LBRACE_CURLY;
                                 break;
                             case '}':
-                                currentToken = Token.RBRACE_CURLY;
+                                currentToken = TokenType.RBRACE_CURLY;
                                 break;
                             case ';':
-                                currentToken = Token.SEMI;
+                                currentToken = TokenType.SEMI;
                                 break;
                             default:
-                                currentToken = Token.ERROR;
+                                currentToken = TokenType.ERROR;
                                 break;
                         }
                     }
@@ -187,23 +197,23 @@ public class Scanner {
                     save = false;
                     if (c == (char) Globals.EOF) {
                         state = State.DONE;
-                        currentToken = Token.ENDFILE;
+                        currentToken = TokenType.ENDFILE;
                     } else if (c == '}') state = State.START;
                     break;
                 case INEQU:
                     state = State.DONE;
                     if (c == '=') {
-                        currentToken = Token.EQ;
+                        currentToken = TokenType.EQ;
                     }
 
                     else if (Character.isWhitespace(c)) {
-                        currentToken = Token.ASSIGN;
+                        currentToken = TokenType.ASSIGN;
                     }
 
                     else { /* backup in the input */
                         ungetNextChar();
                         save = false;
-                        currentToken = Token.ERROR;
+                        currentToken = TokenType.ERROR;
                     }
                     break;
                 case INNUM:
@@ -211,7 +221,7 @@ public class Scanner {
                         ungetNextChar();
                         save = false;
                         state = State.DONE;
-                        currentToken = Token.INT;
+                        currentToken = TokenType.INT;
                     }
                     break;
                 case INID:
@@ -219,14 +229,14 @@ public class Scanner {
                         ungetNextChar();
                         save = false;
                         state = State.DONE;
-                        currentToken = Token.ID;
+                        currentToken = TokenType.ID;
                     }
                     break;
                 case DONE:
                 default: /* should never happen */
                     Listing.getInstance().write("LexicalAnalysis.Scanner Bug: state=" + state.name());
                     state = State.DONE;
-                    currentToken = Token.ERROR;
+                    currentToken = TokenType.ERROR;
                     break;
             }
 
@@ -237,7 +247,7 @@ public class Scanner {
             if (state == State.DONE) {
                 tokenChars[tokenCharsIndex] = '\0';
 
-                if (currentToken == Token.ID) {
+                if (currentToken == TokenType.ID) {
                     String tokenKey = new String(tokenChars, 0, tokenCharsIndex);
                     tokenKey.substring(0, tokenCharsIndex);
                     if (reservedWords.containsKey(tokenKey)) {
