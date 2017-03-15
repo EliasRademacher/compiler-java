@@ -45,8 +45,9 @@ public class Parser {
         }
     }
 
+    /* Creates a new tree node based on the current token. */
     /* Corresponds to function "statement()" in "PARSE.C". */
-    private DefaultMutableTreeNode createStatementNodeFromToken() {
+    public DefaultMutableTreeNode createStatementNodeFromToken() {
         DefaultMutableTreeNode tree = null;
 
         if (token.getType() == null) {

@@ -19,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Parser.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SyntacticAnalysis/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="115" column="0" lean-forward="true" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+            <state relative-caret-position="300">
+              <caret line="63" column="12" lean-forward="false" selection-start-line="63" selection-start-column="12" selection-end-line="63" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#250#251#0" expanded="true" />
@@ -32,37 +32,8 @@
                 <element signature="e#459#460#0" expanded="true" />
                 <element signature="e#500#501#0" expanded="true" />
                 <element signature="e#534#535#0" expanded="true" />
+                <element signature="method#stmtSequence#0;class#Parser#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="listing.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/listing.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="program1.cm" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testResources/program1.cm">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="7" column="12" lean-forward="true" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Utils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Generic/Utils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="613">
-              <caret line="27" column="37" lean-forward="true" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -70,7 +41,7 @@
       <file leaf-file-name="Scanner.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/LexicalAnalysis/Scanner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
+            <state relative-caret-position="781">
               <caret line="264" column="0" lean-forward="false" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -105,19 +76,21 @@
       <file leaf-file-name="Token.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/LexicalAnalysis/Token.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="800">
-              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+            <state relative-caret-position="425">
+              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding>
-                <element signature="e#603#604#0" expanded="true" />
-                <element signature="e#630#631#0" expanded="true" />
-                <element signature="e#826#827#0" expanded="true" />
-                <element signature="e#853#854#0" expanded="true" />
-                <element signature="e#893#894#0" expanded="true" />
-                <element signature="e#925#926#0" expanded="true" />
-                <element signature="e#961#962#0" expanded="true" />
-                <element signature="e#996#997#0" expanded="true" />
-                <element signature="e#1049#1050#0" expanded="true" />
-                <element signature="e#1097#1098#0" expanded="true" />
+                <element signature="e#633#634#0" expanded="true" />
+                <element signature="e#665#666#0" expanded="true" />
+                <element signature="e#694#695#0" expanded="true" />
+                <element signature="e#721#722#0" expanded="true" />
+                <element signature="e#917#918#0" expanded="true" />
+                <element signature="e#944#945#0" expanded="true" />
+                <element signature="e#984#985#0" expanded="true" />
+                <element signature="e#1016#1017#0" expanded="true" />
+                <element signature="e#1052#1053#0" expanded="true" />
+                <element signature="e#1087#1088#0" expanded="true" />
+                <element signature="e#1140#1141#0" expanded="true" />
+                <element signature="e#1188#1189#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -133,11 +106,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParserTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ParserTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/ParserTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="22" column="60" lean-forward="false" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
+            <state relative-caret-position="486">
+              <caret line="58" column="33" lean-forward="false" selection-start-line="58" selection-start-column="33" selection-end-line="58" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -229,14 +202,14 @@
         <option value="$PROJECT_DIR$/src/Parse/WriteStatement.java" />
         <option value="$PROJECT_DIR$/src/Generic/SymbolTable.java" />
         <option value="$PROJECT_DIR$/src/SemanticAnalysis/SemanticAnalyzer.java" />
-        <option value="$PROJECT_DIR$/test/ParserTest.java" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/LexicalAnalysis/TokenType.java" />
-        <option value="$PROJECT_DIR$/src/LexicalAnalysis/Token.java" />
         <option value="$PROJECT_DIR$/src/LexicalAnalysis/Scanner.java" />
         <option value="$PROJECT_DIR$/test/ScannerTest.java" />
         <option value="$PROJECT_DIR$/src/Generic/Utils.java" />
         <option value="$PROJECT_DIR$/src/SyntacticAnalysis/Parser.java" />
+        <option value="$PROJECT_DIR$/src/LexicalAnalysis/Token.java" />
+        <option value="$PROJECT_DIR$/test/ParserTest.java" />
       </list>
     </option>
   </component>
@@ -424,28 +397,7 @@
       <recent name="C:\Users\Elias\IdeaProjects\compiler\test" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ScannerTest">
-    <configuration default="false" name="All in compiler" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="compiler" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="package" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="JUnit.ParserTest.testCreateStatementNodeFromToken">
     <configuration default="false" name="ScannerTest.testGetToken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="compiler" />
@@ -517,6 +469,27 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ScannerTest" />
       <option name="METHOD_NAME" value="testTokenName" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="ParserTest.testCreateStatementNodeFromToken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="compiler" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ParserTest" />
+      <option name="METHOD_NAME" value="testCreateStatementNodeFromToken" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
@@ -888,19 +861,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.All in compiler" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.ScannerTest.testGetToken" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.ParserTest.stmtSequence" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.ScannerTest" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.ScannerTest.testTokenName" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.ScannerTest.testGetToken" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.ParserTest.stmtSequence" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.ScannerTest" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.ScannerTest.testTokenName" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.ParserTest.testCreateStatementNodeFromToken" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.ScannerTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.ParserTest.stmtSequence" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.ScannerTest.testTokenName" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.ScannerTest.testGetToken" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.All in compiler" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.ParserTest.testCreateStatementNodeFromToken" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.ScannerTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.ParserTest.stmtSequence" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.ScannerTest.testTokenName" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.ScannerTest.testGetToken" />
       </list>
     </recent_temporary>
   </component>
@@ -924,44 +897,44 @@
       <workItem from="1488998833856" duration="11302000" />
       <workItem from="1489269212129" duration="21445000" />
       <workItem from="1489303371015" duration="990000" />
-      <workItem from="1489360537239" duration="13845000" />
+      <workItem from="1489360537239" duration="15121000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ParserTest_stmtSequence - 2017.03.14 at 16h 17m 02s.xml">
-      <configuration name="ParserTest.stmtSequence" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParserTest_stmtSequence - 2017.03.14 at 16h 17m 37s.xml">
-      <configuration name="ParserTest.stmtSequence" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParserTest_stmtSequence - 2017.03.14 at 16h 18m 39s.xml">
-      <configuration name="ParserTest.stmtSequence" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParserTest_stmtSequence - 2017.03.14 at 16h 21m 12s.xml">
-      <configuration name="ParserTest.stmtSequence" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParserTest_stmtSequence - 2017.03.14 at 16h 24m 33s.xml">
-      <configuration name="ParserTest.stmtSequence" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParserTest_stmtSequence - 2017.03.14 at 16h 29m 14s.xml">
-      <configuration name="ParserTest.stmtSequence" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParserTest_stmtSequence - 2017.03.14 at 16h 32m 33s.xml">
-      <configuration name="ParserTest.stmtSequence" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParserTest_stmtSequence - 2017.03.14 at 16h 40m 46s.xml">
-      <configuration name="ParserTest.stmtSequence" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParserTest_stmtSequence - 2017.03.14 at 16h 43m 04s.xml">
-      <configuration name="ParserTest.stmtSequence" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="ParserTest_stmtSequence - 2017.03.14 at 16h 49m 33s.xml">
       <configuration name="ParserTest.stmtSequence" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="ParserTest_testCreateStatementNodeFromToken - 2017.03.14 at 17h 08m 22s.xml">
+      <configuration name="ParserTest.testCreateStatementNodeFromToken" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ParserTest_testCreateStatementNodeFromToken - 2017.03.14 at 17h 10m 00s.xml">
+      <configuration name="ParserTest.testCreateStatementNodeFromToken" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ParserTest_testCreateStatementNodeFromToken - 2017.03.14 at 17h 10m 28s.xml">
+      <configuration name="ParserTest.testCreateStatementNodeFromToken" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ParserTest_testCreateStatementNodeFromToken - 2017.03.14 at 17h 11m 24s.xml">
+      <configuration name="ParserTest.testCreateStatementNodeFromToken" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ParserTest_testCreateStatementNodeFromToken - 2017.03.14 at 17h 11m 36s.xml">
+      <configuration name="ParserTest.testCreateStatementNodeFromToken" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ParserTest_testCreateStatementNodeFromToken - 2017.03.14 at 17h 12m 35s.xml">
+      <configuration name="ParserTest.testCreateStatementNodeFromToken" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ParserTest_testCreateStatementNodeFromToken - 2017.03.14 at 17h 14m 55s.xml">
+      <configuration name="ParserTest.testCreateStatementNodeFromToken" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ParserTest_testCreateStatementNodeFromToken - 2017.03.14 at 17h 16m 08s.xml">
+      <configuration name="ParserTest.testCreateStatementNodeFromToken" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ScannerTest - 2017.03.14 at 16h 55m 01s.xml">
+      <configuration name="ScannerTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66340000" />
+    <option name="totallyTimeSpent" value="67616000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -995,7 +968,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26110363" sideWeight="0.4974293" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36339167" sideWeight="0.4974293" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27994618" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26799485" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.115746975" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1035,8 +1008,14 @@
           <properties />
           <option name="timeStamp" value="31" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/ParserTest.java</url>
+          <line>38</line>
+          <properties />
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="32" />
+      <option name="time" value="34" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1358,59 +1337,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/ParserTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="22" column="60" lean-forward="false" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/LexicalAnalysis/Scanner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="264" column="0" lean-forward="false" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testResources/program1.cm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="12" lean-forward="true" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/LexicalAnalysis/Token.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="800">
-          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding>
-            <element signature="e#603#604#0" expanded="true" />
-            <element signature="e#630#631#0" expanded="true" />
-            <element signature="e#826#827#0" expanded="true" />
-            <element signature="e#853#854#0" expanded="true" />
-            <element signature="e#893#894#0" expanded="true" />
-            <element signature="e#925#926#0" expanded="true" />
-            <element signature="e#961#962#0" expanded="true" />
-            <element signature="e#996#997#0" expanded="true" />
-            <element signature="e#1049#1050#0" expanded="true" />
-            <element signature="e#1097#1098#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Generic/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="613">
-          <caret line="27" column="37" lean-forward="true" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/ScannerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -1433,10 +1359,47 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Generic/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2494">
+          <caret line="16" column="8" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LexicalAnalysis/Token.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <element signature="e#633#634#0" expanded="true" />
+            <element signature="e#665#666#0" expanded="true" />
+            <element signature="e#694#695#0" expanded="true" />
+            <element signature="e#721#722#0" expanded="true" />
+            <element signature="e#917#918#0" expanded="true" />
+            <element signature="e#944#945#0" expanded="true" />
+            <element signature="e#984#985#0" expanded="true" />
+            <element signature="e#1016#1017#0" expanded="true" />
+            <element signature="e#1052#1053#0" expanded="true" />
+            <element signature="e#1087#1088#0" expanded="true" />
+            <element signature="e#1140#1141#0" expanded="true" />
+            <element signature="e#1188#1189#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testResources/program1.cm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" column="12" lean-forward="true" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/SyntacticAnalysis/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="115" column="0" lean-forward="true" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
+        <state relative-caret-position="300">
+          <caret line="63" column="12" lean-forward="false" selection-start-line="63" selection-start-column="12" selection-end-line="63" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#250#251#0" expanded="true" />
@@ -1445,7 +1408,26 @@
             <element signature="e#459#460#0" expanded="true" />
             <element signature="e#500#501#0" expanded="true" />
             <element signature="e#534#535#0" expanded="true" />
+            <element signature="method#stmtSequence#0;class#Parser#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LexicalAnalysis/Scanner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="781">
+          <caret line="264" column="0" lean-forward="false" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ParserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="58" column="33" lean-forward="false" selection-start-line="58" selection-start-column="33" selection-end-line="58" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
