@@ -129,4 +129,7 @@ public class Parser {
         return tree;
     }
 
+    public DefaultMutableTreeNode createDeclarationNode(Token token) {
+        return null;
+    }
 }

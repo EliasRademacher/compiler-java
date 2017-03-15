@@ -1,5 +1,7 @@
 package SyntacticAnalysis;
 
+import LexicalAnalysis.Token;
+
 /**
  * A statement is the smallest standalone element of an
  * imperative programming language that expresses some action to be carried out.
@@ -11,4 +13,12 @@ package SyntacticAnalysis;
  *
  */
 public class Statement extends ParseTreeElement {
+
+    public Statement() {
+        super();
+    }
+
+    public Statement(Token token) {
+        super(token);
+    }
 }

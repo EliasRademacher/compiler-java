@@ -1,5 +1,7 @@
 package SyntacticAnalysis;
 
+import LexicalAnalysis.Token;
+
 /**
  * An expression in is a combination of one or more
  * explicit values, constants, variables, operators, and functions.
@@ -12,4 +14,21 @@ package SyntacticAnalysis;
  * "IdK": (ID)
  */
 public class Expression extends ParseTreeElement {
+
+    public enum Type {
+        VOID, INTEGER, BOOLEAN
+    }
+
+    /* For type checking of expressions.*/
+    protected Type type;
+
+    public Expression(Type type) {
+        super();
+        this.type = type;
+    }
+
+    public Expression(Token token, Type type) {
+        super(token);
+        this.type = type;
+    }
 }

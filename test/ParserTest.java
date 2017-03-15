@@ -60,5 +60,33 @@ public class ParserTest {
     }
 
 
+    /* Create a parse tree for "int x;" */
+    @Test
+    public void testCreateDeclarationNode() throws FileNotFoundException {
+        FileReader program1FileReader = new FileReader("testResources/simpleDeclaration.cm");
+        Scanner scanner = new Scanner(program1FileReader);
+        Parser parser = new Parser(scanner);
+
+        Token intTypeToken = new Token(Token.Type.INT_TYPE);
+        DefaultMutableTreeNode actualTree = parser.createDeclarationNode(intTypeToken);
+
+
+        DeclarationStatement declarationStatement =
+                new DeclarationStatement(intTypeToken);
+        DefaultMutableTreeNode expectedTree =
+                new DefaultMutableTreeNode(declarationStatement);
+
+        Token tokenForX = new Token(Token.Type.ID);
+        tokenForX.setName("x");
+        DefaultMutableTreeNode IDNodeForX =
+                new DefaultMutableTreeNode(new IDExpression(tokenForX, Expression.Type.INTEGER));
+
+        expectedTree.add(IDNodeForX);
+
+
+        assertEquals(expectedTree, actualTree);
+
+
+    }
 
 }

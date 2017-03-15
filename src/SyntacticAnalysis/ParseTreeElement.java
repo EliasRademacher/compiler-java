@@ -2,23 +2,17 @@ package SyntacticAnalysis;
 
 import LexicalAnalysis.Token;
 
-/**
- * Designed to correspond to the TreeNode struct in the Louden compiler.
- */
+
 public class ParseTreeElement {
 
     protected int lineNumber;
 
-    protected Token.Type token; /* Needed if the element is not an int type or variable? */
-    protected int value; /* Needed if the element is a int type? */
-    protected String name; /* Needed if the element is a variable? */
+    protected Token token;
 
-
-    protected enum ExpressionType {
-        VOID, INTEGER, BOOLEAN
+    public ParseTreeElement() {
     }
 
-    /* For type checking of expressions.*/
-    /* TODO: Move to SyntacticAnalysis.Expression class? */
-    protected ExpressionType expressionType;
+    public ParseTreeElement(Token token) {
+        this.token = token;
+    }
 }
