@@ -1,3 +1,5 @@
+import LexicalAnalysis.IDToken;
+import LexicalAnalysis.IntTypeToken;
 import LexicalAnalysis.Token;
 import SyntacticAnalysis.*;
 import LexicalAnalysis.Scanner;
@@ -6,6 +8,10 @@ import org.junit.Test;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -66,25 +72,61 @@ public class ParserTest {
         FileReader program1FileReader = new FileReader("testResources/simpleDeclaration.cm");
         Scanner scanner = new Scanner(program1FileReader);
         Parser parser = new Parser(scanner);
-
-        Token intTypeToken = new Token(Token.Type.INT_TYPE);
-        DefaultMutableTreeNode actualTree = parser.createDeclarationNode(intTypeToken);
+        DefaultMutableTreeNode actualTree = parser.createDeclarationNode();
 
 
-        DeclarationStatement declarationStatement =
-                new DeclarationStatement(intTypeToken);
-        DefaultMutableTreeNode expectedTree =
-                new DefaultMutableTreeNode(declarationStatement);
+        Token intTypeToken = new IntTypeToken();
+        DefaultMutableTreeNode expectedTree = intTypeToken.toTreeNode();
 
-        Token tokenForX = new Token(Token.Type.ID);
+        Token tokenForX = new IDToken();
         tokenForX.setName("x");
-        DefaultMutableTreeNode IDNodeForX =
-                new DefaultMutableTreeNode(new IDExpression(tokenForX, Expression.Type.INTEGER));
+        DefaultMutableTreeNode IDNodeForX = tokenForX.toTreeNode();
 
         expectedTree.add(IDNodeForX);
 
 
-        assertEquals(expectedTree, actualTree);
+        Class expectedClass = expectedTree.getUserObject().getClass();
+        Class<?> actualClass = actualTree.getUserObject().getClass();
+        assertEquals(expectedClass, actualClass);
+
+        ParseTreeElement expectedElement =
+                (ParseTreeElement) expectedTree.getUserObject();
+        ParseTreeElement actualElement =
+                (ParseTreeElement) actualTree.getUserObject();
+        String expectedName = expectedElement.getToken().getName();
+        String actualName = actualElement.getToken().getName();
+        assertEquals(expectedName, actualName);
+
+
+
+
+        Enumeration expectedChildren = expectedTree.children();
+        Enumeration actualChildren = actualTree.children();
+
+        while(expectedChildren.hasMoreElements()) {
+
+            DefaultMutableTreeNode expectedChild =
+                    (DefaultMutableTreeNode) expectedChildren.nextElement();
+            DefaultMutableTreeNode actualChild =
+                    (DefaultMutableTreeNode) actualChildren.nextElement();
+            expectedClass = expectedChild.getUserObject().getClass();
+            actualClass = actualChild.getUserObject().getClass();
+            assertEquals(expectedClass, actualClass);
+
+            System.out.println("Expected Node Class: " + expectedClass.getName() + ";\t" +
+                    "Actual Node Class: " + actualClass.getName());
+
+
+            expectedElement = (ParseTreeElement) expectedChild.getUserObject();
+            actualElement = (ParseTreeElement) actualChild.getUserObject();
+            expectedName = expectedElement.getToken().getName();
+            actualName = actualElement.getToken().getName();
+            assertEquals(expectedName, actualName);
+
+
+            System.out.println("Expected Token Name: " + expectedName + ";\t" +
+                    "Actual Token Name: " + actualName + "\n");
+        }
 
 
     }

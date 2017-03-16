@@ -184,7 +184,8 @@ public class Scanner {
                                 currentToken.setType(Token.Type.RBRACE_CURLY);
                                 break;
                             case ';':
-                                currentToken.setType(Token.Type.SEMI);
+//                                currentToken.setType(Token.Type.SEMI);
+                                currentToken = new SemicolonToken();
                                 break;
                             default:
                                 currentToken.setType(Token.Type.ERROR);
@@ -224,6 +225,7 @@ public class Scanner {
                         ungetNextChar();
                         save = false;
                         state = State.DONE;
+//                        currentToken = new IDToken();
                         currentToken.setType(Token.Type.ID);
                     }
                     break;
@@ -246,11 +248,18 @@ public class Scanner {
                     String tokenKey = new String(tokenChars, 0, tokenCharsIndex);
                     tokenKey.substring(0, tokenCharsIndex);
                     if (reservedWords.containsKey(tokenKey)) {
-                        currentToken.setType(reservedWords.get(tokenKey));
-                        currentToken.setName("");
+
+                        Token.Type type = reservedWords.get(tokenKey);
+
+                        if (type == Token.Type.INT_TYPE) {
+                            currentToken = new IntTypeToken();
+                        } else {
+                            currentToken.setType(type);
+                        }
                     }
 
                     else  {
+                        currentToken = new IDToken();
                         currentToken.setName(tokenKey);
                     }
                 }

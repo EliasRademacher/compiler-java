@@ -129,7 +129,31 @@ public class Parser {
         return tree;
     }
 
-    public DefaultMutableTreeNode createDeclarationNode(Token token) {
-        return null;
+    public DefaultMutableTreeNode createDeclarationNode() {
+
+        token = new Token();
+
+        DefaultMutableTreeNode treeNode = null;
+
+        while(token.getType() != Token.Type.ENDFILE
+                && token.getType() != Token.Type.ERROR) {
+
+            token = scanner.getToken();
+            DefaultMutableTreeNode newChild = token.toTreeNode();
+
+            if (newChild == null) {
+                break;
+            }
+
+            if (treeNode == null) {
+                treeNode = newChild;
+            } else {
+                treeNode.add(newChild);
+            }
+        }
+
+
+
+        return treeNode;
     }
 }

@@ -22,6 +22,10 @@ public class Expression extends ParseTreeElement {
     /* For type checking of expressions.*/
     protected Type type;
 
+    public Expression(Token token) {
+        super(token);
+    }
+
     public Expression(Type type) {
         super();
         this.type = type;

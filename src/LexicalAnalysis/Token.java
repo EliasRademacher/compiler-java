@@ -1,5 +1,9 @@
 package LexicalAnalysis;
 
+import SyntacticAnalysis.ParseTreeElement;
+
+import javax.swing.tree.DefaultMutableTreeNode;
+
 /**
  * Created by Elias on 3/14/2017.
  *
@@ -58,5 +62,14 @@ public class Token {
 
     public void setIntegerValue(int integerValue) {
         this.integerValue = integerValue;
+    }
+
+
+    public ParseTreeElement toParseTreeElement() {
+        return new ParseTreeElement(this);
+    }
+
+    public DefaultMutableTreeNode toTreeNode() {
+        return new DefaultMutableTreeNode(this.toParseTreeElement());
     }
 }

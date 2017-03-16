@@ -15,4 +15,8 @@ public class ParseTreeElement {
     public ParseTreeElement(Token token) {
         this.token = token;
     }
+
+    public Token getToken() {
+        return token;
+    }
 }
