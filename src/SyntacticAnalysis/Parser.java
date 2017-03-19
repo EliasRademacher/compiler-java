@@ -1,8 +1,11 @@
 package SyntacticAnalysis;
 
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.MutableTreeNode;
+
 import LexicalAnalysis.*;
 import Generic.*;
+import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
 
 public class Parser {
 
@@ -86,9 +89,6 @@ public class Parser {
     *
     */
     public DefaultMutableTreeNode stmtSequence() {
-//        if (null == token) {
-//            token = scanner.getToken();
-//        }
 
         DefaultMutableTreeNode tree = createStatementNodeFromToken();
         DefaultMutableTreeNode p = tree;
@@ -114,10 +114,8 @@ public class Parser {
                         p.setParent(new DefaultMutableTreeNode());
                     }
 
-
                     DefaultMutableTreeNode parent = (DefaultMutableTreeNode) p.getParent();
                     parent.add(q);
-
 
                     p = q;
                 }
@@ -128,6 +126,32 @@ public class Parser {
 
         return tree;
     }
+
+    DefaultMutableTreeNode assignStmt() {
+        DefaultMutableTreeNode tree =
+                new DefaultMutableTreeNode();
+
+        if (null != tree && token.getType() == Token.Type.ID) {
+            AssignmentStatement assignmentStatement =
+                    new AssignmentStatement(token);
+            tree.setUserObject(assignmentStatement);
+        }
+
+        match(Token.Type.ID);
+        match(Token.Type.ASSIGN);
+
+        if (null != tree) {
+            tree.add(exp());
+        }
+
+        return tree;
+
+    }
+
+    private DefaultMutableTreeNode exp() {
+        return null;
+    }
+
 
     public DefaultMutableTreeNode createDeclarationNode() {
 
