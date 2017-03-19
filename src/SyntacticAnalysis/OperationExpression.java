@@ -3,9 +3,13 @@ package SyntacticAnalysis;
 import LexicalAnalysis.Token;
 
 /**
- * Created by Elias on 3/15/2017.
+ * Can be of type EQ, LT, PLUS, MINUS, TIMES, OVER;
  */
 public class OperationExpression extends Expression {
+
+    public OperationExpression(Token token) {
+        super(token);
+    }
     public OperationExpression(Type type) {
         super(type);
     }

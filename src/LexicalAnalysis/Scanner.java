@@ -137,58 +137,52 @@ public class Scanner {
                     } else {
                         state = State.DONE;
 
-//                        if (cAsInt < 0) {
-//                            save = false;
-//                            currentToken = Type.ENDFILE;
-//                        }
-
                         switch (c) {
                             case (char) Globals.EOF:
                                 save = false;
-                                currentToken.setType(Token.Type.ENDFILE);
+                                currentToken = new EndFileToken();
                                 break;
                             case '=': /* TODO: case is unreachable. */
-                                currentToken.setType(Token.Type.EQ);
+                                currentToken = new EqToken();
                                 break;
                             case '<':
-                                currentToken.setType(Token.Type.LT);
+                                currentToken = new LessThanToken();
                                 break;
                             case '+':
-                                currentToken.setType(Token.Type.PLUS);
+                                currentToken = new PlusToken();
                                 break;
                             case '-':
-                                currentToken.setType(Token.Type.MINUS);
+                                currentToken = new MinusToken();
                                 break;
                             case '*':
-                                currentToken.setType(Token.Type.TIMES);
+                                currentToken = new TimesToken();
                                 break;
                             case '/':
-                                currentToken.setType(Token.Type.OVER);
+                                currentToken = new OverToken();
                                 break;
                             case '(':
-                                currentToken.setType(Token.Type.LPAREN);
+                                currentToken = new LeftParenToken();
                                 break;
                             case ')':
-                                currentToken.setType(Token.Type.RPAREN);
+                                currentToken = new RightParenToken();
                                 break;
                             case '[':
-                                currentToken.setType(Token.Type.LBRACE);
+                                currentToken = new LeftBraceToken();
                                 break;
                             case ']':
-                                currentToken.setType(Token.Type.RBRACE);
+                                currentToken = new RightBraceToken();
                                 break;
                             case '{':
-                                currentToken.setType(Token.Type.LBRACE_CURLY);
+                                currentToken = new LeftBraceCurlyToken();
                                 break;
                             case '}':
-                                currentToken.setType(Token.Type.RBRACE_CURLY);
+                                currentToken = new RightBraceCurlyToken();
                                 break;
                             case ';':
-//                                currentToken.setType(Token.Type.SEMI);
                                 currentToken = new SemicolonToken();
                                 break;
                             default:
-                                currentToken.setType(Token.Type.ERROR);
+                                currentToken = new ErrorToken();
                                 break;
                         }
                     }
@@ -197,19 +191,19 @@ public class Scanner {
                     save = false;
                     if (c == (char) Globals.EOF) {
                         state = State.DONE;
-                        currentToken.setType(Token.Type.ENDFILE);
+                        currentToken = new EndFileToken();
                     } else if (c == '}') state = State.START;
                     break;
                 case INEQU:
                     state = State.DONE;
                     if (c == '=') {
-                        currentToken.setType(Token.Type.EQ);
+                        currentToken = new EqToken();
                     } else if (Character.isWhitespace(c)) {
-                        currentToken.setType(Token.Type.ASSIGN);
+                        currentToken = new AssignmentToken();
                     } else { /* backup in the input */
                         ungetNextChar();
                         save = false;
-                        currentToken.setType(Token.Type.ERROR);
+                        currentToken = new ErrorToken();
                     }
                     break;
                 case INNUM:
@@ -217,7 +211,7 @@ public class Scanner {
                         ungetNextChar();
                         save = false;
                         state = State.DONE;
-                        currentToken.setType(Token.Type.INT);
+                        currentToken = new IntToken();
                     }
                     break;
                 case INID:
@@ -225,7 +219,9 @@ public class Scanner {
                         ungetNextChar();
                         save = false;
                         state = State.DONE;
+                        /* TODO: why does the line below cause tests to fail? */
 //                        currentToken = new IDToken();
+
                         currentToken.setType(Token.Type.ID);
                     }
                     break;
@@ -233,7 +229,7 @@ public class Scanner {
                 default: /* should never happen */
                     Listing.getInstance().write("LexicalAnalysis.Scanner Bug: state=" + state.name());
                     state = State.DONE;
-                    currentToken.setType(Token.Type.ERROR);
+                    currentToken = new ErrorToken();
                     break;
             }
 
@@ -249,11 +245,16 @@ public class Scanner {
                     tokenKey.substring(0, tokenCharsIndex);
                     if (reservedWords.containsKey(tokenKey)) {
 
+
+                        /* TODO: Create a new method which can create a new token
+                            based on a token type? */
                         Token.Type type = reservedWords.get(tokenKey);
 
                         if (type == Token.Type.INT_TYPE) {
                             currentToken = new IntTypeToken();
                         } else {
+                            /* TODO: Create token of the desired type
+                                rather than just setting the type property. */
                             currentToken.setType(type);
                         }
                     }
