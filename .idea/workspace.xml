@@ -36,11 +36,16 @@
       <file leaf-file-name="Parser.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SyntacticAnalysis/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="172" column="8" lean-forward="false" selection-start-line="172" selection-start-column="8" selection-end-line="172" selection-end-column="8" />
+            <state relative-caret-position="447">
+              <caret line="203" column="30" lean-forward="false" selection-start-line="203" selection-start-column="30" selection-end-line="203" selection-end-column="30" />
               <folding>
-                <element signature="e#5140#5141#0" expanded="true" />
-                <element signature="e#5167#5168#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#6237#6238#0" expanded="true" />
+                <element signature="e#6264#6265#0" expanded="true" />
+                <element signature="e#6336#6337#0" expanded="true" />
+                <element signature="e#6363#6364#0" expanded="true" />
+                <element signature="e#6434#6435#0" expanded="true" />
+                <element signature="e#6461#6462#0" expanded="true" />
                 <element signature="method#createDeclarationNode#0;class#Parser#0" expanded="false" />
               </folding>
             </state>
@@ -195,8 +200,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="524" />
-    <option name="width" value="1083" />
+    <option name="x" value="603" />
+    <option name="width" value="1004" />
     <option name="height" value="867" />
   </component>
   <component name="ProjectView">
@@ -878,14 +883,11 @@
       <workItem from="1489303371015" duration="990000" />
       <workItem from="1489360537239" duration="17827000" />
       <workItem from="1489604592277" duration="14178000" />
-      <workItem from="1489884863288" duration="7314000" />
+      <workItem from="1489884863288" duration="8699000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ScannerTest - 2017.03.18 at 18h 30m 42s.xml">
-      <configuration name="ScannerTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="ScannerTest - 2017.03.18 at 18h 32m 57s.xml">
       <configuration name="ScannerTest" configurationId="JUnit" />
     </history-entry>
@@ -913,9 +915,12 @@
     <history-entry file="ScannerTest - 2017.03.19 at 14h 03m 32s.xml">
       <configuration name="ScannerTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="ScannerTest - 2017.03.19 at 14h 58m 51s.xml">
+      <configuration name="ScannerTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91814000" />
+    <option name="totallyTimeSpent" value="93199000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -927,7 +932,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="524" y="0" width="1083" height="867" extended-state="0" />
+    <frame x="603" y="0" width="1004" height="867" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -979,7 +984,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SyntacticAnalysis/Parser.java</url>
-          <line>42</line>
+          <line>43</line>
           <properties />
           <option name="timeStamp" value="31" />
         </line-breakpoint>
@@ -1418,14 +1423,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SyntacticAnalysis/Statement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SyntacticAnalysis/AssignmentStatement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -1450,13 +1447,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/SyntacticAnalysis/Statement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/SyntacticAnalysis/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="172" column="8" lean-forward="false" selection-start-line="172" selection-start-column="8" selection-end-line="172" selection-end-column="8" />
+        <state relative-caret-position="447">
+          <caret line="203" column="30" lean-forward="false" selection-start-line="203" selection-start-column="30" selection-end-line="203" selection-end-column="30" />
           <folding>
-            <element signature="e#5140#5141#0" expanded="true" />
-            <element signature="e#5167#5168#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#6237#6238#0" expanded="true" />
+            <element signature="e#6264#6265#0" expanded="true" />
+            <element signature="e#6336#6337#0" expanded="true" />
+            <element signature="e#6363#6364#0" expanded="true" />
+            <element signature="e#6434#6435#0" expanded="true" />
+            <element signature="e#6461#6462#0" expanded="true" />
             <element signature="method#createDeclarationNode#0;class#Parser#0" expanded="false" />
           </folding>
         </state>

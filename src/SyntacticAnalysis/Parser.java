@@ -6,6 +6,7 @@ import javax.swing.tree.MutableTreeNode;
 import LexicalAnalysis.*;
 import Generic.*;
 import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
+import sun.security.util.DerEncoder;
 
 public class Parser {
 
@@ -129,7 +130,7 @@ public class Parser {
 
     DefaultMutableTreeNode assignStmt() {
         DefaultMutableTreeNode tree =
-                new DefaultMutableTreeNode();
+                newStmtNode(new AssignmentStatement());
 
         if (null != tree && token.getType() == Token.Type.ID) {
             AssignmentStatement assignmentStatement =
@@ -156,7 +157,7 @@ public class Parser {
             OperationExpression operationExpression =
                     new OperationExpression(token);
             DefaultMutableTreeNode p =
-                    new DefaultMutableTreeNode(operationExpression);
+                    newExpNode(operationExpression);
             if (null != p) {
                 p.add(tree);
                 tree = p;
@@ -171,6 +172,50 @@ public class Parser {
     }
 
     private DefaultMutableTreeNode simpleExp() {
+        DefaultMutableTreeNode tree = term();
+        while (token.getType() == Token.Type.PLUS ||
+                token.getType() == Token.Type.MINUS) {
+            DefaultMutableTreeNode p =
+                    newExpNode(new OperationExpression(token));
+            if (null != p) {
+                p.add(tree);
+                tree = p;
+                match(token.getType());
+                tree.add(term());
+            }
+        }
+
+        return tree;
+    }
+
+    private DefaultMutableTreeNode term() {
+        DefaultMutableTreeNode tree = factor();
+
+        while (token.getType() == Token.Type.TIMES ||
+                token.getType() == Token.Type.OVER) {
+
+            OperationExpression expression = new OperationExpression(token);
+            DefaultMutableTreeNode p = newExpNode(expression);
+
+            if (null != p) {
+                p.add(tree);
+                tree = p;
+                match(token.getType());
+                p.add(factor());
+            }
+        }
+        return null;
+    }
+
+    private DefaultMutableTreeNode factor() {
+        return null;
+    }
+
+    private DefaultMutableTreeNode newExpNode(Expression expression) {
+        return null;
+    }
+
+    private DefaultMutableTreeNode newStmtNode(Statement statement) {
         return null;
     }
 
