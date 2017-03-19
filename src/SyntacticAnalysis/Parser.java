@@ -149,6 +149,28 @@ public class Parser {
     }
 
     private DefaultMutableTreeNode exp() {
+        DefaultMutableTreeNode tree = simpleExp();
+
+        if (token.getType() == Token.Type.LT ||
+                token.getType() == Token.Type.EQ) {
+            OperationExpression operationExpression =
+                    new OperationExpression(token);
+            DefaultMutableTreeNode p =
+                    new DefaultMutableTreeNode(operationExpression);
+            if (null != p) {
+                p.add(tree);
+                tree = p;
+            }
+            match(token.getType());
+            if (null != tree) {
+                tree.add(simpleExp());
+            }
+        }
+
+        return null;
+    }
+
+    private DefaultMutableTreeNode simpleExp() {
         return null;
     }
 
