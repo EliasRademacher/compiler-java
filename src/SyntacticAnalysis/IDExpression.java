@@ -7,6 +7,10 @@ import LexicalAnalysis.Token;
  */
 public class IDExpression extends Expression {
 
+    public IDExpression() {
+        super();
+    }
+
     public IDExpression(Token token) {
         super(token);
     }

@@ -5,6 +5,7 @@ import javax.swing.tree.MutableTreeNode;
 
 import LexicalAnalysis.*;
 import Generic.*;
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
 import sun.security.util.DerEncoder;
 
@@ -208,6 +209,35 @@ public class Parser {
     }
 
     private DefaultMutableTreeNode factor() {
+        DefaultMutableTreeNode tree = null;
+        switch (token.getType()) {
+            case INT:
+                tree = newExpNode(new ConstExpression());
+                if (null != tree &&
+                        token.getType() == Token.Type.INT) {
+                    ConstExpression expression =
+                            (ConstExpression) tree.getUserObject();
+                    expression.setToken(token);
+                }
+                match(Token.Type.INT);
+                break;
+            case ID:
+                tree = newExpNode(new IDExpression());
+                if (null != tree &&
+                        token.getType() == Token.Type.ID) {
+                    IDExpression expression =
+                            (IDExpression) tree.getUserObject();
+                    expression.setToken(token);
+                }
+                match(Token.Type.ID);
+                break;
+            case LPAREN:
+                match(Token.Type.LPAREN);
+                tree = exp();
+                match(Token.Type.RPAREN);
+                break;
+        }
+
         return null;
     }
 
