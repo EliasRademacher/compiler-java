@@ -20,8 +20,8 @@ import static org.junit.Assert.*;
  */
 public class ParserTest {
     @Test
-    public void parse() throws Exception {
-        FileReader program1FileReader = new FileReader("testResources/simpleDeclaration.cm");
+    public void testParseSimpleAssignment() throws Exception {
+        FileReader program1FileReader = new FileReader("testResources/simpleAssignment.cm");
         Scanner scanner = new Scanner(program1FileReader);
         Parser parser = new Parser(scanner);
 
@@ -78,7 +78,7 @@ public class ParserTest {
 
 
 
-    /* Create a parse tree for "int x;" */
+    /* Create a testParse tree for "int x;" */
     @Test
     public void testCreateDeclarationNode() throws FileNotFoundException {
         FileReader program1FileReader = new FileReader("testResources/simpleDeclaration.cm");

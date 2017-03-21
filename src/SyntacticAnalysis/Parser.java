@@ -52,10 +52,13 @@ public class Parser {
         DefaultMutableTreeNode tree = null;
 
         if (token.getType() == null) {
-            token.setType(Token.Type.ERROR);
+            token = scanner.getToken();
         }
 
         switch (token.getType()) {
+            case INT_TYPE:
+                tree = new DefaultMutableTreeNode(new DeclarationStatement(token), true);
+                break;
             case IF:
                 tree = new DefaultMutableTreeNode(new IfStatement(), true);
                 break;
@@ -63,7 +66,7 @@ public class Parser {
                 tree = new DefaultMutableTreeNode(new WhileStatement(), true);
                 break;
             case ID:
-                tree = new DefaultMutableTreeNode(new AssignmentStatement(), true);
+                tree = assignStmt();
                 break;
             case READ:
                 tree = new DefaultMutableTreeNode(new ReadStatement(), true);
@@ -97,6 +100,8 @@ public class Parser {
                 && (token.getType() != Token.Type.UNTIL)) {
 
             DefaultMutableTreeNode q;
+
+            // Why is a semicolon expected here?
             match(Token.Type.SEMI); /* set this.token to LexicalAnalysis.Token.Type.SEMI. */
             q = createStatementNodeFromToken();
 
@@ -108,13 +113,17 @@ public class Parser {
                 else /* now p cannot be NULL either */ {
                     //p->sibling = q;
 
+                    DefaultMutableTreeNode parent = null;
+
                     if (p.getParent() == null) {
-                        p.setParent(new DefaultMutableTreeNode());
+                        parent = new DefaultMutableTreeNode();
+                        p.setParent(parent);
+                    } else {
+                        parent = (DefaultMutableTreeNode) p.getParent();
                     }
 
-                    DefaultMutableTreeNode parent = (DefaultMutableTreeNode) p.getParent();
+                    parent.add(p);
                     parent.add(q);
-
                     p = q;
                 }
             }
@@ -139,7 +148,8 @@ public class Parser {
         match(Token.Type.ASSIGN);
 
         if (null != tree) {
-            tree.add(exp());
+            DefaultMutableTreeNode newChild = exp();
+            tree.add(newChild);
         }
 
         return tree;
@@ -165,7 +175,7 @@ public class Parser {
             }
         }
 
-        return null;
+        return tree;
     }
 
     private DefaultMutableTreeNode simpleExp() {
@@ -201,7 +211,7 @@ public class Parser {
                 p.add(factor());
             }
         }
-        return null;
+        return tree;
     }
 
     private DefaultMutableTreeNode factor() {
@@ -267,8 +277,12 @@ public class Parser {
      */
     public DefaultMutableTreeNode parse() {
         DefaultMutableTreeNode tree = null;
-        token = getToken();
-        tree = stmtSequence();
+        token = scanner.getToken();
+
+
+        tree = stmtSequence();  // Why is a semicolon expected here?
+
+
         if (token.getType() != Token.Type.ENDFILE) {
             syntaxError("Code ends before file\n");
         }
