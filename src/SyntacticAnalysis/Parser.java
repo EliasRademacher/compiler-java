@@ -236,9 +236,14 @@ public class Parser {
                 tree = exp();
                 match(Token.Type.RPAREN);
                 break;
+            default:
+                syntaxError("unexpected token -> "
+                        + Utils.tokenToString(token));
+                token = getToken();
+                break;
         }
 
-        return null;
+        return tree;
     }
 
     private DefaultMutableTreeNode newExpNode(Expression expression) {
