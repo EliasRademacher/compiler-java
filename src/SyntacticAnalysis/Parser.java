@@ -261,6 +261,21 @@ public class Parser {
     }
 
 
+    /**
+     * This is the primary function of the parser.
+     * It constructs the syntax tree.
+     */
+    DefaultMutableTreeNode parse() {
+        DefaultMutableTreeNode tree = null;
+        token = getToken();
+        tree = stmtSequence();
+        if (token.getType() != Token.Type.ENDFILE) {
+            syntaxError("Code ends before file\n");
+        }
+        return tree;
+    }
+
+
     public DefaultMutableTreeNode createDeclarationNode() {
 
         token = new Token();
