@@ -1,13 +1,9 @@
 package SyntacticAnalysis;
 
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.MutableTreeNode;
 
 import LexicalAnalysis.*;
 import Generic.*;
-import com.sun.xml.internal.bind.v2.model.core.ID;
-import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
-import sun.security.util.DerEncoder;
 
 public class Parser {
 
@@ -246,12 +242,22 @@ public class Parser {
         return tree;
     }
 
+    /**
+     * Returns a new tree node with the provided expression as its
+     * userobject. And sets the line number field.
+     */
     private DefaultMutableTreeNode newExpNode(Expression expression) {
-        return null;
+        expression.setLineNumber(Globals.lineno);
+        return new DefaultMutableTreeNode(expression);
     }
 
+    /**
+     * Returns a new tree node with the provided statement as its
+     * userobject. And sets the line number field.
+     */
     private DefaultMutableTreeNode newStmtNode(Statement statement) {
-        return null;
+        statement.setLineNumber(Globals.lineno);
+        return new DefaultMutableTreeNode(statement);
     }
 
 

@@ -23,4 +23,12 @@ public class ParseTreeElement {
     public void setToken(Token token) {
         this.token = token;
     }
+
+    public int getLineNumber() {
+        return lineNumber;
+    }
+
+    public void setLineNumber(int lineNumber) {
+        this.lineNumber = lineNumber;
+    }
 }
