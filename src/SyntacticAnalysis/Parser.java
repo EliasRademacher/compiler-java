@@ -265,7 +265,7 @@ public class Parser {
      * This is the primary function of the parser.
      * It constructs the syntax tree.
      */
-    DefaultMutableTreeNode parse() {
+    public DefaultMutableTreeNode parse() {
         DefaultMutableTreeNode tree = null;
         token = getToken();
         tree = stmtSequence();

@@ -19,6 +19,17 @@ import static org.junit.Assert.*;
  * Created by Elias on 3/11/2017.
  */
 public class ParserTest {
+    @Test
+    public void parse() throws Exception {
+        FileReader program1FileReader = new FileReader("testResources/simpleDeclaration.cm");
+        Scanner scanner = new Scanner(program1FileReader);
+        Parser parser = new Parser(scanner);
+
+        DefaultMutableTreeNode actualTree = parser.parse();
+
+        assertNotNull(actualTree);
+
+    }
 
 
     @Test
@@ -64,6 +75,7 @@ public class ParserTest {
         tree = parser.createStatementNodeFromToken();
         assertTrue(tree == null);
     }
+
 
 
     /* Create a parse tree for "int x;" */
