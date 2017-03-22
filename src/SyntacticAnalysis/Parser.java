@@ -51,16 +51,16 @@ public class Parser {
     public DefaultMutableTreeNode createStatementNodeFromToken() {
         DefaultMutableTreeNode tree = null;
 
-        if (token.getType() == null) {
-            token = scanner.getToken();
-        }
+//        if (token.getType() == null) {
+//            token = scanner.getToken();
+//        }
 
         switch (token.getType()) {
             case INT_TYPE:
                 tree = new DefaultMutableTreeNode(new DeclarationStatement(token), true);
                 break;
             case IF:
-                tree = new DefaultMutableTreeNode(new IfStatement(), true);
+                tree = ifStmt();
                 break;
             case WHILE:
                 tree = new DefaultMutableTreeNode(new WhileStatement(), true);
@@ -134,7 +134,7 @@ public class Parser {
         return tree;
     }
 
-    DefaultMutableTreeNode assignStmt() {
+    private DefaultMutableTreeNode assignStmt() {
         DefaultMutableTreeNode tree =
                 newStmtNode(new AssignmentStatement());
 
@@ -151,9 +151,30 @@ public class Parser {
             DefaultMutableTreeNode newChild = exp();
             tree.add(newChild);
         }
-
         return tree;
+    }
 
+    private DefaultMutableTreeNode ifStmt() {
+        DefaultMutableTreeNode tree = newStmtNode(new IfStatement());
+        match(Token.Type.IF);
+        if (null != tree) {
+            tree.add(exp());
+        }
+        match(Token.Type.THEN);
+
+        if (null != tree) {
+            tree.add(stmtSequence());
+        }
+
+        if (token.getType() == Token.Type.ELSE) {
+            match(Token.Type.ELSE);
+            if (null != tree) {
+                tree.add(stmtSequence());
+            }
+        }
+
+        match(Token.Type.END);
+        return tree;
     }
 
     private DefaultMutableTreeNode exp() {

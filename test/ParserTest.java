@@ -20,15 +20,27 @@ import static org.junit.Assert.*;
  */
 public class ParserTest {
     @Test
-    public void testParseSimpleAssignment() throws Exception {
-        FileReader program1FileReader = new FileReader("testResources/simpleAssignment.cm");
-        Scanner scanner = new Scanner(program1FileReader);
+    public void testParseSimpleAssignment() throws FileNotFoundException {
+        FileReader simpleAssignmentFileReader =
+                new FileReader("testResources/simpleAssignment.cm");
+        Scanner scanner = new Scanner(simpleAssignmentFileReader);
         Parser parser = new Parser(scanner);
 
         DefaultMutableTreeNode actualTree = parser.parse();
 
         assertNotNull(actualTree);
+    }
 
+    @Test
+    public void testParseSimpleIf() throws FileNotFoundException {
+        FileReader simpleIfFileReader =
+                new FileReader("testResources/simpleIf.cm");
+        Scanner scanner = new Scanner(simpleIfFileReader);
+        Parser parser = new Parser(scanner);
+
+        DefaultMutableTreeNode actualTree = parser.parse();
+
+        assertNotNull(actualTree);
     }
 
 

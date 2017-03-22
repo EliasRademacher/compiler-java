@@ -211,7 +211,7 @@ public class Scanner {
                         ungetNextChar();
                         save = false;
                         state = State.DONE;
-                        currentToken = new IntToken();
+                        currentToken = new IntToken(cAsInt);
                     }
                     break;
                 case INID:
