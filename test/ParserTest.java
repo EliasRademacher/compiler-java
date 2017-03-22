@@ -1,3 +1,4 @@
+import Generic.Utils;
 import LexicalAnalysis.IDToken;
 import LexicalAnalysis.IntTypeToken;
 import LexicalAnalysis.Token;
@@ -51,6 +52,22 @@ public class ParserTest {
         Parser parser = new Parser(scanner);
 
         DefaultMutableTreeNode actualTree = parser.parse();
+
+        Enumeration treeEnumeration = actualTree.depthFirstEnumeration();
+
+        while (treeEnumeration.hasMoreElements()) {
+            DefaultMutableTreeNode child = (DefaultMutableTreeNode) treeEnumeration.nextElement();
+            ParseTreeElement parseTreeElement = (ParseTreeElement) child.getUserObject();
+
+            Token token = parseTreeElement.getToken();
+            String tokenString = "(null token)";
+            if (null != token) {
+                tokenString = Utils.tokenToString(token);
+            }
+
+            System.out.println("Node: " + parseTreeElement.toString() + "\n" + "Token: " + tokenString);
+        }
+
 
         assertNotNull(actualTree);
     }

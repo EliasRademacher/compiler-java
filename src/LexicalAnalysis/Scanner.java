@@ -216,7 +216,9 @@ public class Scanner {
                         ungetNextChar();
                         save = false;
                         state = State.DONE;
-                        currentToken = new IntToken(cAsInt);
+                        String tokenString = new String(tokenChars, 0, tokenCharsIndex);
+                        int integerValue = Integer.parseInt(tokenString);
+                        currentToken = new IntToken(integerValue);
                     }
                     break;
                 case INID:
