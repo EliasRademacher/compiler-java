@@ -72,12 +72,18 @@ public class Scanner {
             try {
                     /* FileReader.read() returns the number of characters read,
                     or -1 if the end of the stream has been reached */
-                if (this.fileReader.read(lineBuf, 0, BUFLEN - 1) > 0) {
+                    // TODO: not returning EOF soon enough.
+                int numCharsRead = this.fileReader.read(lineBuf, 0, BUFLEN - 1);
+                if (numCharsRead > 0) {
                     if (Globals.echoSource) {
                         Listing.getInstance().write(Globals.lineno + ": " + new String(lineBuf));
                     }
                     bufsize = lineBuf.length;
+
                     linepos = 0;
+
+                    lineBuf[numCharsRead] = (char) Globals.EOF;
+
                     return lineBuf[linepos++];
                 } else {
                     EOF_flag = true;
@@ -227,7 +233,7 @@ public class Scanner {
                     break;
                 case DONE:
                 default: /* should never happen */
-                    Listing.getInstance().write("LexicalAnalysis.Scanner Bug: state=" + state.name());
+                    Listing.getInstance().write("Scanner Bug: state=" + state.name());
                     state = State.DONE;
                     currentToken = new ErrorToken();
                     break;

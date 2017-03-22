@@ -1,3 +1,4 @@
+import Generic.Utils;
 import LexicalAnalysis.Scanner;
 import LexicalAnalysis.Token;
 import junit.framework.*;
@@ -141,13 +142,22 @@ public class ScannerTest extends TestCase {
         ));
 
         for (Token.Type tokenType: expectedTokens) {
-            Token.Type actualTokenType = program1Scanner.getToken().getType();
-//            Generic.Utils.printToken(actualToken, "tokenString");
+            Token actualToken = program1Scanner.getToken();
+            Token.Type actualTokenType = actualToken.getType();
+//            System.out.println(Utils.tokenToString(actualToken));
             assertEquals(tokenType, actualTokenType);
         }
 
-//        Type actualToken = program1Scanner.getToken();
-//        assertEquals(Type.END, actualToken);
+        System.out.println("Should have got all the tokens now...");
+
+        /* Make sure the ENDFILE token is eventually returned. */
+        Token currentToken = new Token();
+        while (currentToken.getType() != Token.Type.ENDFILE) {
+            currentToken = program1Scanner.getToken();
+            System.out.println("Token: " + Utils.tokenToString(currentToken));
+        }
+
+        assertEquals(Token.Type.ENDFILE, currentToken.getType());
     }
 
 
