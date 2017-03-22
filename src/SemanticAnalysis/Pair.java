@@ -1,30 +1,37 @@
 package SemanticAnalysis;
 
+import LexicalAnalysis.Token;
+
 /**
- * Created by marku on 3/21/2017.
+ * Created by Markus Woltjer.
  */ /* http://stackoverflow.com/questions/4777622/creating-a-list-of-pairs-in-java */
-public class  Pair<L, R> {
-    private L l;
-    private R r;
 
-    public Pair(L l, R r) {
-        this.l = l;
-        this.r = r;
+public class  Pair<id, val> {//int symbol tree entry
+
+    public Token.Type id;
+
+    public String val;
+
+
+
+    public Pair(Token.Type id, String val) {
+        this.id = id;
+        this.val = val;
     }
 
-    public L getL() {
-        return l;
+    public Token.Type getID() {
+        return id;
     }
 
-    public R getR() {
-        return r;
+    public String getR() {
+        return val;
     }
 
-    public void setL(L l) {
-        this.l = l;
+    public void setID(Token.Type id) {
+        this.id = id;
     }
 
-    public void setR(R r) {
-        this.r = r;
+    public void setR(String val) {
+        this.val = val;
     }
 }
