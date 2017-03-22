@@ -51,10 +51,6 @@ public class Parser {
     public DefaultMutableTreeNode createStatementNodeFromToken() {
         DefaultMutableTreeNode tree = null;
 
-//        if (token.getType() == null) {
-//            token = scanner.getToken();
-//        }
-
         switch (token.getType()) {
             case INT_TYPE:
                 tree = new DefaultMutableTreeNode(new DeclarationStatement(token), true);
@@ -84,12 +80,8 @@ public class Parser {
         return tree;
     }
 
-    /* 1. Creates a new Statement node based on this.token
-    *  2. If the current node is a semicolon, its sets the sibling of the
-    *       new node to be the next node after the semicolon.
-    *
-    */
-    public DefaultMutableTreeNode stmtSequence() {
+
+    private DefaultMutableTreeNode stmtSequence() {
 
         DefaultMutableTreeNode tree = createStatementNodeFromToken();
         DefaultMutableTreeNode p = tree;
@@ -101,8 +93,7 @@ public class Parser {
 
             DefaultMutableTreeNode q;
 
-            // Why is a semicolon expected here?
-            match(Token.Type.SEMI); /* set this.token to LexicalAnalysis.Token.Type.SEMI. */
+            match(Token.Type.SEMI);
             q = createStatementNodeFromToken();
 
             if (q != null) {
@@ -122,16 +113,12 @@ public class Parser {
                         rootNode = (DefaultMutableTreeNode) p.getParent();
                     }
 
-                    rootNode.setUserObject(new ParseTreeElement());
-
-                    rootNode.add(new DefaultMutableTreeNode());
-
                     rootNode.add(q);
                     p = q;
                 }
             }
 
-            System.out.println(token.getName());
+            // System.out.println(token.getName());
         }
 
         return tree;
