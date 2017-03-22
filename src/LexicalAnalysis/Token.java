@@ -32,6 +32,10 @@ public class Token {
     public Token() {
     }
 
+    public Token(int integerValue) {
+        this.integerValue = integerValue;
+    }
+
     public Token(Type type) {
         this.type = type;
     }

@@ -86,7 +86,7 @@ public class SemanticAnalyzer {
                 }
             }
             else if(parseTreeElement.getToken().getType() == Token.Type.LBRACE_CURLY) {
-                this.addSymbolTableTreeNode(currSymbolTree);
+                //this.addSymbolTableTreeNode(currSymbolTree);
             }
         }
     }

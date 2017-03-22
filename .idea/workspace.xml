@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="51da4cc2-4fd5-4e9b-8307-8875a4c1aa26" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SemanticAnalysis/SymTable.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/CheckerTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testResources/simpleAssignment.cm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testResources/simpleIf.cm" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testResources/simpleWhile.cm" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SemanticAnalysis/Pair.java" afterPath="$PROJECT_DIR$/src/SemanticAnalysis/Pair.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/LexicalAnalysis/IntToken.java" afterPath="$PROJECT_DIR$/src/LexicalAnalysis/IntToken.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/LexicalAnalysis/Scanner.java" afterPath="$PROJECT_DIR$/src/LexicalAnalysis/Scanner.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/LexicalAnalysis/Token.java" afterPath="$PROJECT_DIR$/src/LexicalAnalysis/Token.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SemanticAnalysis/SemanticAnalyzer.java" afterPath="$PROJECT_DIR$/src/SemanticAnalysis/SemanticAnalyzer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SyntacticAnalysis/Parser.java" afterPath="$PROJECT_DIR$/src/SyntacticAnalysis/Parser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/ParserTest.java" afterPath="$PROJECT_DIR$/test/ParserTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/ScannerTest.java" afterPath="$PROJECT_DIR$/test/ScannerTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testResources/program1.cm" afterPath="$PROJECT_DIR$/testResources/program1.cm" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,11 +40,8 @@
         <entry file="file://$PROJECT_DIR$/test/ParserTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="247">
-              <caret line="138" column="11" lean-forward="true" selection-start-line="138" selection-start-column="11" selection-end-line="138" selection-end-column="11" />
-              <folding>
-                <element signature="docComment;class#ParserTest#0" expanded="false" />
-                <element signature="method#stmtSequence#0;class#ParserTest#0" expanded="false" />
-              </folding>
+              <caret line="182" column="11" lean-forward="false" selection-start-line="182" selection-start-column="11" selection-end-line="182" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -45,8 +49,8 @@
       <file leaf-file-name="SemanticAnalyzer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SemanticAnalysis/SemanticAnalyzer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1128">
-              <caret line="88" column="60" lean-forward="true" selection-start-line="88" selection-start-column="60" selection-end-line="88" selection-end-column="60" />
+            <state relative-caret-position="438">
+              <caret line="91" column="5" lean-forward="true" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#813#814#0" expanded="true" />
@@ -95,7 +99,24 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="203">
               <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
-              <folding />
+              <folding>
+                <marker date="1490223446200" expanded="false" signature="811:822" ph=" { " />
+                <marker date="1490223446200" expanded="false" signature="839:845" ph=" }" />
+                <marker date="1490223446200" expanded="false" signature="872:883" ph=" { " />
+                <marker date="1490223446200" expanded="false" signature="895:901" ph=" }" />
+                <marker date="1490223446200" expanded="true" signature="938:1066" ph="{...}" />
+                <marker date="1490223446200" expanded="false" signature="1095:1106" ph=" { " />
+                <marker date="1490223446200" expanded="false" signature="1118:1124" ph=" }" />
+                <marker date="1490223446200" expanded="false" signature="1162:1173" ph=" { " />
+                <marker date="1490223446200" expanded="false" signature="1190:1196" ph=" }" />
+                <marker date="1490223446200" expanded="false" signature="1230:1241" ph=" { " />
+                <marker date="1490223446200" expanded="false" signature="1261:1267" ph=" }" />
+                <marker date="1490223446200" expanded="false" signature="1318:1329" ph=" { " />
+                <marker date="1490223446200" expanded="false" signature="1362:1368" ph=" }" />
+                <marker date="1490223446200" expanded="false" signature="1419:1430" ph=" { " />
+                <marker date="1490223446200" expanded="false" signature="1464:1470" ph=" }" />
+                <marker date="1490223446200" expanded="false" signature="1518:1529" ph=" { " />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -287,20 +308,6 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="compiler-java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="compiler-java">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="test">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -784,9 +791,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CheckerTest - 2017.03.22 at 01h 15m 17s.xml">
-      <configuration name="CheckerTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="CheckerTest - 2017.03.22 at 14h 15m 28s.xml">
       <configuration name="CheckerTest" configurationId="JUnit" />
     </history-entry>
@@ -814,6 +818,9 @@
     <history-entry file="CheckerTest - 2017.03.22 at 14h 54m 20s.xml">
       <configuration name="CheckerTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="CheckerTest - 2017.03.22 at 15h 57m 46s.xml">
+      <configuration name="CheckerTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="97362000" />
@@ -829,7 +836,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -847,13 +854,13 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57960457" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.259375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.259375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11550468" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.51404786" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.51404786" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904884" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -875,7 +882,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/test/ScannerTest.java</url>
-          <line>24</line>
+          <line>25</line>
           <properties />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
@@ -887,19 +894,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/test/ParserTest.java</url>
-          <line>55</line>
+          <line>54</line>
           <properties />
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/test/ParserTest.java</url>
-          <line>123</line>
+          <line>167</line>
           <properties />
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/test/ParserTest.java</url>
-          <line>29</line>
+          <line>31</line>
           <properties />
           <option name="timeStamp" value="42" />
         </line-breakpoint>
@@ -1134,8 +1141,7 @@
         <state relative-caret-position="191">
           <caret line="22" column="58" lean-forward="false" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
           <folding>
-            <element signature="e#444#445#0" expanded="false" />
-            <element signature="e#511#512#0" expanded="false" />
+            <element signature="e#587#588#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1200,7 +1206,6 @@
           <caret line="267" column="11" lean-forward="false" selection-start-line="267" selection-start-column="11" selection-end-line="267" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="false" />
-            <element signature="method#createDeclarationNode#0;class#Parser#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1279,18 +1284,32 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
           <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
-          <folding />
+          <folding>
+            <marker date="1490223446200" expanded="false" signature="811:822" ph=" { " />
+            <marker date="1490223446200" expanded="false" signature="839:845" ph=" }" />
+            <marker date="1490223446200" expanded="false" signature="872:883" ph=" { " />
+            <marker date="1490223446200" expanded="false" signature="895:901" ph=" }" />
+            <marker date="1490223446200" expanded="true" signature="938:1066" ph="{...}" />
+            <marker date="1490223446200" expanded="false" signature="1095:1106" ph=" { " />
+            <marker date="1490223446200" expanded="false" signature="1118:1124" ph=" }" />
+            <marker date="1490223446200" expanded="false" signature="1162:1173" ph=" { " />
+            <marker date="1490223446200" expanded="false" signature="1190:1196" ph=" }" />
+            <marker date="1490223446200" expanded="false" signature="1230:1241" ph=" { " />
+            <marker date="1490223446200" expanded="false" signature="1261:1267" ph=" }" />
+            <marker date="1490223446200" expanded="false" signature="1318:1329" ph=" { " />
+            <marker date="1490223446200" expanded="false" signature="1362:1368" ph=" }" />
+            <marker date="1490223446200" expanded="false" signature="1419:1430" ph=" { " />
+            <marker date="1490223446200" expanded="false" signature="1464:1470" ph=" }" />
+            <marker date="1490223446200" expanded="false" signature="1518:1529" ph=" { " />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/ParserTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
-          <caret line="138" column="11" lean-forward="true" selection-start-line="138" selection-start-column="11" selection-end-line="138" selection-end-column="11" />
-          <folding>
-            <element signature="docComment;class#ParserTest#0" expanded="false" />
-            <element signature="method#stmtSequence#0;class#ParserTest#0" expanded="false" />
-          </folding>
+          <caret line="182" column="11" lean-forward="false" selection-start-line="182" selection-start-column="11" selection-end-line="182" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1314,8 +1333,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SemanticAnalysis/SemanticAnalyzer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1128">
-          <caret line="88" column="60" lean-forward="true" selection-start-line="88" selection-start-column="60" selection-end-line="88" selection-end-column="60" />
+        <state relative-caret-position="438">
+          <caret line="91" column="5" lean-forward="true" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#813#814#0" expanded="true" />

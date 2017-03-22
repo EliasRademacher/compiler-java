@@ -13,6 +13,10 @@ public class IntToken extends Token {
     public IntToken() {
     }
 
+    public IntToken(int integerValue) {
+        super(integerValue);
+    }
+
     @Override
     public Type getType() {
         return Type.INT;

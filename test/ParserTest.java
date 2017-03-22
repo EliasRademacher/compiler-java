@@ -1,3 +1,4 @@
+import Generic.Utils;
 import LexicalAnalysis.IDToken;
 import LexicalAnalysis.IntTypeToken;
 import LexicalAnalysis.Token;
@@ -20,65 +21,108 @@ import static org.junit.Assert.*;
  */
 public class ParserTest {
     @Test
-    public void parse() throws Exception {
-        FileReader program1FileReader = new FileReader("testResources/simpleDeclaration.cm");
-        Scanner scanner = new Scanner(program1FileReader);
+    public void testParseSimpleAssignment() throws FileNotFoundException {
+        FileReader simpleAssignmentFileReader =
+                new FileReader("testResources/simpleAssignment.cm");
+        Scanner scanner = new Scanner(simpleAssignmentFileReader);
         Parser parser = new Parser(scanner);
 
         DefaultMutableTreeNode actualTree = parser.parse();
 
         assertNotNull(actualTree);
-
-    }
-
-
-    @Test
-    public void stmtSequence() throws FileNotFoundException {
-        FileReader program1FileReader = new FileReader("testResources/program1.cm");
-        Scanner scanner = new Scanner(program1FileReader);
-        Parser parser = new Parser(scanner);
-//        parser.setToken(LexicalAnalysis.Token.Type.IF);
-
-        DefaultMutableTreeNode tree = parser.stmtSequence();
-
-        assertNotNull(tree);
-
     }
 
     @Test
-    public void testCreateStatementNodeFromToken() throws FileNotFoundException {
-        FileReader program1FileReader = new FileReader("testResources/program1.cm");
-        Scanner scanner = new Scanner(program1FileReader);
+    public void testParseSimpleIf() throws FileNotFoundException {
+        FileReader simpleIfFileReader =
+                new FileReader("testResources/simpleIf.cm");
+        Scanner scanner = new Scanner(simpleIfFileReader);
         Parser parser = new Parser(scanner);
 
-        parser.setToken(new Token(Token.Type.IF));
-        DefaultMutableTreeNode tree = parser.createStatementNodeFromToken();
-        assertTrue(tree.getUserObject().getClass().equals(IfStatement.class));
+        DefaultMutableTreeNode actualTree = parser.parse();
 
-        parser.setToken(new Token(Token.Type.WHILE));
-        tree = parser.createStatementNodeFromToken();
-        assertTrue(tree.getUserObject().getClass().equals(WhileStatement.class));
+        assertNotNull(actualTree);
+    }
 
-        parser.setToken(new Token(Token.Type.ID));
-        tree = parser.createStatementNodeFromToken();
-        assertTrue(tree.getUserObject().getClass().equals(AssignmentStatement.class));
+    @Test
+    public void testParseSimpleWhile() throws FileNotFoundException {
+        FileReader simpleWhileFileReader =
+                new FileReader("testResources/simpleWhile.cm");
+        Scanner scanner = new Scanner(simpleWhileFileReader);
+        Parser parser = new Parser(scanner);
 
-        parser.setToken(new Token(Token.Type.READ));
-        tree = parser.createStatementNodeFromToken();
-        assertTrue(tree.getUserObject().getClass().equals(ReadStatement.class));
+        DefaultMutableTreeNode actualTree = parser.parse();
 
-        parser.setToken(new Token(Token.Type.WRITE));
-        tree = parser.createStatementNodeFromToken();
-        assertTrue(tree.getUserObject().getClass().equals(WriteStatement.class));
+        Enumeration treeEnumeration = actualTree.depthFirstEnumeration();
 
-        parser.setToken(new Token(Token.Type.ERROR));
-        tree = parser.createStatementNodeFromToken();
-        assertTrue(tree == null);
+        while (treeEnumeration.hasMoreElements()) {
+            DefaultMutableTreeNode child = (DefaultMutableTreeNode) treeEnumeration.nextElement();
+            ParseTreeElement parseTreeElement = (ParseTreeElement) child.getUserObject();
+
+            Token token = parseTreeElement.getToken();
+            String tokenString = "(null token)";
+            if (null != token) {
+                tokenString = Utils.tokenToString(token);
+            }
+
+            System.out.println("Node: " + parseTreeElement.toString() + "\n" + "Token: " + tokenString);
+        }
+
+
+        assertNotNull(actualTree);
     }
 
 
 
-    /* Create a parse tree for "int x;" */
+
+
+//    @Test
+//    public void stmtSequence() throws FileNotFoundException {
+//        FileReader program1FileReader = new FileReader("testResources/program1.cm");
+//        Scanner scanner = new Scanner(program1FileReader);
+//        Parser parser = new Parser(scanner);
+////        parser.setToken(LexicalAnalysis.Token.Type.IF);
+//
+//        DefaultMutableTreeNode tree = parser.stmtSequence();
+//
+//        assertNotNull(tree);
+//
+//    }
+
+//    @Test
+//    public void testCreateStatementNodeFromToken() throws FileNotFoundException {
+//        FileReader program1FileReader = new FileReader("testResources/program1.cm");
+//        Scanner scanner = new Scanner(program1FileReader);
+//        Parser parser = new Parser(scanner);
+//
+//        parser.setToken(new Token(Token.Type.IF));
+//        DefaultMutableTreeNode tree = parser.createStatementNodeFromToken();
+//        assertTrue(tree.getUserObject().getClass().equals(IfStatement.class));
+//
+//        parser.setToken(new Token(Token.Type.WHILE));
+//        tree = parser.createStatementNodeFromToken();
+//        assertTrue(tree.getUserObject().getClass().equals(WhileStatement.class));
+//
+//        parser.setToken(new Token(Token.Type.ID));
+//        tree = parser.createStatementNodeFromToken();
+//        assertTrue(tree.getUserObject().getClass().equals(AssignmentStatement.class));
+//
+//        parser.setToken(new Token(Token.Type.READ));
+//        tree = parser.createStatementNodeFromToken();
+//        assertTrue(tree.getUserObject().getClass().equals(ReadStatement.class));
+//
+//        parser.setToken(new Token(Token.Type.WRITE));
+//        tree = parser.createStatementNodeFromToken();
+//        assertTrue(tree.getUserObject().getClass().equals(WriteStatement.class));
+//
+//        parser.setToken(new Token(Token.Type.ERROR));
+//        tree = parser.createStatementNodeFromToken();
+//        assertTrue(tree == null);
+//    }
+
+
+
+    /* Create a testParse tree for "int x;" */
     @Test
     public void testCreateDeclarationNode() throws FileNotFoundException {
         FileReader program1FileReader = new FileReader("testResources/simpleDeclaration.cm");

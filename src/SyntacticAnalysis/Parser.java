@@ -51,19 +51,18 @@ public class Parser {
     public DefaultMutableTreeNode createStatementNodeFromToken() {
         DefaultMutableTreeNode tree = null;
 
-        if (token.getType() == null) {
-            token.setType(Token.Type.ERROR);
-        }
-
         switch (token.getType()) {
+            case INT_TYPE:
+                tree = new DefaultMutableTreeNode(new DeclarationStatement(token), true);
+                break;
             case IF:
-                tree = new DefaultMutableTreeNode(new IfStatement(), true);
+                tree = ifStmt();
                 break;
             case WHILE:
-                tree = new DefaultMutableTreeNode(new WhileStatement(), true);
+                tree = whileStatement();
                 break;
             case ID:
-                tree = new DefaultMutableTreeNode(new AssignmentStatement(), true);
+                tree = assignStmt();
                 break;
             case READ:
                 tree = new DefaultMutableTreeNode(new ReadStatement(), true);
@@ -81,12 +80,8 @@ public class Parser {
         return tree;
     }
 
-    /* 1. Creates a new Statement node based on this.token
-    *  2. If the current node is a semicolon, its sets the sibling of the
-    *       new node to be the next node after the semicolon.
-    *
-    */
-    public DefaultMutableTreeNode stmtSequence() {
+
+    private DefaultMutableTreeNode stmtSequence() {
 
         DefaultMutableTreeNode tree = createStatementNodeFromToken();
         DefaultMutableTreeNode p = tree;
@@ -97,7 +92,8 @@ public class Parser {
                 && (token.getType() != Token.Type.UNTIL)) {
 
             DefaultMutableTreeNode q;
-            match(Token.Type.SEMI); /* set this.token to LexicalAnalysis.Token.Type.SEMI. */
+
+            match(Token.Type.SEMI);
             q = createStatementNodeFromToken();
 
             if (q != null) {
@@ -108,24 +104,27 @@ public class Parser {
                 else /* now p cannot be NULL either */ {
                     //p->sibling = q;
 
+                    DefaultMutableTreeNode rootNode = null;
+
                     if (p.getParent() == null) {
-                        p.setParent(new DefaultMutableTreeNode());
+                        rootNode = new DefaultMutableTreeNode();
+                        p.setParent(rootNode);
+                    } else {
+                        rootNode = (DefaultMutableTreeNode) p.getParent();
                     }
 
-                    DefaultMutableTreeNode parent = (DefaultMutableTreeNode) p.getParent();
-                    parent.add(q);
-
+                    rootNode.add(q);
                     p = q;
                 }
             }
 
-            System.out.println(token.getName());
+            // System.out.println(token.getName());
         }
 
         return tree;
     }
 
-    DefaultMutableTreeNode assignStmt() {
+    private DefaultMutableTreeNode assignStmt() {
         DefaultMutableTreeNode tree =
                 newStmtNode(new AssignmentStatement());
 
@@ -139,12 +138,47 @@ public class Parser {
         match(Token.Type.ASSIGN);
 
         if (null != tree) {
+            DefaultMutableTreeNode newChild = exp();
+            tree.add(newChild);
+        }
+        return tree;
+    }
+
+    private DefaultMutableTreeNode ifStmt() {
+        DefaultMutableTreeNode tree = newStmtNode(new IfStatement());
+        match(Token.Type.IF);
+        if (null != tree) {
             tree.add(exp());
         }
+        match(Token.Type.THEN);
 
+        if (null != tree) {
+            tree.add(stmtSequence());
+        }
+
+        if (token.getType() == Token.Type.ELSE) {
+            match(Token.Type.ELSE);
+            if (null != tree) {
+                tree.add(stmtSequence());
+            }
+        }
+
+        match(Token.Type.END);
         return tree;
-
     }
+
+
+    private DefaultMutableTreeNode whileStatement() {
+        DefaultMutableTreeNode tree =
+                new DefaultMutableTreeNode(new WhileStatement());
+        match(Token.Type.WHILE);
+        match(Token.Type.LBRACE_CURLY);
+        if (tree != null) {
+            tree.add(exp());
+        }
+        return tree;
+    }
+
 
     private DefaultMutableTreeNode exp() {
         DefaultMutableTreeNode tree = simpleExp();
@@ -165,7 +199,7 @@ public class Parser {
             }
         }
 
-        return null;
+        return tree;
     }
 
     private DefaultMutableTreeNode simpleExp() {
@@ -201,7 +235,7 @@ public class Parser {
                 p.add(factor());
             }
         }
-        return null;
+        return tree;
     }
 
     private DefaultMutableTreeNode factor() {
@@ -267,8 +301,12 @@ public class Parser {
      */
     public DefaultMutableTreeNode parse() {
         DefaultMutableTreeNode tree = null;
-        token = getToken();
-        tree = stmtSequence();
+        token = scanner.getToken();
+
+
+        tree = stmtSequence();  // Why is a semicolon expected here?
+
+
         if (token.getType() != Token.Type.ENDFILE) {
             syntaxError("Code ends before file\n");
         }
