@@ -72,7 +72,6 @@ public class Scanner {
             try {
                     /* FileReader.read() returns the number of characters read,
                     or -1 if the end of the stream has been reached */
-                    // TODO: not returning EOF soon enough.
                 int numCharsRead = this.fileReader.read(lineBuf, 0, BUFLEN - 1);
                 if (numCharsRead > 0) {
                     if (Globals.echoSource) {

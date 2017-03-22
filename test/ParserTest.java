@@ -43,6 +43,21 @@ public class ParserTest {
         assertNotNull(actualTree);
     }
 
+    @Test
+    public void testParseSimpleWhile() throws FileNotFoundException {
+        FileReader simpleWhileFileReader =
+                new FileReader("testResources/simpleWhile.cm");
+        Scanner scanner = new Scanner(simpleWhileFileReader);
+        Parser parser = new Parser(scanner);
+
+        DefaultMutableTreeNode actualTree = parser.parse();
+
+        assertNotNull(actualTree);
+    }
+
+
+
+
 
 //    @Test
 //    public void stmtSequence() throws FileNotFoundException {

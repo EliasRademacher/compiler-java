@@ -63,7 +63,7 @@ public class Parser {
                 tree = ifStmt();
                 break;
             case WHILE:
-                tree = new DefaultMutableTreeNode(new WhileStatement(), true);
+                tree = whileStatement();
                 break;
             case ID:
                 tree = assignStmt();
@@ -113,17 +113,20 @@ public class Parser {
                 else /* now p cannot be NULL either */ {
                     //p->sibling = q;
 
-                    DefaultMutableTreeNode parent = null;
+                    DefaultMutableTreeNode rootNode = null;
 
                     if (p.getParent() == null) {
-                        parent = new DefaultMutableTreeNode();
-                        p.setParent(parent);
+                        rootNode = new DefaultMutableTreeNode();
+                        p.setParent(rootNode);
                     } else {
-                        parent = (DefaultMutableTreeNode) p.getParent();
+                        rootNode = (DefaultMutableTreeNode) p.getParent();
                     }
 
-                    parent.add(p);
-                    parent.add(q);
+                    rootNode.setUserObject(new ParseTreeElement());
+
+                    rootNode.add(new DefaultMutableTreeNode());
+
+                    rootNode.add(q);
                     p = q;
                 }
             }
@@ -176,6 +179,19 @@ public class Parser {
         match(Token.Type.END);
         return tree;
     }
+
+
+    private DefaultMutableTreeNode whileStatement() {
+        DefaultMutableTreeNode tree =
+                new DefaultMutableTreeNode(new WhileStatement());
+        match(Token.Type.WHILE);
+        match(Token.Type.LBRACE_CURLY);
+        if (tree != null) {
+            tree.add(exp());
+        }
+        return tree;
+    }
+
 
     private DefaultMutableTreeNode exp() {
         DefaultMutableTreeNode tree = simpleExp();
