@@ -15,13 +15,6 @@ import LexicalAnalysis.Token;
  */
 public class Expression extends ParseTreeElement {
 
-    public enum Type {
-        VOID, INTEGER, BOOLEAN
-    }
-
-    /* For type checking of expressions.*/
-    protected Type type;
-
     public Expression() {
         super();
     }
