@@ -24,4 +24,11 @@ public class SymTable {
         table.add(toAdd);
     }
 
+    public boolean containsPair(Pair<Token.Type,String> query) {
+        if(table.contains(query)) {
+            return true;
+        }
+        else return false;
+    }
+
 }
