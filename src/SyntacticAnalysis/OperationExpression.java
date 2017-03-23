@@ -3,7 +3,7 @@ package SyntacticAnalysis;
 import LexicalAnalysis.Token;
 
 /**
- * Can be of type EQ, LT, PLUS, MINUS, TIMES, DIV;
+ * Can be of type EQ, LT, PLUS, MINUS, MULT, DIV;
  */
 public class OperationExpression extends Expression {
 

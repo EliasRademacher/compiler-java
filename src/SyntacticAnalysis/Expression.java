@@ -9,7 +9,7 @@ import LexicalAnalysis.Token;
  * "2+3", "y+6", and "4!=4" are examples of expressions.
  *
  *
- * Can be of type "OpK": (EQ, LT, PLUS, MINUS, TIMES, DIV);
+ * Can be of type "OpK": (EQ, LT, PLUS, MINUS, MULT, DIV);
  * "ConstK": (INT); or
  * "IdK": (ID)
  */

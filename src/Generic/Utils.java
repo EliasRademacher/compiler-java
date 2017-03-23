@@ -46,7 +46,7 @@ public class Utils {
             case MINUS:
                 stringValue = "-\n";
                 break;
-            case TIMES:
+            case MULT:
                 stringValue = "*\n";
                 break;
             case DIV:
@@ -112,7 +112,7 @@ public class Utils {
             case MINUS:
                 Listing.getInstance().write("-\n");
                 break;
-            case TIMES:
+            case MULT:
                 Listing.getInstance().write("*\n");
                 break;
             case DIV:

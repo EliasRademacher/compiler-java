@@ -21,14 +21,14 @@ public final class Globals {
      * be echoed to the listing file with line numbers
      * during parsing
      */
-    public static boolean echoSource;
+    public static boolean echoSource = true;
 
 
     /* traceScan = TRUE causes token information to be
      * printed to the listing file as each token is
      * recognized by the scanner
      */
-    public static boolean traceScan;
+    public static boolean traceScan = true;
 
 
 

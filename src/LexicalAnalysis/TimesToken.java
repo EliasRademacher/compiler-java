@@ -13,7 +13,7 @@ public class TimesToken extends Token {
 
     @Override
     public Type getType() {
-        return Type.TIMES;
+        return Type.MULT;
     }
 
     @Override

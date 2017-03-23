@@ -6,9 +6,9 @@ import SyntacticAnalysis.ParseTreeElement;
 /**
  * Created by Elias on 3/15/2017.
  */
-public class OverToken extends Token {
+public class DivToken extends Token {
 
-    public OverToken() {
+    public DivToken() {
     }
 
     @Override
