@@ -129,10 +129,22 @@ public class Parser {
                 newStmtNode(new AssignmentStatement());
 
         if (null != tree && token.getType() == Token.Type.ID) {
-            AssignmentStatement assignmentStatement =
-                    new AssignmentStatement(token);
+            AssignmentStatement assignmentStatement;
+            assignmentStatement = new AssignmentStatement(token);
             tree.setUserObject(assignmentStatement);
         }
+
+        IDToken idToken;
+        if (this.token.getType() == Token.Type.ID) {
+            idToken = (IDToken) this.token;
+            IDExpression idExpression = new IDExpression(idToken);
+            DefaultMutableTreeNode IDNode = new DefaultMutableTreeNode(idExpression);
+            tree.add(IDNode);
+        } else {
+            syntaxError("Assignment statement does not begin with valid ID.");
+        }
+
+
 
         match(Token.Type.ID);
         match(Token.Type.ASSIGN);
@@ -171,11 +183,17 @@ public class Parser {
     private DefaultMutableTreeNode whileStatement() {
         DefaultMutableTreeNode tree =
                 new DefaultMutableTreeNode(new WhileStatement());
+
         match(Token.Type.WHILE);
-        match(Token.Type.LBRACE_CURLY);
         if (tree != null) {
             tree.add(exp());
         }
+
+        match(Token.Type.LBRACE_CURLY);
+        if (tree != null) {
+            tree.add(stmtSequence());
+        }
+        match(Token.Type.RBRACE_CURLY);
         return tree;
     }
 
