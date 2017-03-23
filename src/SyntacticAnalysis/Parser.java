@@ -265,7 +265,7 @@ public class Parser {
     private DefaultMutableTreeNode term() {
         DefaultMutableTreeNode tree = factor();
 
-        while (token.getType() == Token.Type.TIMES ||
+        while (token.getType() == Token.Type.MULT ||
                 token.getType() == Token.Type.DIV) {
 
             OperationExpression expression = new OperationExpression(token);

@@ -148,7 +148,7 @@ public class SemanticAnalyzer {
                 return ParseTreeElement.Type.INTEGER;
             }
         }
-        else if(element.getToken().getType() == Token.Type.TIMES) {
+        else if(element.getToken().getType() == Token.Type.MULT) {
             if(eType((DefaultMutableTreeNode) node.getFirstChild()) == eType((DefaultMutableTreeNode) node.getLastChild())) {
                 return ParseTreeElement.Type.INTEGER;
             }

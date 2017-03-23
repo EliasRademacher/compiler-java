@@ -86,7 +86,7 @@ public class ScannerTest extends TestCase {
         expectedTokens.add(Token.Type.INT);
         expectedTokens.add(Token.Type.PLUS);
         expectedTokens.add(Token.Type.INT);
-        expectedTokens.add(Token.Type.TIMES);
+        expectedTokens.add(Token.Type.MULT);
         expectedTokens.add(Token.Type.ID);
         expectedTokens.add(Token.Type.SEMI);
 

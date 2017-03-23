@@ -23,7 +23,7 @@ public class Token {
         /* multicharacter tokens */
         ID, INT,
         /* special symbols */
-        ASSIGN, EQ, LT, PLUS, MINUS, TIMES, DIV, LPAREN,
+        ASSIGN, EQ, LT, PLUS, MINUS, MULT, DIV, LPAREN,
         RPAREN, LBRACE, RBRACE, LBRACE_CURLY, RBRACE_CURLY, SEMI
     }
 
