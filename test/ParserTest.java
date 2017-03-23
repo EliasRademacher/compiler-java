@@ -63,6 +63,17 @@ public class ParserTest  extends TestCase {
         assertNotNull(actualTree);
     }
 
+public void testParseSimpleFunction() throws FileNotFoundException {
+        FileReader simpleFunctionFileReader =
+                new FileReader("testResources/simpleFunction.cm");
+        Scanner scanner = new Scanner(simpleFunctionFileReader);
+        Parser parser = new Parser(scanner);
+
+        DefaultMutableTreeNode actualTree = parser.parse();
+
+        assertNotNull(actualTree);
+    }
+
 
     public void testParseSimpleWhile() throws FileNotFoundException {
         FileReader simpleWhileFileReader =

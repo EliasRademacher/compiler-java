@@ -64,11 +64,14 @@ public class Parser {
             case ID:
                 tree = assignStmt();
                 break;
+            case VOID:
+                tree = functionStmt();
+                break;
             case READ:
-                tree = new DefaultMutableTreeNode(new ReadStatement(), true);
+                tree = readStmt();
                 break;
             case WRITE:
-                tree = new DefaultMutableTreeNode(new WriteStatement(), true);
+                tree = writeStmt();
                 break;
             default:
                 String tokenString = Utils.tokenToString(token);
@@ -80,6 +83,17 @@ public class Parser {
         return tree;
     }
 
+    private DefaultMutableTreeNode writeStmt() {
+        DefaultMutableTreeNode tree = newStmtNode(new WriteStatement());
+        match(Token.Type.WRITE);
+        return tree;
+    }
+
+    private DefaultMutableTreeNode readStmt() {
+        DefaultMutableTreeNode tree = newStmtNode(new ReadStatement());
+        match(Token.Type.READ);
+        return tree;
+    }
 
     private DefaultMutableTreeNode stmtSequence() {
 
@@ -122,6 +136,7 @@ public class Parser {
 
         return tree;
     }
+
 
     private DefaultMutableTreeNode assignStmt() {
         DefaultMutableTreeNode tree =
@@ -221,6 +236,28 @@ public class Parser {
         }
         match(Token.Type.RBRACE_CURLY);
         return tree;
+    }
+
+    private DefaultMutableTreeNode functionStmt() {
+        DefaultMutableTreeNode tree = newStmtNode(new FunctionDeclarationStatement());
+        match(Token.Type.VOID);
+        match(Token.Type.ID);
+
+        if (null != tree) {
+            tree.add(parameterList());
+        }
+        match(Token.Type.LBRACE_CURLY);
+
+        if (null != tree) {
+            tree.add(stmtSequence());
+        }
+        match(Token.Type.RBRACE_CURLY);
+
+        return tree;
+    }
+
+    private DefaultMutableTreeNode parameterList() {
+        return new DefaultMutableTreeNode(new ParameterList());
     }
 
     private DefaultMutableTreeNode exp() {
