@@ -118,17 +118,62 @@ public class SemanticAnalyzer {
             ParseTreeElement parseTreeElement = (ParseTreeElement) current.getUserObject();
             Expression myEx;
             if(parseTreeElement.getClass() == Expression.class) {
-                switch (parseTreeElement.getType()) {
-                    //int
-                    //boolean
-                    //void
-                }
+                if(parseTreeElement.getToken().getType() == Token.Type.INT)
             }
             else if(parseTreeElement.getClass() == Statement.class) {
                 switch (parseTreeElement.getType()) {
 
                 }
             }
+        }
+    }
+    public ParseTreeElement.Type eType(DefaultMutableTreeNode node) {
+        ParseTreeElement element = (ParseTreeElement) node.getUserObject();
+        if(element.getToken().getType() == Token.Type.INT) {
+            return ParseTreeElement.Type.INTEGER;
+        }
+        else if(element.getToken().getType() == Token.Type.VOID) {
+            return ParseTreeElement.Type.VOID;
+        }
+        else if(element.getToken().getType() == Token.Type.MINUS) {
+            if(eType((DefaultMutableTreeNode) node.getFirstChild()) == eType((DefaultMutableTreeNode) node.getLastChild())) {
+                return ParseTreeElement.Type.INTEGER;
+            }
+            else {
+                System.out.println("Error: Invalid use of subtraction operator.");
+                return ParseTreeElement.Type.INTEGER;
+            }
+        }
+        else if(element.getToken().getType() == Token.Type.PLUS) {
+            if(eType((DefaultMutableTreeNode) node.getFirstChild()) == eType((DefaultMutableTreeNode) node.getLastChild())) {
+                return ParseTreeElement.Type.INTEGER;
+            }
+            else {
+                System.out.println("Error: Invalid use of addition operator.");
+                return ParseTreeElement.Type.INTEGER;
+            }
+        }
+        else if(element.getToken().getType() == Token.Type.TIMES) {
+            if(eType((DefaultMutableTreeNode) node.getFirstChild()) == eType((DefaultMutableTreeNode) node.getLastChild())) {
+                return ParseTreeElement.Type.INTEGER;
+            }
+            else {
+                System.out.println("Error: Invalid use of multiplication operator.");
+                return ParseTreeElement.Type.INTEGER;
+            }
+        }
+        else if(element.getToken().getType() == Token.Type.READ) {
+            if(eType((DefaultMutableTreeNode) node.getFirstChild()) == eType((DefaultMutableTreeNode) node.getLastChild())) {
+                return ParseTreeElement.Type.INTEGER;
+            }
+            else {
+                System.out.println("Error: Invalid use of subtraction operator.");
+                return ParseTreeElement.Type.INTEGER;
+            }
+        }
+        else {
+            System.out.println("Error: Invalid use of expression.");
+            return ParseTreeElement.Type.INTEGER;
         }
     }
 }
