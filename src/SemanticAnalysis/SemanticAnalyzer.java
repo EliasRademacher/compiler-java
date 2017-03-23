@@ -4,6 +4,7 @@ import Generic.Utils;
 import LexicalAnalysis.Token;
 import SyntacticAnalysis.Expression;
 import SyntacticAnalysis.ParseTreeElement;
+import SyntacticAnalysis.Statement;
 import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
 
 import javax.lang.model.type.NullType;
@@ -115,8 +116,18 @@ public class SemanticAnalyzer {
         while (dfs.hasMoreElements()) {
             DefaultMutableTreeNode current = (DefaultMutableTreeNode) dfs.nextElement();
             ParseTreeElement parseTreeElement = (ParseTreeElement) current.getUserObject();
+            Expression myEx;
             if(parseTreeElement.getClass() == Expression.class) {
+                switch (parseTreeElement.getType()) {
+                    //int
+                    //boolean
+                    //void
+                }
+            }
+            else if(parseTreeElement.getClass() == Statement.class) {
+                switch (parseTreeElement.getType()) {
 
+                }
             }
         }
     }
