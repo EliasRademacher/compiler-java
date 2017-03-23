@@ -38,5 +38,11 @@ public class ParseTreeElement {
         this.lineNumber = lineNumber;
     }
 
+    public Type getType() {
+        return type;
+    }
 
+    public void setType(Type type) {
+        this.type = type;
+    }
 }

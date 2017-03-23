@@ -2,6 +2,7 @@ package SemanticAnalysis;
 
 import Generic.Utils;
 import LexicalAnalysis.Token;
+import SyntacticAnalysis.Expression;
 import SyntacticAnalysis.ParseTreeElement;
 import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
 
@@ -20,19 +21,6 @@ import static javafx.application.Platform.exit;
 
 
 public class SemanticAnalyzer {
-
-    public enum Type {
-        /* book-keeping tokens */
-        INT, INTARR,
-        /* reserved words */
-        IF, THEN, ELSE, END, WHILE, UNTIL, READ, WRITE,
-        INT_TYPE, VOID,
-        /* multicharacter tokens */
-        ID, INT,
-        /* special symbols */
-        ASSIGN, EQ, LT, PLUS, MINUS, TIMES, OVER, LPAREN,
-        RPAREN, LBRACE, RBRACE, LBRACE_CURLY, RBRACE_CURLY, SEMI
-    }
 
     private DefaultMutableTreeNode AST;//passed in from parser
 
@@ -121,33 +109,14 @@ public class SemanticAnalyzer {
         }
     }
 
-    public String typeOfExpr(DefaultMutableTreeNode expressionNode) {//recursively find the type of an expression
-
-    }
-
     public void traverseTypeCheck() {
         Enumeration dfs = AST.depthFirstEnumeration();
         DefaultMutableTreeNode currSymbolTree = symbolTableTree;
         while (dfs.hasMoreElements()) {
             DefaultMutableTreeNode current = (DefaultMutableTreeNode) dfs.nextElement();
             ParseTreeElement parseTreeElement = (ParseTreeElement) current.getUserObject();
-            switch (parseTreeElement.getSemType()) {
-                case ASSIGN:
-                    DefaultMutableTreeNode left = (DefaultMutableTreeNode) current.getFirstChild();
-                    DefaultMutableTreeNode right = (DefaultMutableTreeNode) current.getLastChild();
-                    ParseTreeElement l = (ParseTreeElement) left.getUserObject();
-                    ParseTreeElement r = (ParseTreeElement) right.getUserObject();
-                    if (l.getSemType() != r.getSemType()) {
-                        System.out.println("Invalid use of assignment operator.");
-                    }
-                case
-                    DefaultMutableTreeNode left = (DefaultMutableTreeNode) current.getFirstChild();
-                    DefaultMutableTreeNode right = (DefaultMutableTreeNode) current.getLastChild();
-                    ParseTreeElement l = (ParseTreeElement) left.getUserObject();
-                    ParseTreeElement r = (ParseTreeElement) right.getUserObject();
-                    if(l.getToken().getType() != r.getToken().getType()) {
-                        System.out.println("Invalid use of assignment operator.");
-                    }
+            if(parseTreeElement.getClass() == Expression.class) {
+
             }
         }
     }
