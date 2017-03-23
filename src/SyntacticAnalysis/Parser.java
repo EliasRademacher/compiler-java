@@ -183,17 +183,17 @@ public class Parser {
     private DefaultMutableTreeNode whileStatement() {
         DefaultMutableTreeNode tree =
                 new DefaultMutableTreeNode(new WhileStatement());
-        match(Token.Type.WHILE);
 
-        // TODO: linepos is getting reset here
+        match(Token.Type.WHILE);
+        if (tree != null) {
+            tree.add(exp());
+        }
+
         match(Token.Type.LBRACE_CURLY);
         if (tree != null) {
             tree.add(stmtSequence());
         }
         match(Token.Type.RBRACE_CURLY);
-        if (tree != null) {
-            tree.add(exp());
-        }
         return tree;
     }
 
