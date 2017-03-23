@@ -35,15 +35,15 @@ public class ScannerTest extends TestCase {
 
         /* int x; int y;
            int z[10]; */
-        expectedTokens.add(Token.Type.INT_TYPE);
+        expectedTokens.add(Token.Type.TYPE_SPECIFIER);
         expectedTokens.add(Token.Type.ID);
         expectedTokens.add(Token.Type.SEMI);
-        expectedTokens.add(Token.Type.INT_TYPE);
+        expectedTokens.add(Token.Type.TYPE_SPECIFIER);
         expectedTokens.add(Token.Type.ID);
         expectedTokens.add(Token.Type.SEMI);
 
         /* int z[10]; */
-        expectedTokens.add(Token.Type.INT_TYPE);
+        expectedTokens.add(Token.Type.TYPE_SPECIFIER);
         expectedTokens.add(Token.Type.ID);
         expectedTokens.add(Token.Type.LBRACE);
         expectedTokens.add(Token.Type.INT);
@@ -60,7 +60,7 @@ public class ScannerTest extends TestCase {
 
         /* int i;
            i = 0; */
-        expectedTokens.add(Token.Type.INT_TYPE);
+        expectedTokens.add(Token.Type.TYPE_SPECIFIER);
         expectedTokens.add(Token.Type.ID);
         expectedTokens.add(Token.Type.SEMI);
         expectedTokens.add(Token.Type.ID);
@@ -105,7 +105,7 @@ public class ScannerTest extends TestCase {
         /* int i;
            i = 0; */
         expectedTokens.addAll(Arrays.asList(
-                Token.Type.INT_TYPE, Token.Type.ID, Token.Type.SEMI,
+                Token.Type.TYPE_SPECIFIER, Token.Type.ID, Token.Type.SEMI,
                 Token.Type.ID, Token.Type.ASSIGN, Token.Type.INT, Token.Type.SEMI
         ));
 

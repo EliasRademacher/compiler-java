@@ -13,7 +13,7 @@ public class IntTypeToken extends Token {
 
     @Override
     public Type getType() {
-        return Type.INT_TYPE;
+        return Type.TYPE_SPECIFIER;
     }
 
     @Override

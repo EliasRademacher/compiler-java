@@ -48,11 +48,11 @@ public class Parser {
 
     /* Creates a new tree node based on the current token. */
     /* Corresponds to function "statement()" in "PARSE.C". */
-    public DefaultMutableTreeNode createStatementNodeFromToken() {
+    private DefaultMutableTreeNode createStatementNodeFromToken() {
         DefaultMutableTreeNode tree = null;
 
         switch (token.getType()) {
-            case INT_TYPE:
+            case TYPE_SPECIFIER:
                 tree = declarationStmt();
                 break;
             case IF:
@@ -158,13 +158,13 @@ public class Parser {
     private DefaultMutableTreeNode declarationStmt() {
         DefaultMutableTreeNode tree = newStmtNode(new DeclarationStatement());
 
-        if (null != tree && token.getType() == Token.Type.INT_TYPE) {
+        if (null != tree && token.getType() == Token.Type.TYPE_SPECIFIER) {
             DeclarationStatement declarationStatement =
                     new DeclarationStatement(token);
             tree.setUserObject(declarationStatement);
         }
 
-        match(Token.Type.INT_TYPE);
+        match(Token.Type.TYPE_SPECIFIER);
 
         IDToken idToken;
         if (this.token.getType() == Token.Type.ID) {
@@ -204,7 +204,6 @@ public class Parser {
         return tree;
     }
 
-
     private DefaultMutableTreeNode whileStatement() {
         DefaultMutableTreeNode tree =
                 new DefaultMutableTreeNode(new WhileStatement());
@@ -221,7 +220,6 @@ public class Parser {
         match(Token.Type.RBRACE_CURLY);
         return tree;
     }
-
 
     private DefaultMutableTreeNode exp() {
         DefaultMutableTreeNode tree = simpleExp();

@@ -4,6 +4,7 @@ import LexicalAnalysis.IntTypeToken;
 import LexicalAnalysis.Token;
 import SyntacticAnalysis.*;
 import LexicalAnalysis.Scanner;
+import junit.framework.TestCase;
 import org.junit.Test;
 
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -19,8 +20,8 @@ import static org.junit.Assert.*;
 /**
  * Created by Elias on 3/11/2017.
  */
-public class ParserTest {
-    @Test
+public class ParserTest  extends TestCase {
+
     public void testParseSimpleAssignment() throws FileNotFoundException {
         FileReader simpleAssignmentFileReader =
                 new FileReader("testResources/simpleAssignment.cm");
@@ -32,7 +33,7 @@ public class ParserTest {
         assertNotNull(actualTree);
     }
 
-    @Test
+
     public void testParseSimpleDeclaration() throws FileNotFoundException {
         FileReader simpleDeclarationFileReader =
                 new FileReader("testResources/simpleDeclaration.cm");
@@ -50,7 +51,7 @@ public class ParserTest {
         assertNotNull(actualTree);
     }
 
-    @Test
+
     public void testParseSimpleIf() throws FileNotFoundException {
         FileReader simpleIfFileReader =
                 new FileReader("testResources/simpleIf.cm");
@@ -62,7 +63,7 @@ public class ParserTest {
         assertNotNull(actualTree);
     }
 
-    @Test
+
     public void testParseSimpleWhile() throws FileNotFoundException {
         FileReader simpleWhileFileReader =
                 new FileReader("testResources/simpleWhile.cm");
