@@ -187,22 +187,22 @@ public class Parser {
         if (null != tree) {
             tree.add(exp());
         }
-
-        // TODO: match on curly braces
-        match(Token.Type.THEN);
+        match(Token.Type.LBRACE_CURLY);
 
         if (null != tree) {
             tree.add(stmtSequence());
         }
+        match(Token.Type.RBRACE_CURLY);
 
         if (token.getType() == Token.Type.ELSE) {
             match(Token.Type.ELSE);
+            match(Token.Type.LBRACE_CURLY);
             if (null != tree) {
                 tree.add(stmtSequence());
             }
+            match(Token.Type.RBRACE_CURLY);
         }
 
-        match(Token.Type.RBRACE_CURLY);
         return tree;
     }
 
