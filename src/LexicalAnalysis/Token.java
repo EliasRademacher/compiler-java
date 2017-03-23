@@ -18,12 +18,12 @@ public class Token {
         /* book-keeping tokens */
         ENDFILE, ERROR,
         /* reserved words */
-        IF, THEN, ELSE, END, WHILE, UNTIL, READ, WRITE,
+        IF, THEN, ELSE, WHILE, READ, WRITE,
         TYPE_SPECIFIER, VOID,
         /* multicharacter tokens */
         ID, INT,
         /* special symbols */
-        ASSIGN, EQ, LT, PLUS, MINUS, TIMES, OVER, LPAREN,
+        ASSIGN, EQ, LT, PLUS, MINUS, TIMES, DIV, LPAREN,
         RPAREN, LBRACE, RBRACE, LBRACE_CURLY, RBRACE_CURLY, SEMI
     }
 

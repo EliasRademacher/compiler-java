@@ -13,7 +13,7 @@ public class OverToken extends Token {
 
     @Override
     public Type getType() {
-        return Type.OVER;
+        return Type.DIV;
     }
 
     @Override

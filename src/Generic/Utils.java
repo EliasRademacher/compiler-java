@@ -14,9 +14,7 @@ public class Utils {
             case IF:
             case THEN:
             case ELSE:
-            case END:
             case WHILE:
-            case UNTIL:
             case READ:
             case WRITE:
                 stringValue = "reserved word: " + token.getName();
@@ -51,7 +49,7 @@ public class Utils {
             case TIMES:
                 stringValue = "*\n";
                 break;
-            case OVER:
+            case DIV:
                 stringValue = "/\n";
                 break;
             case ENDFILE:
@@ -82,9 +80,7 @@ public class Utils {
             case IF:
             case THEN:
             case ELSE:
-            case END:
             case WHILE:
-            case UNTIL:
             case READ:
             case WRITE:
                 Listing.getInstance().write(tokenString);
@@ -119,7 +115,7 @@ public class Utils {
             case TIMES:
                 Listing.getInstance().write("*\n");
                 break;
-            case OVER:
+            case DIV:
                 Listing.getInstance().write("/\n");
                 break;
             case ENDFILE:

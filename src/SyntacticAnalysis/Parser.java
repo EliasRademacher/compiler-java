@@ -187,6 +187,8 @@ public class Parser {
         if (null != tree) {
             tree.add(exp());
         }
+
+        // TODO: match on curly braces
         match(Token.Type.THEN);
 
         if (null != tree) {
@@ -200,7 +202,7 @@ public class Parser {
             }
         }
 
-        match(Token.Type.END);
+        match(Token.Type.RBRACE_CURLY);
         return tree;
     }
 
@@ -264,7 +266,7 @@ public class Parser {
         DefaultMutableTreeNode tree = factor();
 
         while (token.getType() == Token.Type.TIMES ||
-                token.getType() == Token.Type.OVER) {
+                token.getType() == Token.Type.DIV) {
 
             OperationExpression expression = new OperationExpression(token);
             DefaultMutableTreeNode p = newExpNode(expression);

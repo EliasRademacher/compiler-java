@@ -50,9 +50,7 @@ public class Scanner {
         reservedWords.put("if", Token.Type.IF);
         reservedWords.put("then", Token.Type.THEN);
         reservedWords.put("else", Token.Type.ELSE);
-        reservedWords.put("end", Token.Type.END);
         reservedWords.put("while", Token.Type.WHILE);
-        reservedWords.put("until", Token.Type.UNTIL);
         reservedWords.put("read", Token.Type.READ);
         reservedWords.put("write", Token.Type.WRITE);
         reservedWords.put("int", Token.Type.TYPE_SPECIFIER);
