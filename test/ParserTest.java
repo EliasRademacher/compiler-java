@@ -33,6 +33,18 @@ public class ParserTest {
     }
 
     @Test
+    public void testParseSimpleDeclaration() throws FileNotFoundException {
+        FileReader simpleDeclarationFileReader =
+                new FileReader("testResources/simpleDeclaration.cm");
+        Scanner scanner = new Scanner(simpleDeclarationFileReader);
+        Parser parser = new Parser(scanner);
+
+        DefaultMutableTreeNode actualTree = parser.parse();
+
+        assertNotNull(actualTree);
+    }
+
+    @Test
     public void testParseSimpleIf() throws FileNotFoundException {
         FileReader simpleIfFileReader =
                 new FileReader("testResources/simpleIf.cm");
@@ -65,7 +77,7 @@ public class ParserTest {
                 tokenString = Utils.tokenToString(token);
             }
 
-            System.out.println("Node: " + parseTreeElement.toString() + "\n" + "Token: " + tokenString);
+//            System.out.println("Node: " + parseTreeElement.toString() + "\n" + "Token: " + tokenString);
         }
 
 
