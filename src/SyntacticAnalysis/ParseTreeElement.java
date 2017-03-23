@@ -5,9 +5,15 @@ import LexicalAnalysis.Token;
 
 public class ParseTreeElement {
 
+    public enum Type {
+        VOID, INTEGER, BOOLEAN
+    }
+
     protected int lineNumber;
 
     protected Token token;
+    /* For type checking of expressions.*/
+    protected Type type;
 
     public ParseTreeElement() {
     }
@@ -31,4 +37,6 @@ public class ParseTreeElement {
     public void setLineNumber(int lineNumber) {
         this.lineNumber = lineNumber;
     }
+
+
 }

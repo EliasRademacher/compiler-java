@@ -1,8 +1,6 @@
 package LexicalAnalysis;
 
-import SyntacticAnalysis.AssignmentStatement;
 import SyntacticAnalysis.ConstExpression;
-import SyntacticAnalysis.Expression;
 import SyntacticAnalysis.ParseTreeElement;
 
 /**
@@ -24,7 +22,7 @@ public class IntToken extends Token {
 
     @Override
     public ParseTreeElement toParseTreeElement() {
-        return new ConstExpression(Expression.Type.INTEGER);
+        return new ConstExpression(ParseTreeElement.Type.INTEGER);
     }
 
 
