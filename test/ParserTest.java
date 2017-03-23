@@ -41,6 +41,12 @@ public class ParserTest {
 
         DefaultMutableTreeNode actualTree = parser.parse();
 
+        DefaultMutableTreeNode IDNode = (DefaultMutableTreeNode) actualTree.getFirstChild();
+        IDExpression idExpression = (IDExpression) IDNode.getUserObject();
+
+        assertEquals(Token.Type.ID, idExpression.getToken().getType());
+        assertEquals("myNewVariable", idExpression.getToken().getName());
+        assertTrue(IDNode.isLeaf());
         assertNotNull(actualTree);
     }
 
@@ -82,121 +88,6 @@ public class ParserTest {
 
 
         assertNotNull(actualTree);
-    }
-
-
-
-
-
-//    @Test
-//    public void stmtSequence() throws FileNotFoundException {
-//        FileReader program1FileReader = new FileReader("testResources/program1.cm");
-//        Scanner scanner = new Scanner(program1FileReader);
-//        Parser parser = new Parser(scanner);
-////        parser.setToken(LexicalAnalysis.Token.Type.IF);
-//
-//        DefaultMutableTreeNode tree = parser.stmtSequence();
-//
-//        assertNotNull(tree);
-//
-//    }
-
-//    @Test
-//    public void testCreateStatementNodeFromToken() throws FileNotFoundException {
-//        FileReader program1FileReader = new FileReader("testResources/program1.cm");
-//        Scanner scanner = new Scanner(program1FileReader);
-//        Parser parser = new Parser(scanner);
-//
-//        parser.setToken(new Token(Token.Type.IF));
-//        DefaultMutableTreeNode tree = parser.createStatementNodeFromToken();
-//        assertTrue(tree.getUserObject().getClass().equals(IfStatement.class));
-//
-//        parser.setToken(new Token(Token.Type.WHILE));
-//        tree = parser.createStatementNodeFromToken();
-//        assertTrue(tree.getUserObject().getClass().equals(WhileStatement.class));
-//
-//        parser.setToken(new Token(Token.Type.ID));
-//        tree = parser.createStatementNodeFromToken();
-//        assertTrue(tree.getUserObject().getClass().equals(AssignmentStatement.class));
-//
-//        parser.setToken(new Token(Token.Type.READ));
-//        tree = parser.createStatementNodeFromToken();
-//        assertTrue(tree.getUserObject().getClass().equals(ReadStatement.class));
-//
-//        parser.setToken(new Token(Token.Type.WRITE));
-//        tree = parser.createStatementNodeFromToken();
-//        assertTrue(tree.getUserObject().getClass().equals(WriteStatement.class));
-//
-//        parser.setToken(new Token(Token.Type.ERROR));
-//        tree = parser.createStatementNodeFromToken();
-//        assertTrue(tree == null);
-//    }
-
-
-
-    /* Create a testParse tree for "int x;" */
-    @Test
-    public void testCreateDeclarationNode() throws FileNotFoundException {
-        FileReader program1FileReader = new FileReader("testResources/simpleDeclaration.cm");
-        Scanner scanner = new Scanner(program1FileReader);
-        Parser parser = new Parser(scanner);
-        DefaultMutableTreeNode actualTree = parser.createDeclarationNode();
-
-
-        Token intTypeToken = new IntTypeToken();
-        DefaultMutableTreeNode expectedTree = intTypeToken.toTreeNode();
-
-        Token tokenForX = new IDToken();
-        tokenForX.setName("x");
-        DefaultMutableTreeNode IDNodeForX = tokenForX.toTreeNode();
-
-        expectedTree.add(IDNodeForX);
-
-
-        Class expectedClass = expectedTree.getUserObject().getClass();
-        Class<?> actualClass = actualTree.getUserObject().getClass();
-        assertEquals(expectedClass, actualClass);
-
-        ParseTreeElement expectedElement =
-                (ParseTreeElement) expectedTree.getUserObject();
-        ParseTreeElement actualElement =
-                (ParseTreeElement) actualTree.getUserObject();
-        String expectedName = expectedElement.getToken().getName();
-        String actualName = actualElement.getToken().getName();
-        assertEquals(expectedName, actualName);
-
-
-
-
-        Enumeration expectedChildren = expectedTree.children();
-        Enumeration actualChildren = actualTree.children();
-
-        while(expectedChildren.hasMoreElements()) {
-
-            DefaultMutableTreeNode expectedChild =
-                    (DefaultMutableTreeNode) expectedChildren.nextElement();
-            DefaultMutableTreeNode actualChild =
-                    (DefaultMutableTreeNode) actualChildren.nextElement();
-            expectedClass = expectedChild.getUserObject().getClass();
-            actualClass = actualChild.getUserObject().getClass();
-            assertEquals(expectedClass, actualClass);
-
-            System.out.println("Expected Node Class: " + expectedClass.getName() + ";\t" +
-                    "Actual Node Class: " + actualClass.getName());
-
-
-            expectedElement = (ParseTreeElement) expectedChild.getUserObject();
-            actualElement = (ParseTreeElement) actualChild.getUserObject();
-            expectedName = expectedElement.getToken().getName();
-            actualName = actualElement.getToken().getName();
-            assertEquals(expectedName, actualName);
-
-
-            System.out.println("Expected Token Name: " + expectedName + ";\t" +
-                    "Actual Token Name: " + actualName + "\n");
-        }
-
-
     }
 
 }
