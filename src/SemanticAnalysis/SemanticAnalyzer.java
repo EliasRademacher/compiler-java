@@ -5,15 +5,9 @@ import LexicalAnalysis.Token;
 import SyntacticAnalysis.Expression;
 import SyntacticAnalysis.ParseTreeElement;
 import SyntacticAnalysis.Statement;
-import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
 
-import javax.lang.model.type.NullType;
 import javax.swing.tree.DefaultMutableTreeNode;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
-
-import static javafx.application.Platform.exit;
 //import java.util.List;
 
 /**
@@ -88,7 +82,7 @@ public class SemanticAnalyzer {
             DefaultMutableTreeNode currentASTNode = (DefaultMutableTreeNode) dfs.nextElement();
             ParseTreeElement parseTreeElement = (ParseTreeElement) currentASTNode.getUserObject();
             SymTable currentTable = (SymTable) currSymbolTree.getUserObject();
-            if (parseTreeElement.getToken().getType() == Token.Type.INT_TYPE) {
+            if (parseTreeElement.getToken().getType() == Token.Type.TYPE_SPECIFIER) {
                 DefaultMutableTreeNode childNode = (DefaultMutableTreeNode) currentASTNode.getFirstChild();
                 ParseTreeElement childElement = (ParseTreeElement) childNode.getUserObject();
                 if (childElement.getToken().getType() == Token.Type.ID) {

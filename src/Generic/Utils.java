@@ -21,7 +21,7 @@ public class Utils {
             case WRITE:
                 stringValue = "reserved word: " + token.getName();
                 break;
-            case INT_TYPE:
+            case TYPE_SPECIFIER:
                 stringValue = "int type";
                 break;
             case ASSIGN:
@@ -89,7 +89,7 @@ public class Utils {
             case WRITE:
                 Listing.getInstance().write(tokenString);
                 break;
-            case INT_TYPE:
+            case TYPE_SPECIFIER:
                 Listing.getInstance().write("int");
                 break;
             case ASSIGN:

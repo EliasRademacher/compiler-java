@@ -55,7 +55,7 @@ public class Scanner {
         reservedWords.put("until", Token.Type.UNTIL);
         reservedWords.put("read", Token.Type.READ);
         reservedWords.put("write", Token.Type.WRITE);
-        reservedWords.put("int", Token.Type.INT_TYPE);
+        reservedWords.put("int", Token.Type.TYPE_SPECIFIER);
         reservedWords.put("void", Token.Type.VOID);
     }
 
@@ -257,7 +257,7 @@ public class Scanner {
                             based on a token type? */
                         Token.Type type = reservedWords.get(tokenKey);
 
-                        if (type == Token.Type.INT_TYPE) {
+                        if (type == Token.Type.TYPE_SPECIFIER) {
                             currentToken = new IntTypeToken();
                         } else {
                             /* TODO: Create token of the desired type

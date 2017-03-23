@@ -38,7 +38,7 @@ public class CheckerTest {
         myTree.add(IDNodeForX);
 //
 //        Token firstToken = new Token();
-//        firstToken.setType(Token.Type.INT_TYPE);
+//        firstToken.setType(Token.Type.TYPE_SPECIFIER);
 //        firstToken.setName("one");
 //        firstToken.setIntegerValue(1);
 //
@@ -58,16 +58,16 @@ public class CheckerTest {
 //        fourthToken.setIntegerValue(4);
 //
 //        Token fifthToken = new Token();
-//        fifthToken.setType(Token.Type.INT_TYPE);
+//        fifthToken.setType(Token.Type.TYPE_SPECIFIER);
 //        fifthToken.setName("five");
 //        fifthToken.setIntegerValue(5);
 //
 //        Token sixthToken = new Token();
-//        sixthToken.setType(Token.Type.INT_TYPE);
+//        sixthToken.setType(Token.Type.TYPE_SPECIFIER);
 //        sixthToken.setName("six");
 //        sixthToken.setIntegerValue(6);
 
-        //building the tree with INT_TYPE parent of INT and INT parent of INT and INT parent of LBRACE and LBRACE parent of INT_TYPE and INT_TYPE parent of INT_TYPE
+        //building the tree with TYPE_SPECIFIER parent of INT and INT parent of INT and INT parent of LBRACE and LBRACE parent of TYPE_SPECIFIER and TYPE_SPECIFIER parent of TYPE_SPECIFIER
         //expecting one int with name saveMe to be saved
 
 //        DefaultMutableTreeNode myAST = new DefaultMutableTreeNode(firstToken);

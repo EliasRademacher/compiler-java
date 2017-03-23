@@ -19,7 +19,7 @@ public class Token {
         ENDFILE, ERROR,
         /* reserved words */
         IF, THEN, ELSE, END, WHILE, UNTIL, READ, WRITE,
-        INT_TYPE, VOID,
+        TYPE_SPECIFIER, VOID,
         /* multicharacter tokens */
         ID, INT,
         /* special symbols */
