@@ -161,7 +161,7 @@ public class Scanner {
                                 currentToken = new TimesToken();
                                 break;
                             case '/':
-                                currentToken = new OverToken();
+                                currentToken = new DivToken();
                                 break;
                             case '(':
                                 currentToken = new LeftParenToken();
