@@ -53,7 +53,7 @@ public class Parser {
 
         switch (token.getType()) {
             case INT_TYPE:
-                tree = new DefaultMutableTreeNode(new DeclarationStatement(token), true);
+                tree = declarationStmt();
                 break;
             case IF:
                 tree = ifStmt();
@@ -87,9 +87,8 @@ public class Parser {
         DefaultMutableTreeNode p = tree;
 
         while ((token.getType() != Token.Type.ENDFILE)
-                && (token.getType() != Token.Type.END)
                 && (token.getType() != Token.Type.ELSE)
-                && (token.getType() != Token.Type.UNTIL)) {
+                && (token.getType() != Token.Type.RBRACE_CURLY)) {
 
             DefaultMutableTreeNode q;
 
@@ -153,6 +152,32 @@ public class Parser {
             DefaultMutableTreeNode newChild = exp();
             tree.add(newChild);
         }
+        return tree;
+    }
+
+    private DefaultMutableTreeNode declarationStmt() {
+        DefaultMutableTreeNode tree = newStmtNode(new DeclarationStatement());
+
+        if (null != tree && token.getType() == Token.Type.INT_TYPE) {
+            DeclarationStatement declarationStatement =
+                    new DeclarationStatement(token);
+            tree.setUserObject(declarationStatement);
+        }
+
+        match(Token.Type.INT_TYPE);
+
+        IDToken idToken;
+        if (this.token.getType() == Token.Type.ID) {
+            idToken = (IDToken) this.token;
+            IDExpression idExpression = new IDExpression(idToken);
+            DefaultMutableTreeNode IDNode = new DefaultMutableTreeNode(idExpression);
+            tree.add(IDNode);
+        } else {
+            syntaxError("Declaration statement does not have valid ID.");
+        }
+
+        match(Token.Type.ID);
+
         return tree;
     }
 
@@ -322,7 +347,7 @@ public class Parser {
         token = scanner.getToken();
 
 
-        tree = stmtSequence();  // Why is a semicolon expected here?
+        tree = stmtSequence();
 
 
         if (token.getType() != Token.Type.ENDFILE) {
