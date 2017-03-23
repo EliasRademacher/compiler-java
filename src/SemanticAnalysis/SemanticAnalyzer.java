@@ -2,9 +2,7 @@ package SemanticAnalysis;
 
 import Generic.Utils;
 import LexicalAnalysis.Token;
-import SyntacticAnalysis.Expression;
-import SyntacticAnalysis.ParseTreeElement;
-import SyntacticAnalysis.Statement;
+import SyntacticAnalysis.*;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.util.Enumeration;
@@ -110,28 +108,63 @@ public class SemanticAnalyzer {
         while (dfs.hasMoreElements()) {
             DefaultMutableTreeNode current = (DefaultMutableTreeNode) dfs.nextElement();
             ParseTreeElement parseTreeElement = (ParseTreeElement) current.getUserObject();
-            Expression myEx;
-            if(parseTreeElement.getClass() == Expression.class) {
-                if(parseTreeElement.getToken().getType() == Token.Type.INT) {
-                }
+            if(parseTreeElement.getToken().getType() == Token.Type.LBRACE_CURLY) {
+                currSymbolTree = (DefaultMutableTreeNode) currSymbolTree.getFirstChild();
             }
-            else if(parseTreeElement.getClass() == Statement.class) {
-                switch (parseTreeElement.getType()) {
+            if(parseTreeElement.getToken().getType() == Token.Type.RBRACE_CURLY) {
+                currSymbolTree = (DefaultMutableTreeNode) currSymbolTree.getParent();
+            }
+            typeCheck(current, currSymbolTree);
+        }
+    }
 
-                }
+    public void typeCheck(DefaultMutableTreeNode node, DefaultMutableTreeNode currSymbolTable) {
+        ParseTreeElement element = (ParseTreeElement) node.getUserObject();
+        if (element.getClass() == IfStatement.class) {
+            ParseTreeElement ifele = (ParseTreeElement) ((DefaultMutableTreeNode) node.getChildAt(0)).getUserObject();
+            ParseTreeElement elseele = (ParseTreeElement) ((DefaultMutableTreeNode) node.getChildAt(2)).getUserObject();
+            if (ifele.getToken().getType() == Token.Type.IF && eType((DefaultMutableTreeNode) node.getChildAt(1), currSymbolTable) == ParseTreeElement.Type.BOOLEAN && ifele.getToken().getType() == Token.Type.IF && ((DefaultMutableTreeNode) node.getChildAt(3)).getUserObject().getClass() == Statement.class) {
+                //all good
+            } else {
+                System.out.println("Error: Incorrect use of If Else clause.");
+            }
+        }
+        else if(element.getToken().getType() == Token.Type.ASSIGN) {
+            if(((ParseTreeElement)((DefaultMutableTreeNode) node.getFirstChild()).getUserObject()).getToken().getType() == Token.Type.ID) {
+                //all good
+            }
+            else{
+                System.out.println("Error: Invalid use of assignment operator.");
+            }
+        }
+        if (element.getClass() == WhileStatement.class) {
+            ParseTreeElement whileele = (ParseTreeElement) ((DefaultMutableTreeNode) node.getChildAt(0)).getUserObject();
+            if (whileele.getToken().getType() == Token.Type.WHILE && eType((DefaultMutableTreeNode) node.getChildAt(1), currSymbolTable) == ParseTreeElement.Type.BOOLEAN && ((DefaultMutableTreeNode) node.getChildAt(2)).getUserObject().getClass() == Statement.class) {
+                //all good
+            } else {
+                System.out.println("Error: Incorrect use of While Loop.");
             }
         }
     }
-    public ParseTreeElement.Type eType(DefaultMutableTreeNode node) {
+
+    public ParseTreeElement.Type eType(DefaultMutableTreeNode node, DefaultMutableTreeNode currSymbolTable) {
         ParseTreeElement element = (ParseTreeElement) node.getUserObject();
+
         if(element.getToken().getType() == Token.Type.INT) {
-            return ParseTreeElement.Type.INTEGER;
+            Pair pair = new Pair(Token.Type.INT, element.getToken().getName());
+            if(idNotInTable(pair, currSymbolTable)) {
+                return ParseTreeElement.Type.INTEGER;
+            }
+            else{
+                System.out.println("Error: Integer not found in symbol table.");
+                return ParseTreeElement.Type.INTEGER;
+            }
         }
         else if(element.getToken().getType() == Token.Type.VOID) {
             return ParseTreeElement.Type.VOID;
         }
         else if(element.getToken().getType() == Token.Type.MINUS) {
-            if(eType((DefaultMutableTreeNode) node.getFirstChild()) == eType((DefaultMutableTreeNode) node.getLastChild())) {
+            if(eType((DefaultMutableTreeNode) node.getFirstChild(), currSymbolTable) == eType((DefaultMutableTreeNode) node.getLastChild(), currSymbolTable)) {
                 return ParseTreeElement.Type.INTEGER;
             }
             else {
@@ -140,7 +173,7 @@ public class SemanticAnalyzer {
             }
         }
         else if(element.getToken().getType() == Token.Type.PLUS) {
-            if(eType((DefaultMutableTreeNode) node.getFirstChild()) == eType((DefaultMutableTreeNode) node.getLastChild())) {
+            if(eType((DefaultMutableTreeNode) node.getFirstChild(), currSymbolTable) == eType((DefaultMutableTreeNode) node.getLastChild(), currSymbolTable)) {
                 return ParseTreeElement.Type.INTEGER;
             }
             else {
@@ -149,7 +182,7 @@ public class SemanticAnalyzer {
             }
         }
         else if(element.getToken().getType() == Token.Type.TIMES) {
-            if(eType((DefaultMutableTreeNode) node.getFirstChild()) == eType((DefaultMutableTreeNode) node.getLastChild())) {
+            if(eType((DefaultMutableTreeNode) node.getFirstChild(), currSymbolTable) == eType((DefaultMutableTreeNode) node.getLastChild(), currSymbolTable)) {
                 return ParseTreeElement.Type.INTEGER;
             }
             else {
@@ -157,12 +190,39 @@ public class SemanticAnalyzer {
                 return ParseTreeElement.Type.INTEGER;
             }
         }
+        else if(element.getToken().getType() == Token.Type.EQ) {
+            if(eType((DefaultMutableTreeNode) node.getFirstChild(), currSymbolTable) == eType((DefaultMutableTreeNode) node.getLastChild(), currSymbolTable)) {
+                return ParseTreeElement.Type.BOOLEAN;
+            }
+            else {
+                System.out.println("Error: Invalid use of equivalence check operator.");
+                return ParseTreeElement.Type.BOOLEAN;
+            }
+        }
+        else if(element.getToken().getType() == Token.Type.LT) {
+            if(eType((DefaultMutableTreeNode) node.getFirstChild(), currSymbolTable) == eType((DefaultMutableTreeNode) node.getLastChild(), currSymbolTable)) {
+                return ParseTreeElement.Type.BOOLEAN;
+            }
+            else {
+                System.out.println("Error: Invalid use of less than inequality operator.");
+                return ParseTreeElement.Type.BOOLEAN;
+            }
+        }
         else if(element.getToken().getType() == Token.Type.READ) {
-            if(eType((DefaultMutableTreeNode) node.getFirstChild()) == ParseTreeElement.Type.INTEGER) {
+            if(eType((DefaultMutableTreeNode) node.getFirstChild(), currSymbolTable) == ParseTreeElement.Type.INTEGER) {
                 return ParseTreeElement.Type.INTEGER;
             }
             else {
-                System.out.println("Error: Invalid use of subtraction operator.");
+                System.out.println("Error: Invalid use of read operator.");
+                return ParseTreeElement.Type.INTEGER;
+            }
+        }
+        else if(element.getToken().getType() == Token.Type.WRITE) {
+            if(eType((DefaultMutableTreeNode) node.getFirstChild(), currSymbolTable) == ParseTreeElement.Type.INTEGER) {
+                return ParseTreeElement.Type.INTEGER;
+            }
+            else {
+                System.out.println("Error: Invalid use of write operator.");
                 return ParseTreeElement.Type.INTEGER;
             }
         }
