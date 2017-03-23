@@ -118,7 +118,8 @@ public class SemanticAnalyzer {
             ParseTreeElement parseTreeElement = (ParseTreeElement) current.getUserObject();
             Expression myEx;
             if(parseTreeElement.getClass() == Expression.class) {
-                if(parseTreeElement.getToken().getType() == Token.Type.INT)
+                if(parseTreeElement.getToken().getType() == Token.Type.INT) {
+                }
             }
             else if(parseTreeElement.getClass() == Statement.class) {
                 switch (parseTreeElement.getType()) {
@@ -163,7 +164,7 @@ public class SemanticAnalyzer {
             }
         }
         else if(element.getToken().getType() == Token.Type.READ) {
-            if(eType((DefaultMutableTreeNode) node.getFirstChild()) == eType((DefaultMutableTreeNode) node.getLastChild())) {
+            if(eType((DefaultMutableTreeNode) node.getFirstChild()) == ParseTreeElement.Type.INTEGER) {
                 return ParseTreeElement.Type.INTEGER;
             }
             else {
